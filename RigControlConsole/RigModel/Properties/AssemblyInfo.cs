@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("RigControlConsole")]
+[assembly: AssemblyTitle("RigModel")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("RigControlConsole")]
+[assembly: AssemblyProduct("RigModel")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("412404a0-2e44-4aae-830b-1fe20ff82d17")]
+[assembly: Guid("6e88685a-ff49-410c-8bf0-2af8072366a2")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2014.12.23.3")]
-[assembly: AssemblyFileVersion("2014.12.23.3")]
+[assembly: AssemblyVersion("2014.12.23.1")]
+[assembly: AssemblyFileVersion("2014.12.23.1")]

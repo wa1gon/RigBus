@@ -23,7 +23,8 @@ namespace RigControlConsole
                 var response = client.GetAsync(baseAddress + "api/Radio").Result; 
 
                 Console.WriteLine(response); 
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result); 
+                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                Console.ReadLine(); 
             } 
 
             Console.ReadLine(); 

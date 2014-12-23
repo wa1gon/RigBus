@@ -4,21 +4,38 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-
+using Models;
 namespace RigControlConsole
 {
     public class RadioController : ApiController 
     {
+        static RigModel reading = new RigModel();
+
+
         // GET api/values 
         public IEnumerable<string> Get()
         {
             return new string[] { "value1", "value2" };
         }
 
-        // GET api/values/5 
-        public string Get(int id)
+        // GET api/values/5
+        public RigModel Get(string id)
         {
-            return "value";
+            RigModel rigReading=null;
+            rigReading = GetReading(id);
+            return rigReading;
+        }
+
+        private RigModel GetReading(string id)
+        {
+            var reading = new RigModel();
+            reading.RigName = "Dummy";
+            reading.RigType = "FlexRadio";
+            reading.Bps = 9600;
+            reading.Parity = "None";
+            reading.Frequency = 14.290;
+            reading.Mode = "USB";
+            return reading;
         }
 
         // POST api/values 
@@ -35,5 +52,7 @@ namespace RigControlConsole
         public void Delete(int id)
         {
         } 
+
+        
     }
 }
