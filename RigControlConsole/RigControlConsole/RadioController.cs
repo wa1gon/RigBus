@@ -37,7 +37,12 @@ namespace RigControlConsole
             reading.Mode = "USB";
             return reading;
         }
-
+        [Route("api/commports")]
+        public IEnumerable<string> GetCategoryId(int categoryId) 
+        {
+            string[] ports = { "COM1", "COM16" };
+            return ports;
+        }
         // POST api/values 
         public void Post([FromBody]string value)
         {

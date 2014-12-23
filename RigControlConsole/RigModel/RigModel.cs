@@ -15,5 +15,6 @@ namespace Models
         public string Parity { get; set; }
         public double Frequency { get; set; }
         public string Mode { get; set; }
+        public string CommPort { get; set; }
     }
 }
