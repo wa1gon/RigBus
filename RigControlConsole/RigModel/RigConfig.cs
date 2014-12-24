@@ -9,7 +9,7 @@ namespace Models
             AdditionSetting = new Dictionary<string, string>();
         }
         public int Bps { get; set; }
-        public string CommPort { get; set; }
+        public string Port { get; set; }
 
         public string Parity { get; set; }
         public string RigName { get; set; }

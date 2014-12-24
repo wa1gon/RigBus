@@ -10,17 +10,18 @@ namespace RadioCAT
 {
     class Program
     {
-        private System.IO.Ports.SerialPort serialPort1;
+        SerialPort serialPort1;
+        public  FlexMaster master {get;set;}
         static void Main(string[] args)
         {
             Program prg = new Program();
             prg.OpenPort();
             RigSettings settings;
 
+            prg.master = (FlexMaster)RadioFactory.Get("flex");
             while (true)
             {
-                settings = getFlexStatus();
-                
+                settings = getFlexStatus();              
             }
             //prg.SendKeyboard();
 
@@ -34,9 +35,10 @@ namespace RadioCAT
 
         private void OpenPort()
         {
-            serialPort1 = new SerialPort();
-            serialPort1.PortName = "COM4";
-            serialPort1.BaudRate = 19200;
+
+            master.Config.Port = "COM4";
+            master.Config.Bps = 19200;
+            master.OpenPort();
             this.serialPort1.DataReceived += new SerialDataReceivedEventHandler(
                 this.serialPort1_DataReceived);
 
