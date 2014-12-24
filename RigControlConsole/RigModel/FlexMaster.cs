@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class RigBase
+    public class FlexMaster : Rig
     {
-        public RigConfig RigConf { get; set; }
+        internal FlexMaster()
+        { }
     }
 }

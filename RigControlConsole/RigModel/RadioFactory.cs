@@ -8,13 +8,16 @@ namespace Models
 {
     public class RadioFactory
     {
-        static public RigBase Get(string radioType)
+        static public Rig Get(string radioType)
         {
-            RigBase newRig;
+            Rig newRig;
             switch(radioType.ToLower())
             {
                 case "dummy":
-                    newRig = new DummyRig();
+                    newRig = new DummyMaster();
+                    return newRig;
+                case "flex":
+                    newRig = new FlexMaster();
                     return newRig;
 
             }

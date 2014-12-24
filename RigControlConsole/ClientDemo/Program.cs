@@ -21,8 +21,6 @@ namespace ClientDemo
 
             Console.WriteLine("RigName: " + results.RigName);
             Console.WriteLine("RigType: " + results.RigType);
-            Console.WriteLine("Mode: " + results.Mode);
-            Console.WriteLine("Frequency: " + results.Frequency);
             Console.WriteLine("Parity: " + results.Parity);
             Console.WriteLine("Stop Bits: " + results.StopBits);
             Console.WriteLine("Bps: " + results.Bps);

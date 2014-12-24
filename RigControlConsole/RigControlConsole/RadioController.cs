@@ -29,14 +29,14 @@ namespace RigControlConsole
 
         private RigConfig GetReading(string id)
         {
-            DummyRig reading = (DummyRig)RadioFactory.Get("dummy");
-            reading.RigConf.RigName = "Dummy";
-            reading.RigConf.RigType = "FlexRadio";
-            reading.RigConf.Bps = 9600;
-            reading.RigConf.Parity = "None";
-            reading.RigConf.Frequency = 14.290;
-            reading.RigConf.Mode = "USB";
-            return reading.RigConf;
+            DummyMaster reading = (DummyMaster)RadioFactory.Get("dummy");
+            reading.Config = new RigConfig();
+
+            reading.Config.RigName = "Dummy";
+            reading.Config.RigType = "FlexRadio";
+            reading.Config.Bps = 9600;
+            reading.Config.Parity = "None";
+            return reading.Config;
         }
         [Route("api/commports")]
         public IEnumerable<string> GetCategoryId(int categoryId) 
