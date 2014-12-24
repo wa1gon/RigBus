@@ -9,7 +9,7 @@ namespace RigControlConsole
 {
     public class RadioController : ApiController 
     {
-        static RigModel reading = new RigModel();
+        static IRigModel reading = RadioFactory.Get("dummy");
 
 
         // GET api/values 
@@ -19,16 +19,16 @@ namespace RigControlConsole
         }
 
         // GET api/values/5
-        public RigModel Get(string id)
+        public IRigModel Get(string id)
         {
-            RigModel rigReading=null;
+            IRigModel rigReading=null;
             rigReading = GetReading(id);
             return rigReading;
         }
 
-        private RigModel GetReading(string id)
+        private IRigModel GetReading(string id)
         {
-            var reading = new RigModel();
+
             reading.RigName = "Dummy";
             reading.RigType = "FlexRadio";
             reading.Bps = 9600;
