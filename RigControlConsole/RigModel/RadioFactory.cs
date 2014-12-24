@@ -8,9 +8,9 @@ namespace Models
 {
     public class RadioFactory
     {
-        static public IRigModel Get(string radioType)
+        static public RigBase Get(string radioType)
         {
-            IRigModel newRig;
+            RigBase newRig;
             switch(radioType.ToLower())
             {
                 case "dummy":

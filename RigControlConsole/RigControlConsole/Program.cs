@@ -18,9 +18,11 @@ namespace RigControlConsole
             using (WebApp.Start<Startup>(url: baseAddress)) 
             { 
                 // Create HttpCient and make a request to api/values 
-                HttpClient client = new HttpClient(); 
+                HttpClient client = new HttpClient();
 
-                var response = client.GetAsync(baseAddress + "api/Radio").Result; 
+                string request = baseAddress + "api/Radio";
+                Console.WriteLine("Request address: " + request);
+                var response = client.GetAsync(request).Result; 
 
                 Console.WriteLine(response); 
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);

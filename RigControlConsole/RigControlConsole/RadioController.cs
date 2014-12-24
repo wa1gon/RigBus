@@ -7,9 +7,10 @@ using System.Web.Http;
 using Models;
 namespace RigControlConsole
 {
+
     public class RadioController : ApiController 
     {
-        static IRigModel reading = RadioFactory.Get("dummy");
+        
 
 
         // GET api/values 
@@ -19,23 +20,23 @@ namespace RigControlConsole
         }
 
         // GET api/values/5
-        public IRigModel Get(string id)
+        public RigConfig Get(string id)
         {
-            IRigModel rigReading=null;
+            RigConfig rigReading;
             rigReading = GetReading(id);
             return rigReading;
         }
 
-        private IRigModel GetReading(string id)
+        private RigConfig GetReading(string id)
         {
-
-            reading.RigName = "Dummy";
-            reading.RigType = "FlexRadio";
-            reading.Bps = 9600;
-            reading.Parity = "None";
-            reading.Frequency = 14.290;
-            reading.Mode = "USB";
-            return reading;
+            DummyRig reading = (DummyRig)RadioFactory.Get("dummy");
+            reading.RigConf.RigName = "Dummy";
+            reading.RigConf.RigType = "FlexRadio";
+            reading.RigConf.Bps = 9600;
+            reading.RigConf.Parity = "None";
+            reading.RigConf.Frequency = 14.290;
+            reading.RigConf.Mode = "USB";
+            return reading.RigConf;
         }
         [Route("api/commports")]
         public IEnumerable<string> GetCategoryId(int categoryId) 

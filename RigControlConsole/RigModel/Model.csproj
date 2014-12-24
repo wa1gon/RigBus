@@ -40,7 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DummyRig.cs" />
-    <Compile Include="IRigModel.cs" />
+    <Compile Include="RigBase.cs" />
+    <Compile Include="RigConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

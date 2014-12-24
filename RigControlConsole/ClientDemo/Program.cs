@@ -17,7 +17,7 @@ namespace ClientDemo
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
             //string results = response.Content.ReadAsStringAsync().Result;
 
-            var results = response.Content.ReadAsAsync<IRigModel>().Result as IRigModel;
+            var results = response.Content.ReadAsAsync<RigConfig>().Result as RigConfig;
 
             Console.WriteLine("RigName: " + results.RigName);
             Console.WriteLine("RigType: " + results.RigType);
