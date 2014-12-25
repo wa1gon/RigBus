@@ -39,13 +39,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ActiveRadios.cs" />
     <Compile Include="DummyMaster.cs" />
-    <Compile Include="FlexMaster.cs" />
+    <Compile Include="PowerSDRMaster.cs" />
     <Compile Include="MasterBase.cs" />
     <Compile Include="RigConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RigSettings.cs" />
+    <Compile Include="ServerInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

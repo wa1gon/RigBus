@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class FlexMaster : MasterBase
+    public class PowerSDRMaster : MasterBase
     {
         private string results;
         private object lockObject;
         private char [] delimiter = {':'};
         private Dictionary<string, string> modeLookup = new Dictionary<string, string>();
-        internal FlexMaster()
+        internal PowerSDRMaster()
         {
             Port = new SerialPort();
             lockObject = new object();

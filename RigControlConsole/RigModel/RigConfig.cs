@@ -19,6 +19,8 @@ namespace Models
         public bool Rts { get; set; }
         public bool Cts { get; set; }
         public Dictionary<string,string> AdditionSetting { get; set; }
+
+        public string Status { get; set; }
     }
     
 }

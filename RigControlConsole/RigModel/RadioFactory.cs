@@ -17,7 +17,7 @@ namespace Models
                     newRig = new DummyMaster();
                     return newRig;
                 case "flex":
-                    newRig = new FlexMaster();
+                    newRig = new PowerSDRMaster();
                     return newRig;
 
             }

@@ -7,20 +7,15 @@ using System.Web.Http;
 using Models;
 namespace RigControlConsole
 {
-    public class AllRadiosController : ApiController 
+    public class InfoController : ApiController 
     {
 
 
         // GET api/values 
-        public IEnumerable<string> Get()
+        public ServerInfo Get()
         {
-            return new string[] { 
-                "ICOM746", 
-                "ICOM746Pro" ,
-                "ICOM706",
-                "PowerSDR",
-                "ICOM7700",
-            };
+            var info = new ServerInfo();
+            return info;
         }
         
     }
