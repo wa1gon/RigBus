@@ -19,6 +19,7 @@ namespace Models
         public StatusCodes Status { get; set; }
         public string RigName { get; set; }
         public string VfoABButton { get; set; }
+        public string VfoSplit { get; set; }
         public string TunButton { get; set; }
         public string MoxButton { get; set; }
         public string Rx1Ant { get; set; }
@@ -41,7 +42,7 @@ namespace Models
         public string DriveLevel { get; set; }
         public string AudioGain { get; set; }
         public string CWSpeed { get; set; }
-        public double TunePower { get; set; }
+        public string TunePower { get; set; }
         public string PrimaryDCVolts { get; set; }
         public string SMeterLevel { get; set; }
         public string RitFreq { get; set; }
@@ -50,7 +51,7 @@ namespace Models
         public string CPUUsage { get; set; }
         public string Mode { get; set; }
         public string Vfo_AFreq { get; set; }
-        public string Vfo_ABFreq { get; set; }
+        public string Vfo_BFreq { get; set; }
         public Dictionary<string, string> AdditionSetting { get; set; }
 
     }

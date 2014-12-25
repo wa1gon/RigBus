@@ -41,7 +41,7 @@
   <ItemGroup>
     <Compile Include="DummyMaster.cs" />
     <Compile Include="FlexMaster.cs" />
-    <Compile Include="Rig.cs" />
+    <Compile Include="MasterBase.cs" />
     <Compile Include="RigConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

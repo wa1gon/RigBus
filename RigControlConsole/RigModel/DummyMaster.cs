@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Models
 {
-    public class DummyMaster : Rig
+    public class DummyMaster : MasterBase
     {
         internal DummyMaster()
         { }
