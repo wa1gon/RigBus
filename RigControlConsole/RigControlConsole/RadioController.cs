@@ -39,14 +39,14 @@ namespace RigControlConsole
             reading.Config.Parity = "None";
             return reading.Config;
         }
-        [Route("coms")]
+
         public IEnumerable<string> GetCategoryId(int categoryId) 
         {
             string[] ports = SerialPort.GetPortNames();
             return ports;
         }
         // POST api/values 
-        public void Post([FromBody]string value)
+        public void Post([FromBody]RigConfig value)
         {
         }
 

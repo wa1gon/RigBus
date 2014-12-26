@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Models;
+using System.Net.Http.Headers;
 
 namespace ClientDemo
 {
@@ -29,12 +30,34 @@ namespace ClientDemo
             Console.WriteLine("Stop Bits: " + results.StopBits);
             Console.WriteLine("Bps: " + results.Bps);
 
+           // app.SetRig();
+
             Console.ReadKey();
+        }
+
+        private void SetRig()
+        {
+            client.DefaultRequestHeaders.Accept.Add(
+                new MediaTypeWithQualityHeaderValue("application/json"));
+
+            config.Command = "Open";
+            config.RigName = "myDummy";
+            config.RigType = "Dummy";
+            var response = client.PostAsJsonAsync("api/Radio", config).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Dummy connection open"); 
+            }
+            else
+            {
+                Console.WriteLine("Error Code" + response.StatusCode + 
+                    " : Message - " + response.ReasonPhrase);
+            }
+
         }
         public Program()
         {
-            client = new HttpClient();
-            
+            client = new HttpClient();          
         }
 
         private void getSerial()
@@ -43,13 +66,13 @@ namespace ClientDemo
             baseUrl = "http://localhost:9000/api/Radio/foo";
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
-            var results = response.Content.ReadAsAsync<RigConfig>().Result as RigConfig;
+            config = response.Content.ReadAsAsync<RigConfig>().Result as RigConfig;
 
-            Console.WriteLine("RigName: " + results.RigName);
-            Console.WriteLine("RigType: " + results.RigType);
-            Console.WriteLine("Parity: " + results.Parity);
-            Console.WriteLine("Stop Bits: " + results.StopBits);
-            Console.WriteLine("Bps: " + results.Bps);
+            Console.WriteLine("RigName: " + config.RigName);
+            Console.WriteLine("RigType: " + config.RigType);
+            Console.WriteLine("Parity: " + config.Parity);
+            Console.WriteLine("Stop Bits: " + config.StopBits);
+            Console.WriteLine("Bps: " + config.Bps);
 
             Console.ReadKey();
         }
