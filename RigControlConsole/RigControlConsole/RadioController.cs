@@ -51,16 +51,31 @@ namespace RigControlConsole
         public HttpResponseMessage Post([FromBody]RigConfig value)
         {
             var resp = new HttpResponseMessage();
-            if (value.RigType == null)
+            if (string.IsNullOrWhiteSpace(value.RigType) || string.IsNullOrWhiteSpace(value.Port))
             {
                 resp.StatusCode = HttpStatusCode.NotFound;
+                resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
+                return resp;
             }
-            else
-            {
-                resp.StatusCode = HttpStatusCode.NoContent;
-                resp.ReasonPhrase = "Comm port open!";
+            var servInfo = new ServerInfo();
 
+            bool hasComm = servInfo.CommPorts.Contains(value.Port);
+            if (hasComm == false)
+            {
+                resp.StatusCode = HttpStatusCode.NotFound;
+                resp.ReasonPhrase = "Comm port not found!";
+                return resp;
             }
+            bool isRadioSupported = servInfo.SupportedRadios.Contains(value.RigType);
+            if (isRadioSupported == false)
+            {
+                resp.StatusCode = HttpStatusCode.NotFound;
+                resp.ReasonPhrase = "Radio not supported!";
+                return resp;
+            }
+            resp.StatusCode = HttpStatusCode.NoContent;
+            resp.ReasonPhrase = "Comm port open!";
+
             return resp;
         }
 

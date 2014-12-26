@@ -43,6 +43,7 @@ namespace ClientDemo
             config.Command = "Open";
             config.RigName = "myDummy";
             config.RigType = "Dummy";
+            config.Port = "COM6";
             var response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -51,6 +52,50 @@ namespace ClientDemo
             else
             {
                 Console.WriteLine("Error Code" + response.StatusCode + 
+                    " : Message - " + response.ReasonPhrase);
+            }
+
+            config.Command = "Open";
+            config.RigName = "myDummy";
+            config.RigType = "Dummy";
+            config.Port = "COM40";
+            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Dummy connection open");
+            }
+            else
+            {
+                Console.WriteLine("Error Code" + response.StatusCode +
+                    " : Message - " + response.ReasonPhrase);
+            }
+
+            config.Command = "Open";
+            config.RigName = "myDummy";
+            config.RigType = "Dummy";
+            config.Port = "COM6";
+            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Dummy connection open");
+            }
+            else
+            {
+                Console.WriteLine("Error Code" + response.StatusCode +
+                    " : Message - " + response.ReasonPhrase);
+            }
+            config.Command = "Open";
+            config.RigName = "myDummy";
+            config.RigType = "foobar";
+            config.Port = "COM6";
+            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                Console.WriteLine("Dummy connection open");
+            }
+            else
+            {
+                Console.WriteLine("Error Code" + response.StatusCode +
                     " : Message - " + response.ReasonPhrase);
             }
 
