@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Models;
 using System.IO.Ports;
+using System.Net.Http;
+using System.Net;
 namespace RigControlConsole
 {
 
@@ -46,8 +48,20 @@ namespace RigControlConsole
             return ports;
         }
         // POST api/values 
-        public void Post([FromBody]RigConfig value)
+        public HttpResponseMessage Post([FromBody]RigConfig value)
         {
+            var resp = new HttpResponseMessage();
+            if (value.RigType == null)
+            {
+                resp.StatusCode = HttpStatusCode.NotFound;
+            }
+            else
+            {
+                resp.StatusCode = HttpStatusCode.NoContent;
+                resp.ReasonPhrase = "Comm port open!";
+
+            }
+            return resp;
         }
 
         // PUT api/values/5 

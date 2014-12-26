@@ -30,7 +30,7 @@ namespace ClientDemo
             Console.WriteLine("Stop Bits: " + results.StopBits);
             Console.WriteLine("Bps: " + results.Bps);
 
-           // app.SetRig();
+           app.SetRig();
 
             Console.ReadKey();
         }
@@ -43,7 +43,7 @@ namespace ClientDemo
             config.Command = "Open";
             config.RigName = "myDummy";
             config.RigType = "Dummy";
-            var response = client.PostAsJsonAsync("api/Radio", config).Result;
+            var response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Dummy connection open"); 
@@ -73,8 +73,6 @@ namespace ClientDemo
             Console.WriteLine("Parity: " + config.Parity);
             Console.WriteLine("Stop Bits: " + config.StopBits);
             Console.WriteLine("Bps: " + config.Bps);
-
-            Console.ReadKey();
         }
     }
 }
