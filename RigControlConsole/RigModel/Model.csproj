@@ -43,6 +43,7 @@
     <Compile Include="DummyMaster.cs" />
     <Compile Include="PowerSDRMaster.cs" />
     <Compile Include="MasterBase.cs" />
+    <Compile Include="RadioCmd.cs" />
     <Compile Include="RigConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

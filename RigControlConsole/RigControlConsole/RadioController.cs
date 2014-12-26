@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Models;
+using System.IO.Ports;
 namespace RigControlConsole
 {
 
@@ -38,10 +39,10 @@ namespace RigControlConsole
             reading.Config.Parity = "None";
             return reading.Config;
         }
-        [Route("api/commports")]
+        [Route("coms")]
         public IEnumerable<string> GetCategoryId(int categoryId) 
         {
-            string[] ports = { "COM1", "COM16" };
+            string[] ports = SerialPort.GetPortNames();
             return ports;
         }
         // POST api/values 

@@ -17,6 +17,7 @@ namespace RigControlConsole
             var info = new ServerInfo();
             return info;
         }
+
         
     }
 }

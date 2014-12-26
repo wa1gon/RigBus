@@ -18,6 +18,9 @@ namespace Models
         public int DataBits { get; set; }
         public bool Rts { get; set; }
         public bool Cts { get; set; }
+        public bool Default { get; set; }
+        public bool IsConnected { get; set; }
+        public string Command { get; set; }
         public Dictionary<string,string> AdditionSetting { get; set; }
 
         public string Status { get; set; }
