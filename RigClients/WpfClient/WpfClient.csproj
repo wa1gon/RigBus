@@ -57,8 +57,12 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Servers.xaml.cs">
-      <DependentUpon>Servers.xaml</DependentUpon>
+    <Compile Include="ConfData.cs" />
+    <Compile Include="Configuration.cs" />
+    <Compile Include="JsonUtils.cs" />
+    <Compile Include="Server.cs" />
+    <Compile Include="RigServersWindow.xaml.cs">
+      <DependentUpon>RigServersWindow.xaml</DependentUpon>
     </Compile>
     <Page Include="ClientDemoWpf.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -72,7 +76,7 @@
       <DependentUpon>ClientDemoWpf.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="Servers.xaml">
+    <Page Include="RigServersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

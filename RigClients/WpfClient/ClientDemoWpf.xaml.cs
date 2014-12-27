@@ -27,7 +27,8 @@ namespace WpfClient
 
         private void Server_Click(object sender, RoutedEventArgs e)
         {
-
+            var servWin = new RigServersWindow();
+            servWin.ShowDialog();
         }
     }
 }
