@@ -60,6 +60,9 @@
     <Compile Include="ConfData.cs" />
     <Compile Include="Configuration.cs" />
     <Compile Include="JsonUtils.cs" />
+    <Compile Include="RigConfigurationWindow.xaml.cs">
+      <DependentUpon>RigConfigurationWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Server.cs" />
     <Compile Include="RigServersWindow.xaml.cs">
       <DependentUpon>RigServersWindow.xaml</DependentUpon>
@@ -76,6 +79,10 @@
       <DependentUpon>ClientDemoWpf.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="RigConfigurationWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RigServersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

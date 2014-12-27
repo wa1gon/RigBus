@@ -8,12 +8,12 @@ namespace Models
         {
             AdditionSetting = new Dictionary<string, string>();
         }
+        public string RigName { get; set; }
+        public string RigType { get; set; }
         public int Bps { get; set; }
         public string Port { get; set; }
 
         public string Parity { get; set; }
-        public string RigName { get; set; }
-        public string RigType { get; set; }
         public int StopBits { get; set; }
         public int DataBits { get; set; }
         public bool Rts { get; set; }
