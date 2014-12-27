@@ -82,7 +82,9 @@ namespace WpfClient
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-
+            Server serv = (Server)ServList.SelectedItem;
+            Conf.Servers.Remove(serv);
+            Conf.Save();
         }
     }
 }
