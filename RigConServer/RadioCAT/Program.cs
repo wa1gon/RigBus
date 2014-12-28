@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO.Ports;
-using Models;
+using Wa1gon.Models;
 using System.Threading;
 
 namespace RadioCAT

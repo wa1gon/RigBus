@@ -58,6 +58,12 @@ namespace Wa1gon.WpfClient
             conf.RigType = RigTypeTb.Text;
             conf.Port = ComPortTb.Text;
             conf.Bps = BpsTb.Text.ParseInt();
+            conf.StopBits = StopBitsCb.Text.ParseInt();
+            conf.DataBits = DataBitsCb.Text.ParseInt();
+            conf.Parity = ParityCb.Text;
+            conf.Rts = (bool)RtsCb.IsChecked;
+            conf.Dtr = (bool)DtrCb.IsChecked;
+
 
 
         }

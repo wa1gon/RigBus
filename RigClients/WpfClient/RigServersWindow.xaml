@@ -54,10 +54,6 @@
             <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="6"
                    Text="Data Bits" VerticalAlignment="Center"/>
 
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="1" Grid.Column="2" 
-                   Text="RTS" VerticalAlignment="Center" Height="16"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="2"  Grid.Column="2"
-                   Text="CTS" VerticalAlignment="Center" />
             <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="3"  Grid.Column="2"
                    Text="Parity" VerticalAlignment="Center"/>
             <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="4"  Grid.Column="2"
@@ -69,13 +65,35 @@
             <TextBox Name="RigNameTb" Grid.Column="1" Grid.Row="1" Margin="5"/>
             <TextBox Name="RigTypeTb" Grid.Column="1" Grid.Row="2" Margin="5"/>
             <TextBox Name="ComPortTb" Grid.Column="1" Grid.Row="3" Margin="5"/>
-            <TextBox Name="BpsTb" Grid.Column="1" Grid.Row="4" Margin="5"/>
-            <TextBox Name="StopBitsTb" Grid.Column="1" Grid.Row="5" Margin="5"/>
-            <TextBox Name="DataBitsTb" Grid.Column="1" Grid.Row="6" Margin="5"/>
+            <ComboBox Name="BpsTb" Grid.Column="1" Grid.Row="4" Margin="5">
+                <ComboBoxItem Content="300" />
+                <ComboBoxItem Content="1200"/>
+                <ComboBoxItem Content="2400"/>
+                <ComboBoxItem Content="4800"/>
+                <ComboBoxItem Content="9600"/>
+                <ComboBoxItem Content="11500"/>
+                <ComboBoxItem Content="14000"/>
+                <ComboBoxItem Content="19200"/>
+                <ComboBoxItem Content="28800"/>
+                <ComboBoxItem Content="38400"/>
+                <ComboBoxItem Content="56800"/>
+            </ComboBox>
+            <ComboBox Name="StopBitsCb" Grid.Column="1" Grid.Row="5" Margin="5">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+            </ComboBox>
+            <ComboBox Name="DataBitsCb" Grid.Column="1" Grid.Row="6" Margin="5">
+                <ComboBoxItem Content="7"/>
+                <ComboBoxItem Content="8"/>
+            </ComboBox>
 
-            <TextBox Name="RtsTb" Grid.Column="3" Grid.Row="1" Margin="5"/>
-            <TextBox Name="CtsTb" Grid.Column="3" Grid.Row="2" Margin="5"/>
-            <TextBox Name="PartyTb" Grid.Column="3" Grid.Row="3" Margin="5"/>
+            <CheckBox Content="RTS"  Name="RtsCb" Grid.Column="3" Grid.Row="1" Margin="5"/>
+            <CheckBox Content="DTR" Name="DtrCb" Grid.Column="3" Grid.Row="2" Margin="5"/>
+            <ComboBox Name="ParityCb" Grid.Column="3" Grid.Row="3" Margin="5">
+                <ComboBoxItem Content="NONE"/>
+                <ComboBoxItem Content="EVEN"/>
+                <ComboBoxItem Content="ODD"/>
+            </ComboBox>
             <TextBox Name="DisplayNameTb" Grid.Column="3" Grid.Row="4" Margin="5"/>
             <TextBox Name="Default" Grid.Column="3" Grid.Row="5" Margin="5"/>
    
@@ -94,8 +112,6 @@
                     </GridView>
                 </ListView.View>
             </ListView>
-
-
         </Grid>
     </StackPanel>
 </Window>

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
-using Models;
+using Wa1gon.Models;
 namespace RigControlConsole
 {
     public class InfoController : ApiController 
