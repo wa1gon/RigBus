@@ -53,18 +53,13 @@
                    Text="Stop Bits" VerticalAlignment="Center"/>
             <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="6"
                    Text="Data Bits" VerticalAlignment="Center"/>
-
             <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="3"  Grid.Column="2"
                    Text="Parity" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="4"  Grid.Column="2"
-                   Text="Default" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="5"  Grid.Column="2"
-                   Text="Stop Bits" VerticalAlignment="Center"/>
 
 
             <TextBox Name="RigNameTb" Grid.Column="1" Grid.Row="1" Margin="5"/>
             <TextBox Name="RigTypeTb" Grid.Column="1" Grid.Row="2" Margin="5"/>
-            <TextBox Name="ComPortTb" Grid.Column="1" Grid.Row="3" Margin="5"/>
+            <ComboBox Name="ComPortCb" Grid.Column="1" Grid.Row="3" Margin="5"/>
             <ComboBox Name="BpsTb" Grid.Column="1" Grid.Row="4" Margin="5">
                 <ComboBoxItem Content="300" />
                 <ComboBoxItem Content="1200"/>
@@ -94,8 +89,8 @@
                 <ComboBoxItem Content="EVEN"/>
                 <ComboBoxItem Content="ODD"/>
             </ComboBox>
-            <TextBox Name="DisplayNameTb" Grid.Column="3" Grid.Row="4" Margin="5"/>
-            <TextBox Name="Default" Grid.Column="3" Grid.Row="5" Margin="5"/>
+
+            <CheckBox Name="DefaultCb" Content="Default" Grid.Column="3" Grid.Row="4" Margin="5"/>
    
 
             <Button Content="Add" Click="AddClick" Grid.Row="1" Grid.Column="5" Margin="5"/>

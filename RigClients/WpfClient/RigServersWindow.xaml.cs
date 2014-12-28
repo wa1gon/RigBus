@@ -56,16 +56,16 @@ namespace Wa1gon.WpfClient
 
             conf.RigName = RigNameTb.Text;
             conf.RigType = RigTypeTb.Text;
-            conf.Port = ComPortTb.Text;
+            conf.Port = ComPortCb.Text;
+
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
             conf.DataBits = DataBitsCb.Text.ParseInt();
-            conf.Parity = ParityCb.Text;
+
             conf.Rts = (bool)RtsCb.IsChecked;
             conf.Dtr = (bool)DtrCb.IsChecked;
-
-
-
+            conf.Default = (bool)DefaultCb.IsChecked;
+            conf.Parity = ParityCb.Text;
         }
 
         private void DeleteClick(object sender, RoutedEventArgs e)
