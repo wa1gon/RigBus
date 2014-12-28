@@ -22,12 +22,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wa1gon.WpfClient
+namespace Wa1gon.RigClientLib
 {
-    public class Server
+    public class Class1
     {
-        public string DisplayName { get; set; }
-        public string HostName { get; set; }
-        public string Port { get; set; }
     }
 }

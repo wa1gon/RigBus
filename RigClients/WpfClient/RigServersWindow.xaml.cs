@@ -1,4 +1,23 @@
-﻿using System;
+﻿#region -- Copyright
+/*
+   Copyright {2014} {Darryl Wagoner DE WA1GON}
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+*/
+#endregion
+using Wa1gon.Models;
+using Wa1gon.RigClientLib;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,8 +30,9 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wa1gon.RigClientLib.Utils;
 
-namespace WpfClient
+namespace Wa1gon.WpfClient
 {
     /// <summary>
     /// Interaction logic for Servers.xaml
@@ -32,59 +52,19 @@ namespace WpfClient
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            Conf = Configuration.Create();
-            string server = ServerTb.Text.ToLower();
-            string port = PortTb.Text.ToLower();
-            string displayName = DisplayNameTb.Text.ToLower();
+            RigConfig conf = new RigConfig();
 
-            if (string.IsNullOrWhiteSpace(displayName))
-            {
-                MessageBox.Show("Display Name can not be empty");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(port))
-            {
-                MessageBox.Show("Port can not be empty");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(displayName))
-            {
-                MessageBox.Show("Host name can not be empty");
-                return;
-            }
+            conf.RigName = RigNameTb.Text;
+            conf.RigType = RigTypeTb.Text;
+            conf.Port = ComPortTb.Text;
+            conf.Bps = BpsTb.Text.ParseInt();
 
-            Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == server).SingleOrDefault();
-
-            if (serv == null)
-            {
-                serv = new Server();
-                serv.DisplayName = displayName;
-                serv.Port = port;
-                serv.HostName = server;
-                Conf.Servers.Add(serv);
-            }
-            else
-            {
-                Conf.Servers.Remove(serv);
-                serv.DisplayName = displayName;
-                serv.Port = port;
-                serv.HostName = server;
-                Conf.Servers.Add(serv);
-            }
-
-            ServerTb.Text = string.Empty;
-            PortTb.Text = string.Empty;
-            DisplayNameTb.Text = string.Empty;
-            ServList.ItemsSource = Conf.Servers;
-            Conf.Save();
 
         }
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-            Server serv = (Server)ServList.SelectedItem;
-            Conf.Servers.Remove(serv);
-            Conf.Save();
+
         }
     }
 }

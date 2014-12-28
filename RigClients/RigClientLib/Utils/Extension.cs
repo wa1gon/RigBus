@@ -22,12 +22,20 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wa1gon.WpfClient
+namespace Wa1gon.RigClientLib.Utils
 {
-    public class Server
+    public static class Extension
     {
-        public string DisplayName { get; set; }
-        public string HostName { get; set; }
-        public string Port { get; set; }
+        
+        public static int? ParseInt(this string value)
+        {
+            int result;
+            bool ok = int.TryParse(value, out result);
+            if (ok)
+            {
+                return result;
+            }
+            return null;
+        }
     }
 }

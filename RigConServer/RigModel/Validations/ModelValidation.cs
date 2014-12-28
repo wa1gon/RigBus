@@ -22,12 +22,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wa1gon.WpfClient
+namespace Wa1gon.Models.Validations
 {
-    public class Server
+    public class ModelValidation
     {
-        public string DisplayName { get; set; }
-        public string HostName { get; set; }
-        public string Port { get; set; }
+        static public List<string> ValidateRigConf(RigConfig conf)
+        {
+            List<string> errors = new List<string>();
+            return errors;
+        }
     }
 }
