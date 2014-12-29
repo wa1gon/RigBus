@@ -63,7 +63,6 @@
     <Compile Include="RigConfigurationWindow.xaml.cs">
       <DependentUpon>RigConfigurationWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Server.cs" />
     <Compile Include="RigServersWindow.xaml.cs">
       <DependentUpon>RigServersWindow.xaml</DependentUpon>
     </Compile>

@@ -19,7 +19,7 @@
 using System.Collections.Generic;
 using System.IO.Ports;
 
-namespace RigControlConsole
+namespace Wa1gon.Models
 {
     public class ServerInfo 
     {

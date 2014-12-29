@@ -22,7 +22,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Wa1gon.WpfClient
+namespace Wa1gon.RigClientLib
 {
     public class Server
     {

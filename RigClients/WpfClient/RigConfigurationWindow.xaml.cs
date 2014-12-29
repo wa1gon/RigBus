@@ -36,6 +36,7 @@
 #endregion
 using System.Windows;
 using Wa1gon.Models;
+using Wa1gon.RigClientLib;
 using Wa1gon.RigClientLib.Utils;
 
 namespace Wa1gon.WpfClient
