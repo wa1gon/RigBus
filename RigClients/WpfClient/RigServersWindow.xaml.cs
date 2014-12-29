@@ -50,27 +50,62 @@ namespace Wa1gon.WpfClient
 
         }
 
+
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            RigConfig conf = new RigConfig();
+            Conf = Configuration.Create();
+            string server = ServerTb.Text.ToLower();
+            string port = PortTb.Text.ToLower();
+            string displayName = DisplayNameTb.Text.ToLower();
 
-            conf.RigName = RigNameTb.Text;
-            conf.RigType = RigTypeTb.Text;
-            conf.Port = ComPortCb.Text;
+            if (string.IsNullOrWhiteSpace(displayName))
+            {
+                MessageBox.Show("Display Name can not be empty");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(port))
+            {
+                MessageBox.Show("Port can not be empty");
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(displayName))
+            {
+                MessageBox.Show("Host name can not be empty");
+                return;
+            }
 
-            conf.Bps = BpsTb.Text.ParseInt();
-            conf.StopBits = StopBitsCb.Text.ParseInt();
-            conf.DataBits = DataBitsCb.Text.ParseInt();
+            Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == server).SingleOrDefault();
 
-            conf.Rts = (bool)RtsCb.IsChecked;
-            conf.Dtr = (bool)DtrCb.IsChecked;
-            conf.Default = (bool)DefaultCb.IsChecked;
-            conf.Parity = ParityCb.Text;
+            if (serv == null)
+            {
+                serv = new Server();
+                serv.DisplayName = displayName;
+                serv.Port = port;
+                serv.HostName = server;
+                Conf.Servers.Add(serv);
+            }
+            else
+            {
+                Conf.Servers.Remove(serv);
+                serv.DisplayName = displayName;
+                serv.Port = port;
+                serv.HostName = server;
+                Conf.Servers.Add(serv);
+            }
+
+            ServerTb.Text = string.Empty;
+            PortTb.Text = string.Empty;
+            DisplayNameTb.Text = string.Empty;
+            ServList.ItemsSource = Conf.Servers;
+            Conf.Save();
+
         }
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-
+            Server serv = (Server)ServList.SelectedItem;
+            Conf.Servers.Remove(serv);
+            Conf.Save();
         }
     }
 }
