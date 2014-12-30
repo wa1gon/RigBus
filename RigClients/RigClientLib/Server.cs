@@ -26,8 +26,27 @@ namespace Wa1gon.RigClientLib
 {
     public class Server
     {
+        public int Handle { get; set; }
         public string DisplayName { get; set; }
         public string HostName { get; set; }
         public string Port { get; set; }
+
+        public string GetServerUri()
+        {
+            string rc = null;
+            if (IsValid() == false) return rc;
+
+            rc = string.Format("http://{0}:{1}/api/", HostName, Port);
+            return rc;
+        }
+
+        private bool IsValid()
+        {
+            if (string.IsNullOrWhiteSpace(DisplayName)) return false;
+            if (string.IsNullOrWhiteSpace(Port)) return false;
+            if (string.IsNullOrWhiteSpace(DisplayName)) return false;
+
+            return true;
+        }
     }
 }

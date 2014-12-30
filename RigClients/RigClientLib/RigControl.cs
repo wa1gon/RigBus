@@ -24,7 +24,14 @@ using System.Threading.Tasks;
 
 namespace Wa1gon.RigClientLib
 {
-    public class Class1
+    public class RigControl
     {
+        public string [] GetCommPortList(Server server)
+        {
+            string [] commList  = null;
+
+
+            return commList;
+        }
     }
 }
