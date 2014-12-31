@@ -54,7 +54,7 @@ namespace Wa1gon.WpfClient
         private void AddClick(object sender, RoutedEventArgs e)
         {
             Conf = Configuration.Create();
-            string server = ServerTb.Text.ToLower();
+            string host = ServerTb.Text.ToLower();
             string port = PortTb.Text.ToLower();
             string displayName = DisplayNameTb.Text.ToLower();
 
@@ -74,14 +74,22 @@ namespace Wa1gon.WpfClient
                 return;
             }
 
-            Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == server).SingleOrDefault();
+            Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == host).SingleOrDefault();
 
             if (serv == null)
             {
                 serv = new Server();
                 serv.DisplayName = displayName;
                 serv.Port = port;
-                serv.HostName = server;
+                serv.HostName = host;
+                if (DefaultServerTb.IsChecked != null)
+                {
+                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+                }
+                else
+                {
+                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+                }
                 Conf.Servers.Add(serv);
             }
             else
@@ -89,13 +97,23 @@ namespace Wa1gon.WpfClient
                 Conf.Servers.Remove(serv);
                 serv.DisplayName = displayName;
                 serv.Port = port;
-                serv.HostName = server;
+                serv.HostName = host;
+                serv.HostName = host;
+                if (DefaultServerTb.IsChecked != null)
+                {
+                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+                }
+                else
+                {
+                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+                }
                 Conf.Servers.Add(serv);
             }
 
             ServerTb.Text = string.Empty;
             PortTb.Text = string.Empty;
             DisplayNameTb.Text = string.Empty;
+            DefaultServerTb.IsChecked = false;
             ServList.ItemsSource = Conf.Servers;
             Conf.Save();
 
@@ -106,6 +124,16 @@ namespace Wa1gon.WpfClient
             Server serv = (Server)ServList.SelectedItem;
             Conf.Servers.Remove(serv);
             Conf.Save();
+        }
+
+        private void ServList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            Server selectServer = ServList.SelectedItem as Server;
+            ServerTb.Text = selectServer.HostName;
+            PortTb.Text = selectServer.Port;
+            DisplayNameTb.Text = selectServer.DisplayName;
+            DefaultServerTb.IsChecked = selectServer.DefaultServer;
+
         }
     }
 }

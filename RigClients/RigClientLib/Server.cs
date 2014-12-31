@@ -30,6 +30,7 @@ namespace Wa1gon.RigClientLib
         public string DisplayName { get; set; }
         public string HostName { get; set; }
         public string Port { get; set; }
+        public bool DefaultServer { get; set; }
 
         public string GetServerUri()
         {
