@@ -38,15 +38,18 @@ namespace Wa1gon.WpfClient
                 if (conf == null)
                 {
                     conf = new Configuration();
-                    conf.configData = new ConfigData();
-                    string confPath = conf.GetConfigPath();
-                    if (File.Exists(confPath))
-                    {
-                        conf.Restore();
-                    }
                 }
                 return conf;
             }           
+        }
+
+        private void RestoreLocalConfig()
+        {
+            string confPath = GetConfigPath();
+            if (File.Exists(confPath))
+            {
+                Restore();
+            }
         }
         public ObservableCollection<Server> Servers { 
             get
@@ -62,7 +65,8 @@ namespace Wa1gon.WpfClient
 
         private Configuration()
         {
-
+            configData = new ConfigData();
+            RestoreLocalConfig();
         }
 
         public void Save()
