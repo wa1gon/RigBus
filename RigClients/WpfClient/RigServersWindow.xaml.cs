@@ -78,11 +78,11 @@ namespace Wa1gon.WpfClient
             string port = PortTb.Text.ToLower();
             string displayName = DisplayNameTb.Text.ToLower();
 
-            Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == host).SingleOrDefault();
+            Server serv = Conf.Servers.Where(s => s.DisplayName.ToLower() == displayName).SingleOrDefault();
 
             if (serv == null)
             {
-                serv = AddNewServerToServerList(host, port, displayName, serv);
+                AddNewServerToServerList(host, port, displayName);
             }
             else
             {
@@ -116,8 +116,9 @@ namespace Wa1gon.WpfClient
             Conf.Servers.Add(serv);
         }
 
-        private Server AddNewServerToServerList(string host, string port, string displayName, Server serv)
+        private void AddNewServerToServerList(string host, string port, string displayName)
         {
+            Server serv;
             serv = new Server();
             serv.DisplayName = displayName;
             serv.Port = port;
@@ -131,7 +132,7 @@ namespace Wa1gon.WpfClient
                 serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
             }
             Conf.Servers.Add(serv);
-            return serv;
+            return ;
         }
 
         private bool IsDisplayViewValid()
