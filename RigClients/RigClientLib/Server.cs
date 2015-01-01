@@ -18,16 +18,28 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wa1gon.Model;
 
 namespace Wa1gon.RigClientLib
 {
-    public class Server
+    public class Server : BindableObject, INotifyPropertyChanged
     {
         public int Handle { get; set; }
-        public string DisplayName { get; set; }
+        public string DisplayName { 
+            get
+            {
+                return displayName;
+            }
+            set
+            {
+                displayName = value;
+                NotifyPropertyChanged(() => DisplayName);
+            }
+        }
         public string HostName { get; set; }
         public string Port { get; set; }
         public bool DefaultServer { get; set; }
@@ -49,5 +61,7 @@ namespace Wa1gon.RigClientLib
 
             return true;
         }
+
+        private string displayName;
     }
 }

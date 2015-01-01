@@ -54,7 +54,7 @@ namespace Wa1gon.WpfClient
             InitializeComponent();
             Conf = Configuration.Create();
             ServList.ItemsSource = Conf.Servers;
-
+            DataContext = this;
         }
 
         private void AddClick(object sender, RoutedEventArgs e)

@@ -42,16 +42,33 @@ namespace Wa1gon.WpfClient
         public Server Serv { get; set; }
         public Configuration Conf { get; set; }
 
+        public Server SelectedServer { get; set; }
+
         public RigServersWindow()
         {
             InitializeComponent();
             Conf = Configuration.Create();
             ServList.ItemsSource = Conf.Servers;
+            GetSelectedServer();
+        }
 
+        private void GetSelectedServer()
+        {
+            if (Conf.Servers.Count == 0)
+            {
+                SelectedServer = new Server();
+                return;
+            }
+            SelectedServer = Conf.Servers.Where(s => s.DefaultServer == true).SingleOrDefault();
+            if (SelectedServer == null)
+            {
+                SelectedServer = Conf.Servers[0];
+            }
         }
 
 
-        private void AddClick(object sender, RoutedEventArgs e)
+
+        private void SaveClick(object sender, RoutedEventArgs e)
         {
             Conf = Configuration.Create();
             string host = ServerTb.Text.ToLower();
@@ -128,11 +145,21 @@ namespace Wa1gon.WpfClient
 
         private void ServList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Server selectServer = ServList.SelectedItem as Server;
-            ServerTb.Text = selectServer.HostName;
-            PortTb.Text = selectServer.Port;
-            DisplayNameTb.Text = selectServer.DisplayName;
-            DefaultServerTb.IsChecked = selectServer.DefaultServer;
+            SelectedServer = ServList.SelectedItem as Server;
+            SetDetailView();
+
+        }
+
+        private void SetDetailView()
+        {
+            ServerTb.Text = SelectedServer.HostName;
+            PortTb.Text = SelectedServer.Port;
+            DisplayNameTb.Text = SelectedServer.DisplayName;
+            DefaultServerTb.IsChecked = SelectedServer.DefaultServer;
+        }
+
+        private void NewClick(object sender, RoutedEventArgs e)
+        {
 
         }
     }

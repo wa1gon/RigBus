@@ -34,8 +34,6 @@
 
             <MenuItem Name="Exit" Header="Exit" HorizontalAlignment="Right"/>
 
-
-
         </Menu>
 
     </Grid>
