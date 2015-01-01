@@ -82,36 +82,11 @@ namespace Wa1gon.WpfClient
 
             if (serv == null)
             {
-                serv = new Server();
-                serv.DisplayName = displayName;
-                serv.Port = port;
-                serv.HostName = host;
-                if (DefaultServerTb.IsChecked != null)
-                {
-                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
-                }
-                else
-                {
-                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
-                }
-                Conf.Servers.Add(serv);
+                serv = AddNewServerToServerList(host, port, displayName, serv);
             }
             else
             {
-                Conf.Servers.Remove(serv);
-                serv.DisplayName = displayName;
-                serv.Port = port;
-                serv.HostName = host;
-                serv.HostName = host;
-                if (DefaultServerTb.IsChecked != null)
-                {
-                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
-                }
-                else
-                {
-                    serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
-                }
-                Conf.Servers.Add(serv);
+                ReplaceServerInServerList(host, port, displayName, serv);
             }
 
             ServerTb.Text = string.Empty;
@@ -121,6 +96,42 @@ namespace Wa1gon.WpfClient
             ServList.ItemsSource = Conf.Servers;
             Conf.Save();
 
+        }
+
+        private void ReplaceServerInServerList(string host, string port, string displayName, Server serv)
+        {
+            Conf.Servers.Remove(serv);
+            serv.DisplayName = displayName;
+            serv.Port = port;
+            serv.HostName = host;
+            serv.HostName = host;
+            if (DefaultServerTb.IsChecked != null)
+            {
+                serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+            }
+            else
+            {
+                serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+            }
+            Conf.Servers.Add(serv);
+        }
+
+        private Server AddNewServerToServerList(string host, string port, string displayName, Server serv)
+        {
+            serv = new Server();
+            serv.DisplayName = displayName;
+            serv.Port = port;
+            serv.HostName = host;
+            if (DefaultServerTb.IsChecked != null)
+            {
+                serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+            }
+            else
+            {
+                serv.DefaultServer = (bool)DefaultServerTb.IsChecked;
+            }
+            Conf.Servers.Add(serv);
+            return serv;
         }
 
         private bool IsDisplayViewValid()
