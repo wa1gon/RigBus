@@ -67,7 +67,6 @@ namespace Wa1gon.WpfClient
         }
 
 
-
         private void SaveClick(object sender, RoutedEventArgs e)
         {
             Conf = Configuration.Create();
