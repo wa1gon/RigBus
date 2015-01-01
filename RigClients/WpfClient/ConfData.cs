@@ -1,6 +1,6 @@
 ﻿#region -- Copyright
 /*
-   Copyright {2014} {Darryl Wagoner DE WA1GON}
+   Copyright 2014 Darryl Wagoner DE WA1GON
 
    Licensed under the Apache License, Version 2.0 (the "License");
    you may not use this file except in compliance with the License.
