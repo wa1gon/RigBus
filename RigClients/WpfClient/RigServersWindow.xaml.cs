@@ -64,31 +64,19 @@ namespace Wa1gon.WpfClient
             {
                 SelectedServer = Conf.Servers[0];
             }
+            SetDetailView();
         }
 
 
         private void SaveClick(object sender, RoutedEventArgs e)
         {
             Conf = Configuration.Create();
+
+
+            if (IsDisplayViewValid() == false)  return;
             string host = ServerTb.Text.ToLower();
             string port = PortTb.Text.ToLower();
             string displayName = DisplayNameTb.Text.ToLower();
-
-            if (string.IsNullOrWhiteSpace(displayName))
-            {
-                MessageBox.Show("Display Name can not be empty");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(port))
-            {
-                MessageBox.Show("Port can not be empty");
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(displayName))
-            {
-                MessageBox.Show("Host name can not be empty");
-                return;
-            }
 
             Server serv = Conf.Servers.Where(s => s.HostName.ToLower() == host).SingleOrDefault();
 
@@ -135,6 +123,26 @@ namespace Wa1gon.WpfClient
 
         }
 
+        private bool IsDisplayViewValid()
+        {
+            if (string.IsNullOrWhiteSpace(DisplayNameTb.Text.ToLower()))
+            {
+                MessageBox.Show("Display Name can not be empty");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(PortTb.Text.ToLower()))
+            {
+                MessageBox.Show("Port can not be empty");
+                return false;
+            }
+            if (string.IsNullOrWhiteSpace(ServerTb.Text.ToLower()))
+            {
+                MessageBox.Show("Host name can not be empty");
+                return false;
+            }
+            return true;
+        }
+
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
             Server serv = (Server)ServList.SelectedItem;
@@ -146,7 +154,6 @@ namespace Wa1gon.WpfClient
         {
             SelectedServer = ServList.SelectedItem as Server;
             SetDetailView();
-
         }
 
         private void SetDetailView()
@@ -159,6 +166,8 @@ namespace Wa1gon.WpfClient
 
         private void NewClick(object sender, RoutedEventArgs e)
         {
+            SelectedServer = new Server();
+            SetDetailView();
 
         }
     }
