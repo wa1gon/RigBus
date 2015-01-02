@@ -51,9 +51,20 @@ namespace Wa1gon.WpfClient
 
         public RigConfigurationWindow()
         {
+            Conf = Configuration.Create();
             InitializeComponent();
+            Serv = Conf.GetDefaultServer();
+            if (Serv == null)
+            {
+                MessageBox.Show("There is no Server defined.");
+                Close();
+                return;
+            }
             Conf = Configuration.Create();
             RigNameCombo.ItemsSource = Conf.Servers;
+            RigNameCombo.SelectedItem = Serv;
+            var servInfo = RigControl.GetCommPortList(Serv);
+            ComPortCombo.ItemsSource = servInfo.CommPorts;
             DataContext = this;
         }
 
@@ -62,7 +73,7 @@ namespace Wa1gon.WpfClient
             RigConfig conf = new RigConfig();
 
             conf.RigType = RigTypeTb.Text;
-            conf.Port = ComPortTb.Text;
+            conf.Port = ComPortCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
             conf.DataBits = DataBitsCb.Text.ParseInt();

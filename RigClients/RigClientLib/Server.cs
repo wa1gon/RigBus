@@ -61,6 +61,10 @@ namespace Wa1gon.RigClientLib
 
             return true;
         }
+        public override string ToString()
+        {
+            return DisplayName;
+        }
 
         private string displayName;
     }

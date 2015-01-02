@@ -19,18 +19,31 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using Wa1gon.Models;
 
 namespace Wa1gon.RigClientLib
 {
     public class RigControl
     {
-        static public string [] GetCommPortList(Server server)
+        static public ServerInfo GetCommPortList(Server server)
         {
+            HttpClient client = new HttpClient();
+            ServerInfo info;
             string [] commList  = null;
+            string baseUrl;
 
-            return commList;
+
+
+            baseUrl = string.Format("http://{0}:{1}/api/Info",server.HostName,
+                server.Port);
+            HttpResponseMessage response = client.GetAsync(baseUrl).Result;
+
+            info = response.Content.ReadAsAsync<ServerInfo>().Result as ServerInfo;
+
+            return info;
         }
     }
 }

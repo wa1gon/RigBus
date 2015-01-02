@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ActiveRadios.cs" />
     <Compile Include="BindableObject.cs" />
+    <Compile Include="ComPorts.cs" />
     <Compile Include="DummyMaster.cs" />
     <Compile Include="PowerSDRMaster.cs" />
     <Compile Include="MasterBase.cs" />
