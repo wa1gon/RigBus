@@ -26,10 +26,9 @@ namespace Wa1gon.RigClientLib
 {
     public class RigControl
     {
-        public string [] GetCommPortList(Server server)
+        static public string [] GetCommPortList(Server server)
         {
             string [] commList  = null;
-
 
             return commList;
         }

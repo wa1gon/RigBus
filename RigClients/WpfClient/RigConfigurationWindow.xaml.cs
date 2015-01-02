@@ -53,7 +53,7 @@ namespace Wa1gon.WpfClient
         {
             InitializeComponent();
             Conf = Configuration.Create();
-            ServList.ItemsSource = Conf.Servers;
+            RigNameCombo.ItemsSource = Conf.Servers;
             DataContext = this;
         }
 
@@ -61,7 +61,6 @@ namespace Wa1gon.WpfClient
         {
             RigConfig conf = new RigConfig();
 
-            conf.RigName = RigNameTb.Text;
             conf.RigType = RigTypeTb.Text;
             conf.Port = ComPortTb.Text;
             conf.Bps = BpsTb.Text.ParseInt();
