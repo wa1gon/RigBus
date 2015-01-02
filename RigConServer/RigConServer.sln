@@ -10,6 +10,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RadioCAT", "RadioCAT\RadioCAT.csproj", "{C54F6E7F-8666-4A0F-AA0A-B16F6E17BDB0}"
 EndProject
 Global
+	GlobalSection(CodealikeProperties) = postSolution
+		SolutionGuid = f1d9decb-242f-45b5-bd8f-3dd6b4c181ec
+	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU

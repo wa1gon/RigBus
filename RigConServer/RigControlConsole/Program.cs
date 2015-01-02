@@ -10,22 +10,36 @@ namespace RigControlConsole
 {
     class Program
     {
-        static void Main() 
-        { 
-            string baseAddress = "http://localhost:9000/"; 
+        static void Main(string [] args) 
+        {
+
+            string port = "7300";
+
+            if (args.Length == 1)
+            {
+                port = args[0];
+            }
+
+
+
+            Console.Write("Listening on port: {0}",  port);
+            StartOptions options = new StartOptions();
+            options.Urls.Add(string.Format("http://localhost:{0}",port));
+            options.Urls.Add(string.Format("http://127.0.0.1:{0}",port));
+            options.Urls.Add(string.Format("http://{0}:{1}", Environment.MachineName,port));
 
             // Start OWIN host 
-            using (WebApp.Start<Startup>(url: baseAddress)) 
+            using (WebApp.Start<Startup>(options)) 
             { 
                 // Create HttpCient and make a request to api/values 
-                HttpClient client = new HttpClient();
+                //HttpClient client = new HttpClient();
 
-                string request = baseAddress + "api/Radio";
-                Console.WriteLine("Request address: " + request);
-                var response = client.GetAsync(request).Result; 
+                //string request = baseAddress + "api/Radio";
+                //Console.WriteLine("Request address: " + request);
+                //var response = client.GetAsync(request).Result;
 
-                Console.WriteLine(response); 
-                Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+                //Console.WriteLine(response);
+                //Console.WriteLine(response.Content.ReadAsStringAsync().Result);
                 Console.ReadLine(); 
             } 
 
