@@ -51,13 +51,13 @@
 
             <ListView Name="ServList" Grid.Row="4" Grid.ColumnSpan="4" 
                       Background="AliceBlue" Margin="20" MinHeight="100"
-                      ItemsSource="{Binding Conf}" MouseDoubleClick="ServList_MouseDoubleClick">
+                      ItemsSource="{Binding Conf.Server}" MouseDoubleClick="ServList_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding DisplayName}" />
                         <GridViewColumn Header="Host Name" Width="180" DisplayMemberBinding="{Binding HostName}" />
                         <GridViewColumn Header="Port" Width="40"  DisplayMemberBinding="{Binding Port}" />
-                        <GridViewColumn Header="Default" Width="40"  DisplayMemberBinding="{Binding DefaultServer}" />
+                        <GridViewColumn Header="Default" Width="50"  DisplayMemberBinding="{Binding DefaultServer}" />
                     </GridView>
                 </ListView.View>
             </ListView>

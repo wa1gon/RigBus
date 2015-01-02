@@ -62,7 +62,7 @@ namespace Wa1gon.WpfClient
             SelectedServer = Conf.Servers.Where(s => s.DefaultServer == true).SingleOrDefault();
             if (SelectedServer == null)
             {
-                SelectedServer = Conf.Servers[0];
+                SelectedServer = Conf.GetDefaultServer();
             }
             SetDetailView();
         }
@@ -78,6 +78,11 @@ namespace Wa1gon.WpfClient
             string port = PortTb.Text.ToLower();
             string displayName = DisplayNameTb.Text.ToLower();
 
+            if (DefaultServerTb.IsChecked == true)
+            {
+                Conf.ClearDefaultFromServerList();
+            }
+
             Server serv = Conf.Servers.Where(s => s.DisplayName.ToLower() == displayName).SingleOrDefault();
 
             if (serv == null)
@@ -86,17 +91,20 @@ namespace Wa1gon.WpfClient
             }
             else
             {
-                ReplaceServerInServerList(host, port, displayName, serv);
+                ReplaceServerInServerList(host, port, displayName,  serv);
             }
 
             ServerTb.Text = string.Empty;
             PortTb.Text = string.Empty;
             DisplayNameTb.Text = string.Empty;
             DefaultServerTb.IsChecked = false;
+            ServList.ItemsSource = null;
             ServList.ItemsSource = Conf.Servers;
+
             Conf.Save();
 
         }
+
 
         private void ReplaceServerInServerList(string host, string port, string displayName, Server serv)
         {
@@ -180,7 +188,6 @@ namespace Wa1gon.WpfClient
         {
             SelectedServer = new Server();
             SetDetailView();
-
         }
     }
 }

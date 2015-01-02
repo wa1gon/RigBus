@@ -63,12 +63,42 @@ namespace Wa1gon.WpfClient
         }
         private ConfigData configData;
 
+
         private Configuration()
         {
             configData = new ConfigData();
             RestoreLocalConfig();
         }
 
+        /// <summary> Clears the default server from the server list.  
+        /// </summary>
+        public void ClearDefaultFromServerList()
+        {
+            foreach (var serv in Servers)
+            {
+                serv.DefaultServer = false;
+            }
+        }
+        /// <summary> Returns the default server if there is a server marked as default,
+        /// else the first server in the list, or empty server class if the list is empty.
+        /// </summary>
+        /// <returns>Server</returns>
+        public Server GetDefaultServer()
+        {
+            Server ret = null;
+            if (Servers.Count == 0)
+            {
+                new Server();
+                return ret;
+            }
+            ret = Servers.Where(s => s.DefaultServer == true).SingleOrDefault();
+            if (ret == null)
+            {
+                ret = Servers[0];
+            }
+            return ret;
+            
+        }
         public void Save()
         {
 
