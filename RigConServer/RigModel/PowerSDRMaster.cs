@@ -22,7 +22,7 @@ using System.Text;
 
 namespace Wa1gon.Models
 {
-    public class PowerSDRMaster : MasterBase
+    public class PowerSDRMaster : RadioControlBase
     {
         private string results;
         private object lockObject;
@@ -67,7 +67,7 @@ namespace Wa1gon.Models
             Port.Open();
 
         }
-        public RigSettings RequestStatus()
+        override public RigSettings ReadSettings()
         {
             Port.Write("ZZDU;");
             results = ReadstatusFromPort();

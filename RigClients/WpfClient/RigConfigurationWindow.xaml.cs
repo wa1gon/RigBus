@@ -106,7 +106,7 @@ namespace Wa1gon.WpfClient
             try
             {
                 var servInfo = RigControl.GetCommPortList(Serv);
-                ComPortCombo.ItemsSource = servInfo.CommPorts;
+                ComPortCombo.ItemsSource = servInfo.AvailCommPorts;
                 RigTypeCombo.ItemsSource = servInfo.SupportedRadios;
             }
             catch (Exception ee)

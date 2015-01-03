@@ -38,7 +38,7 @@ namespace RadioCAT
         private RigSettings getFlexStatus()
         {
             RigSettings settings;
-            settings = master.RequestStatus();
+            settings = master.ReadSettings();
             return settings;
         }
 

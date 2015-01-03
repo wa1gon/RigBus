@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.IO.Ports;
+using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using Wa1gon.Models;
-using System.IO.Ports;
-using System.Net.Http;
-using System.Net;
 using Wa1gon.ServerInfrastructure;
+
 namespace RigControlConsole
 {
 

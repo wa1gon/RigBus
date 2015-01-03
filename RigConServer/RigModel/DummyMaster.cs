@@ -24,9 +24,13 @@ using System.Threading.Tasks;
 
 namespace Wa1gon.Models
 {
-    public class DummyMaster : MasterBase
+    public class DummyMaster : RadioControlBase
     {
         internal DummyMaster()
         { }
+        public override RigSettings ReadSettings()
+        {
+            return Settings;
+        }
     }
 }

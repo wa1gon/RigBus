@@ -23,9 +23,9 @@ using System.Text;
 
 namespace Wa1gon.Models
 {
-    public class MasterBase
+    public abstract class RadioControlBase
     {
-        public MasterBase()
+        public RadioControlBase()
         {
             Settings = new RigSettings();
             Config = new CommPortConfig();
@@ -33,5 +33,6 @@ namespace Wa1gon.Models
         public RigSettings Settings { get; set; }
         public CommPortConfig Config { get; set; }
         public SerialPort Port { get; set; }
+        public abstract RigSettings ReadSettings();
     }
 }

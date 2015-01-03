@@ -20,9 +20,9 @@ namespace Wa1gon.Models
 {
     public class RadioFactory
     {
-        static public MasterBase Get(string radioType)
+        static public RadioControlBase Get(string radioType)
         {
-            MasterBase newRig;
+            RadioControlBase newRig;
             switch(radioType.ToLower())
             {
                 case "dummy":
