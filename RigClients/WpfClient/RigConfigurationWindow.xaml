@@ -20,19 +20,21 @@
         Title="RigConfigurationWindow" Height="500" Width="700" Loaded="Window_Loaded">
     <StackPanel HorizontalAlignment="Left" Orientation="Vertical" Background="LightBlue">
         <StackPanel Orientation="Horizontal">
-            <TextBlock HorizontalAlignment="Right" Margin="5" Text="Rig Name" VerticalAlignment="Center" Height="16"/>
-            <ComboBox Name="RigNameCombo"  Margin="5" MinWidth="80">
-                
+            <TextBlock HorizontalAlignment="Right" Margin="5" Text="Radio Servers" 
+                       VerticalAlignment="Center" Height="16"/>
+            <ComboBox Name="RigServersCombo"  Margin="5" MinWidth="80">
+
             </ComboBox>
         </StackPanel>
         <Grid  Width="658" Height="570">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="94*"/>
+                <ColumnDefinition Width="16*"/>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="110*"/>
+                <ColumnDefinition Width="109*"/>
+                <ColumnDefinition Width="109*"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"/>
@@ -46,29 +48,29 @@
             </Grid.RowDefinitions>
 
             <!-- Text Blocks -->
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="1"  Grid.Column="0"
-                   Text="Connection Name" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="2"
-                   Text="Rig Type" VerticalAlignment="Center" />
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="3"
-                   Text="COM Port" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="4"
-                   Text="Bps (Baud)" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="5"
-                   Text="Stop Bits" VerticalAlignment="Center"/>
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="6"
-                   Text="Data Bits" VerticalAlignment="Center"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="1"  Grid.Column="0"
+                   Text="Connection Name" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,8" Grid.Row="2"
+                   Text="Rig Type" VerticalAlignment="Center" Grid.ColumnSpan="2" />
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="3"
+                   Text="COM Port" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,4,8" Grid.Row="4"
+                   Text="Bps (Baud)" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="5"
+                   Text="Stop Bits" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,8" Grid.Row="6"
+                   Text="Data Bits" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
 
-            <TextBlock HorizontalAlignment="Right" Margin="5" Grid.Row="3"  Grid.Column="2"
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="3"  Grid.Column="3"
                    Text="Parity" VerticalAlignment="Center"/>
 
 
 
 
-            <TextBox Name="ConectionNameTb" Grid.Row="1" Grid.Column="1" Margin="5"/>
-            <ComboBox Name="RigTypeCombo" Grid.Column="1" Grid.Row="2" Margin="5"/>
-            <ComboBox Name="ComPortCombo" Grid.Column="1" Grid.Row="3" Margin="5"/>
-            <ComboBox Name="BpsTb" Grid.Column="1" Grid.Row="4" Margin="5">
+            <TextBox Name="ConectionNameTb" Grid.Row="1" Grid.Column="2" Margin="5"/>
+            <ComboBox Name="RigTypeCombo" Grid.Column="2" Grid.Row="2" Margin="5"/>
+            <ComboBox Name="ComPortCombo" Grid.Column="2" Grid.Row="3" Margin="5"/>
+            <ComboBox Name="BpsTb" Grid.Column="2" Grid.Row="4" Margin="5">
                 <ComboBoxItem Content="300" />
                 <ComboBoxItem Content="1200"/>
                 <ComboBoxItem Content="2400"/>
@@ -81,28 +83,28 @@
                 <ComboBoxItem Content="38400"/>
                 <ComboBoxItem Content="56800"/>
             </ComboBox>
-            <ComboBox Name="StopBitsCb" Grid.Column="1" Grid.Row="5" Margin="5">
+            <ComboBox Name="StopBitsCb" Grid.Column="2" Grid.Row="5" Margin="5">
                 <ComboBoxItem Content="1"/>
                 <ComboBoxItem Content="2"/>
             </ComboBox>
-            <ComboBox Name="DataBitsCb" Grid.Column="1" Grid.Row="6" Margin="5">
+            <ComboBox Name="DataBitsCb" Grid.Column="2" Grid.Row="6" Margin="5">
                 <ComboBoxItem Content="7"/>
                 <ComboBoxItem Content="8"/>
             </ComboBox>
 
-            <CheckBox Content="RTS"  Name="RtsCb" Grid.Column="3" Grid.Row="1" Margin="5"/>
-            <CheckBox Content="DTR" Name="DtrCb" Grid.Column="3" Grid.Row="2" Margin="5"/>
-            <ComboBox Name="ParityCb" Grid.Column="3" Grid.Row="3" Margin="5">
+            <CheckBox Content="RTS"  Name="RtsCb" Grid.Column="4" Grid.Row="1" Margin="5"/>
+            <CheckBox Content="DTR" Name="DtrCb" Grid.Column="4" Grid.Row="2" Margin="5"/>
+            <ComboBox Name="ParityCb" Grid.Column="4" Grid.Row="3" Margin="5">
                 <ComboBoxItem Content="NONE"/>
                 <ComboBoxItem Content="EVEN"/>
                 <ComboBoxItem Content="ODD"/>
             </ComboBox>
 
 
-            <Button Content="Add" Click="AddClick" Grid.Row="1" Grid.Column="5" Margin="5"/>
-            <Button Content="Delete" Click="DeleteClick" Grid.Row="2" Grid.Column="5" Margin="5"/>
+            <Button Content="Add" Click="AddClick" Grid.Row="1" Grid.Column="6" Margin="5"/>
+            <Button Content="Delete" Click="DeleteClick" Grid.Row="2" Grid.Column="6" Margin="5"/>
 
-            <ListView Name="ServList" Grid.Row="9" Grid.ColumnSpan="4" 
+            <ListView Name="ServList" Grid.Row="7" Grid.ColumnSpan="5" 
                       Background="AliceBlue" Margin="20" 
                       ItemsSource="{Binding Conf}">
                 <ListView.View>

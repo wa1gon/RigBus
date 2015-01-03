@@ -59,7 +59,6 @@
     </ApplicationDefinition>
     <Compile Include="ConfData.cs" />
     <Compile Include="Configuration.cs" />
-    <Compile Include="JsonUtils.cs" />
     <Compile Include="RigConfigurationWindow.xaml.cs">
       <DependentUpon>RigConfigurationWindow.xaml</DependentUpon>
     </Compile>
@@ -119,6 +118,10 @@
     <ProjectReference Include="..\..\RigConServer\RigModel\Model.csproj">
       <Project>{41daf248-7d5d-40a4-ac35-85b91717f1e7}</Project>
       <Name>Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CommonUtils\CommonUtils.csproj">
+      <Project>{28000343-26eb-4ce6-b3c9-4367acc0156f}</Project>
+      <Name>CommonUtils</Name>
     </ProjectReference>
     <ProjectReference Include="..\RigClientLib\RigClientLib.csproj">
       <Project>{e5c90064-870e-49cd-a642-eebf7681af16}</Project>

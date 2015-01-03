@@ -1,6 +1,7 @@
 ﻿using Microsoft.Owin.Hosting;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.IO.Ports;
 using System.Linq;
 using System.Net.Http;
@@ -55,12 +56,34 @@ namespace RigControlConsole
 
         private void InitServerState()
         {
-            var info = ServerState.Get();
+            string confFile = "C:/HamSockets/RigServer.json";
+            ServerState info;
+            if (File.Exists(confFile))
+            {
+                info = ConfigurationIO.Restore(confFile);
+            }
+            else
+            {
+                info = ServerState.Get();
+                ConfigurationIO.Save(confFile);
+            }
 
+            // this should be done every time as the server and/or comm ports support 
+            // has changed.
+            EnumSupportedRadios(info);
+            InitAvailCommPort(info);
+            info.ConfigFilePath = confFile;
+        }
+
+        private static void EnumSupportedRadios(ServerState info)
+        {
             info.ServerInfo.SupportedRadios.Add("PowerSDR");
             info.ServerInfo.SupportedRadios.Add("Dummy");
             info.ServerInfo.SupportedRadios.Add("ICom746");
+        }
 
+        private static void InitAvailCommPort(ServerState info)
+        {
             string[] ports = SerialPort.GetPortNames();
             info.ServerInfo.AvailCommPorts = ports.ToList();
         }

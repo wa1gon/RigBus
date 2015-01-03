@@ -32,7 +32,15 @@ namespace Wa1gon.Models
         }
         public RigSettings Settings { get; set; }
         public CommPortConfig Config { get; set; }
-        public SerialPort Port { get; set; }
+        protected SerialPort Port { get; set; }
         public abstract RigSettings ReadSettings();
+        public void SetSerialPort(SerialPort p)
+        {
+            Port = p;
+        }
+        public SerialPort SetSerialPort()
+        {
+            return Port;
+        }
     }
 }

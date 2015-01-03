@@ -40,10 +40,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ActiveRadio.cs" />
+    <Compile Include="ConfigurationIO.cs" />
     <Compile Include="ServerState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\RigClients\CommonUtils\CommonUtils.csproj">
+      <Project>{28000343-26eb-4ce6-b3c9-4367acc0156f}</Project>
+      <Name>CommonUtils</Name>
+    </ProjectReference>
     <ProjectReference Include="..\RigModel\Model.csproj">
       <Project>{41daf248-7d5d-40a4-ac35-85b91717f1e7}</Project>
       <Name>Model</Name>

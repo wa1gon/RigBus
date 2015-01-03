@@ -35,7 +35,7 @@ namespace RigControlConsole
         public HttpResponseMessage Post([FromBody]CommPortConfig value)
         {
             var resp = new HttpResponseMessage();
-            if (string.IsNullOrWhiteSpace(value.RigType) || string.IsNullOrWhiteSpace(value.Port))
+            if (string.IsNullOrWhiteSpace(value.RadioType) || string.IsNullOrWhiteSpace(value.Port))
             {
                 resp.StatusCode = HttpStatusCode.NotFound;
                 resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
@@ -50,7 +50,7 @@ namespace RigControlConsole
                 resp.ReasonPhrase = "Comm port not found!";
                 return resp;
             }
-            bool isRadioSupported = servState.ServerInfo.SupportedRadios.Contains(value.RigType);
+            bool isRadioSupported = servState.ServerInfo.SupportedRadios.Contains(value.RadioType);
             if (isRadioSupported == false)
             {
                 resp.StatusCode = HttpStatusCode.NotFound;
@@ -59,6 +59,18 @@ namespace RigControlConsole
             }
             resp.StatusCode = HttpStatusCode.NoContent;
             var state = ServerState.Get();
+
+            var activeRadio = state.ActiveRadios.Find(a => a.ConnectionName == value.ConnectionName);
+            if (activeRadio == null)
+            {
+                activeRadio = new ActiveRadio();
+            }
+            activeRadio.ConnectionName = value.ConnectionName;
+            activeRadio.CommPort = value;
+            activeRadio.RadioControl = RadioFactory.Get(value.RadioType);
+            state.ActiveRadios.Add(activeRadio);
+            ConfigurationIO.Save(state.ConfigFilePath);
+         
             resp.ReasonPhrase = "Comm port open!";
 
             return resp;
@@ -73,7 +85,6 @@ namespace RigControlConsole
         public void Delete(int id)
         {
         } 
-
-        
+      
     }
 }

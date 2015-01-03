@@ -13,6 +13,7 @@ namespace Wa1gon.ServerInfrastructure
         static private object lockobject = new object();
         public List<ActiveRadio> ActiveRadios { get; set; }
         public ServerInfo ServerInfo { get; set; }
+        public string ConfigFilePath { get; set; }
 
         private ServerState()
         {

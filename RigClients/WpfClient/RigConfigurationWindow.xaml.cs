@@ -73,7 +73,7 @@ namespace Wa1gon.WpfClient
         {
             CommPortConfig conf = new CommPortConfig();
             conf.ConnectionName = ConectionNameTb.Text;
-            conf.RigType = RigTypeCombo.Text;
+            conf.RadioType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
@@ -96,7 +96,7 @@ namespace Wa1gon.WpfClient
 
         private bool isValid(CommPortConfig conf)
         {
-            if (conf.RigType.Length == 0)
+            if (conf.RadioType.Length == 0)
             {
                 ErrorMessage = "Rig Type can't be blank!";
                 return false;
@@ -129,8 +129,8 @@ namespace Wa1gon.WpfClient
                 return;
             }
             Conf = Configuration.Create();
-            RigNameCombo.ItemsSource = Conf.Servers;
-            RigNameCombo.SelectedItem = Serv;
+            RigServersCombo.ItemsSource = Conf.Servers;
+            RigServersCombo.SelectedItem = Serv;
             try
             {
                 var servInfo = RigControl.GetCommPortList(Serv);

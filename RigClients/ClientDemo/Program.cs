@@ -43,7 +43,7 @@ namespace ClientDemo
             var results = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
             Console.WriteLine("RigName: " + results.ConnectionName);
-            Console.WriteLine("RigType: " + results.RigType);
+            Console.WriteLine("RigType: " + results.RadioType);
             Console.WriteLine("Parity: " + results.Parity);
             Console.WriteLine("Stop Bits: " + results.StopBits);
             Console.WriteLine("Bps: " + results.Bps);
@@ -60,7 +60,7 @@ namespace ClientDemo
 
             config.Command = "Open";
             config.ConnectionName = "myDummy";
-            config.RigType = "Dummy";
+            config.RadioType = "Dummy";
             config.Port = "COM6";
             var response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
@@ -75,7 +75,7 @@ namespace ClientDemo
 
             config.Command = "Open";
             config.ConnectionName = "myDummy";
-            config.RigType = "Dummy";
+            config.RadioType = "Dummy";
             config.Port = "COM40";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
@@ -90,7 +90,7 @@ namespace ClientDemo
 
             config.Command = "Open";
             config.ConnectionName = "myDummy";
-            config.RigType = "Dummy";
+            config.RadioType = "Dummy";
             config.Port = "COM6";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
@@ -104,7 +104,7 @@ namespace ClientDemo
             }
             config.Command = "Open";
             config.ConnectionName = "myDummy";
-            config.RigType = "foobar";
+            config.RadioType = "foobar";
             config.Port = "COM6";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
             if (response.IsSuccessStatusCode)
@@ -132,7 +132,7 @@ namespace ClientDemo
             config = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
             Console.WriteLine("RigName: " + config.ConnectionName);
-            Console.WriteLine("RigType: " + config.RigType);
+            Console.WriteLine("RigType: " + config.RadioType);
             Console.WriteLine("Parity: " + config.Parity);
             Console.WriteLine("Stop Bits: " + config.StopBits);
             Console.WriteLine("Bps: " + config.Bps);

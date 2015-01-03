@@ -9,6 +9,7 @@ namespace Wa1gon.ServerInfrastructure
 {
     public class ActiveRadio
     {
+        public string ConnectionName { get; set; }
         public CommPortConfig CommPort { get; set; }
         public RadioControlBase RadioControl { get; set; }
     }

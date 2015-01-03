@@ -24,6 +24,7 @@ using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using System.IO;
 using Wa1gon.RigClientLib;
+using Wa1gon.CommonUtils;
 
 namespace Wa1gon.WpfClient
 {

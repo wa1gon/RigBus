@@ -28,7 +28,7 @@ namespace Wa1gon.Models
                 case "dummy":
                     newRig = new DummyMaster();
                     return newRig;
-                case "flex":
+                case "powersdr":
                     newRig = new PowerSDRMaster();
                     return newRig;
 

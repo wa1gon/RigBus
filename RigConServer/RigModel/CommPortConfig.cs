@@ -27,7 +27,7 @@ namespace Wa1gon.Models
             AdditionSetting = new Dictionary<string, string>();
         }
         public string ConnectionName { get; set; }
-        public string RigType { get; set; }
+        public string RadioType { get; set; }
         public int? Bps { get; set; }
         public string Port { get; set; }
         public string Parity { get; set; }
@@ -41,6 +41,5 @@ namespace Wa1gon.Models
         public Dictionary<string,string> AdditionSetting { get; set; }
 
         public string Status { get; set; }
-    }
-    
+    }  
 }
