@@ -34,6 +34,7 @@
    limitations under the License.
 */
 #endregion
+using System;
 using System.Windows;
 using Wa1gon.Models;
 using Wa1gon.RigClientLib;
@@ -53,26 +54,14 @@ namespace Wa1gon.WpfClient
         {
             Conf = Configuration.Create();
             InitializeComponent();
-            Serv = Conf.GetDefaultServer();
-            if (Serv == null)
-            {
-                MessageBox.Show("There is no Server defined.");
-                Close();
-                return;
-            }
-            Conf = Configuration.Create();
-            RigNameCombo.ItemsSource = Conf.Servers;
-            RigNameCombo.SelectedItem = Serv;
-            var servInfo = RigControl.GetCommPortList(Serv);
-            ComPortCombo.ItemsSource = servInfo.CommPorts;
-            DataContext = this;
+
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
             RigConfig conf = new RigConfig();
 
-            conf.RigType = RigTypeTb.Text;
+            conf.RigType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
@@ -86,6 +75,33 @@ namespace Wa1gon.WpfClient
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Serv = Conf.GetDefaultServer();
+            if (Serv == null)
+            {
+                MessageBox.Show("There is no Server defined.");
+                Close();
+                return;
+            }
+            Conf = Configuration.Create();
+            RigNameCombo.ItemsSource = Conf.Servers;
+            RigNameCombo.SelectedItem = Serv;
+            try
+            {
+                var servInfo = RigControl.GetCommPortList(Serv);
+                ComPortCombo.ItemsSource = servInfo.CommPorts;
+                RigTypeCombo.ItemsSource = servInfo.SupportedRadios;
+            }
+            catch (Exception ee)
+            {
+                MessageBox.Show(ee.Message);
+                Close();
+                return;
+            }
+            DataContext = this;
         }
     }
 }
