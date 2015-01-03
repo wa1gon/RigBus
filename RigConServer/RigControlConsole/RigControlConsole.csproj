@@ -85,6 +85,10 @@
       <Project>{41daf248-7d5d-40a4-ac35-85b91717f1e7}</Project>
       <Name>Model</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ServerInfrastructure\ServerInfrastructure.csproj">
+      <Project>{795ca222-7c3f-4393-91ed-9eedff66eca8}</Project>
+      <Name>ServerInfrastructure</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

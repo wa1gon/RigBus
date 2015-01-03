@@ -8,14 +8,13 @@ using Wa1gon.Models;
 using System.IO.Ports;
 using System.Net.Http;
 using System.Net;
+using Wa1gon.ServerInfrastructure;
 namespace RigControlConsole
 {
 
     public class RadioController : ApiController 
     {
-        
-
-
+       
         // GET api/values 
         public IEnumerable<string> Get()
         {
@@ -57,16 +56,16 @@ namespace RigControlConsole
                 resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
                 return resp;
             }
-            var servInfo = ServerInfo.Get();
+            var servState = ServerState.Get();
 
-            bool hasComm = servInfo.CommPorts.Contains(value.Port);
+            bool hasComm = servState.ServerInfo.AvailCommPorts.Contains(value.Port);
             if (hasComm == false)
             {
                 resp.StatusCode = HttpStatusCode.NotFound;
                 resp.ReasonPhrase = "Comm port not found!";
                 return resp;
             }
-            bool isRadioSupported = servInfo.SupportedRadios.Contains(value.RigType);
+            bool isRadioSupported = servState.ServerInfo.SupportedRadios.Contains(value.RigType);
             if (isRadioSupported == false)
             {
                 resp.StatusCode = HttpStatusCode.NotFound;
@@ -74,6 +73,7 @@ namespace RigControlConsole
                 return resp;
             }
             resp.StatusCode = HttpStatusCode.NoContent;
+            var state = ServerState.Get();
             resp.ReasonPhrase = "Comm port open!";
 
             return resp;

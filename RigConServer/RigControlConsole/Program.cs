@@ -8,6 +8,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Wa1gon.Models;
+using Wa1gon.ServerInfrastructure;
 
 namespace RigControlConsole
 {
@@ -54,14 +55,14 @@ namespace RigControlConsole
 
         private void InitServerState()
         {
-            var info = ServerInfo.Get();
+            var info = ServerState.Get();
 
-            info.SupportedRadios.Add("PowerSDR");
-            info.SupportedRadios.Add("Dummy");
-            info.SupportedRadios.Add("ICom746");
+            info.ServerInfo.SupportedRadios.Add("PowerSDR");
+            info.ServerInfo.SupportedRadios.Add("Dummy");
+            info.ServerInfo.SupportedRadios.Add("ICom746");
 
             string[] ports = SerialPort.GetPortNames();
-            info.CommPorts = ports.ToList();
+            info.ServerInfo.AvailCommPorts = ports.ToList();
         }
 
         private static bool IsAdministrator()

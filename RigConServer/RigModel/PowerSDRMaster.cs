@@ -32,6 +32,11 @@ namespace Wa1gon.Models
         {
             Port = new SerialPort();
             lockObject = new object();
+            CreateModeLookupDictionary();
+        }
+
+        private void CreateModeLookupDictionary()
+        {
             modeLookup["00"] = "LSB";
             modeLookup["01"] = "USB";
             modeLookup["02"] = "DSB";

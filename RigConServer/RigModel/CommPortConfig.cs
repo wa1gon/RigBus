@@ -30,7 +30,6 @@ namespace Wa1gon.Models
         public string RigType { get; set; }
         public int? Bps { get; set; }
         public string Port { get; set; }
-
         public string Parity { get; set; }
         public int? StopBits { get; set; }
         public int? DataBits { get; set; }

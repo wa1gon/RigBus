@@ -23,26 +23,12 @@ namespace Wa1gon.Models
 {
     public class ServerInfo 
     {
-        static private ServerInfo instance;
-        static private object lockobject=new object();
         public List<string> SupportedRadios { get; set; }
-        public List<string> CommPorts { get; set; }
-        private ServerInfo()
+        public List<string> AvailCommPorts { get; set; }
+        public ServerInfo()
         {
-            CommPorts = new List<string>();
+            AvailCommPorts = new List<string>();
             SupportedRadios = new List<string>();        
-        }
-        public static ServerInfo Get()
-        {
-
-            lock (lockobject)
-            {
-                if (instance == null)
-                {
-                    instance = new ServerInfo();
-                }
-            }
-            return instance;
         }
     }
 }

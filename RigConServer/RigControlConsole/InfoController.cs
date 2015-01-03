@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using Wa1gon.Models;
 using System.IO.Ports;
+using Wa1gon.ServerInfrastructure;
 namespace RigControlConsole
 {
     public class InfoController : ApiController 
@@ -14,8 +15,8 @@ namespace RigControlConsole
         // GET api/values 
         public ServerInfo Get()
         {
-            var info = ServerInfo.Get();
-            return info;
+            var info = ServerState.Get();
+            return info.ServerInfo;
         }      
     }
 }
