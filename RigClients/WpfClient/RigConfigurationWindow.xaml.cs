@@ -47,6 +47,7 @@ namespace Wa1gon.WpfClient
     /// </summary>
     public partial class RigConfigurationWindow : Window
     {
+        private string ErrorMessage;
         public Server Serv { get; set; }
         public Configuration Conf { get; set; }
 
@@ -71,10 +72,9 @@ namespace Wa1gon.WpfClient
         private void AddClick(object sender, RoutedEventArgs e)
         {
             CommPortConfig conf = new CommPortConfig();
-
+            conf.ConnectionName = ConectionNameTb.Text;
             conf.RigType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
-            conf.RigName = RigTypeCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
             conf.DataBits = DataBitsCb.Text.ParseInt();
@@ -82,8 +82,36 @@ namespace Wa1gon.WpfClient
             conf.Rts = (bool)RtsCb.IsChecked;
             conf.Dtr = (bool)DtrCb.IsChecked;
 
-            bool rc = RigControl.SendCommConf(conf, Serv);
+            if (isValid(conf) == false)
+            {
+                MessageBox.Show(ErrorMessage);
+            }
+            else
+            {
 
+                bool rc = RigControl.SendCommConf(conf, Serv);
+            }
+
+        }
+
+        private bool isValid(CommPortConfig conf)
+        {
+            if (conf.RigType.Length == 0)
+            {
+                ErrorMessage = "Rig Type can't be blank!";
+                return false;
+            }
+            if (conf.ConnectionName.Length == 0)
+            {
+                ErrorMessage = "Connection Name can't be blank!";
+                return false;
+            }
+            if (conf.Port.Length == 0)
+            {
+                ErrorMessage = "Comm port can't be blank!";
+                return false;
+            }
+            return true;
         }
 
         private void DeleteClick(object sender, RoutedEventArgs e)

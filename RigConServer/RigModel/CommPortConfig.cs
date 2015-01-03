@@ -26,7 +26,7 @@ namespace Wa1gon.Models
         {
             AdditionSetting = new Dictionary<string, string>();
         }
-        public string RigName { get; set; }
+        public string ConnectionName { get; set; }
         public string RigType { get; set; }
         public int? Bps { get; set; }
         public string Port { get; set; }

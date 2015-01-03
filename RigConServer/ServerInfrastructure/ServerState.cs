@@ -11,9 +11,14 @@ namespace Wa1gon.ServerInfrastructure
     {
         static private ServerState instance;
         static private object lockobject = new object();
-        public List<ActiveRadios> ActiveRadios { get; set; }
+        public List<ActiveRadio> ActiveRadios { get; set; }
         public ServerInfo ServerInfo { get; set; }
 
+        private ServerState()
+        {
+            ActiveRadios = new List<ActiveRadio>();
+            ServerInfo = new ServerInfo();
+        }
         public static ServerState Get()
         {
 

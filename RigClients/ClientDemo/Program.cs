@@ -42,7 +42,7 @@ namespace ClientDemo
 
             var results = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
-            Console.WriteLine("RigName: " + results.RigName);
+            Console.WriteLine("RigName: " + results.ConnectionName);
             Console.WriteLine("RigType: " + results.RigType);
             Console.WriteLine("Parity: " + results.Parity);
             Console.WriteLine("Stop Bits: " + results.StopBits);
@@ -59,7 +59,7 @@ namespace ClientDemo
                 new MediaTypeWithQualityHeaderValue("application/json"));
 
             config.Command = "Open";
-            config.RigName = "myDummy";
+            config.ConnectionName = "myDummy";
             config.RigType = "Dummy";
             config.Port = "COM6";
             var response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
@@ -74,7 +74,7 @@ namespace ClientDemo
             }
 
             config.Command = "Open";
-            config.RigName = "myDummy";
+            config.ConnectionName = "myDummy";
             config.RigType = "Dummy";
             config.Port = "COM40";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
@@ -89,7 +89,7 @@ namespace ClientDemo
             }
 
             config.Command = "Open";
-            config.RigName = "myDummy";
+            config.ConnectionName = "myDummy";
             config.RigType = "Dummy";
             config.Port = "COM6";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
@@ -103,7 +103,7 @@ namespace ClientDemo
                     " : Message - " + response.ReasonPhrase);
             }
             config.Command = "Open";
-            config.RigName = "myDummy";
+            config.ConnectionName = "myDummy";
             config.RigType = "foobar";
             config.Port = "COM6";
             response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
@@ -131,7 +131,7 @@ namespace ClientDemo
 
             config = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
-            Console.WriteLine("RigName: " + config.RigName);
+            Console.WriteLine("RigName: " + config.ConnectionName);
             Console.WriteLine("RigType: " + config.RigType);
             Console.WriteLine("Parity: " + config.Parity);
             Console.WriteLine("Stop Bits: " + config.StopBits);

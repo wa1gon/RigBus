@@ -28,21 +28,9 @@ namespace RigControlConsole
 
         private CommPortConfig GetReading(string id)
         {
-            DummyMaster reading = (DummyMaster)RadioFactory.Get("dummy");
-            reading.Config = new CommPortConfig();
-
-            reading.Config.RigName = "Dummy";
-            reading.Config.RigType = "FlexRadio";
-            reading.Config.Bps = 9600;
-            reading.Config.Parity = "None";
-            return reading.Config;
+            return null;
         }
 
-        public IEnumerable<string> GetCategoryId(int categoryId) 
-        {
-            string[] ports = SerialPort.GetPortNames();
-            return ports;
-        }
         // POST api/values 
         public HttpResponseMessage Post([FromBody]CommPortConfig value)
         {

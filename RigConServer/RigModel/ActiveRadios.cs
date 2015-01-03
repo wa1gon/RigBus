@@ -40,7 +40,7 @@ namespace Wa1gon.Models
         }
         public void AddRadio(CommPortConfig rig)
         {
-            ActiveList.Add(rig.RigName, rig);
+            ActiveList.Add(rig.ConnectionName, rig);
         }
         public void RemoveRadio(string name)
         {
