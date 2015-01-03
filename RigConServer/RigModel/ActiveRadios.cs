@@ -20,8 +20,7 @@ using System.Collections.Generic;
 
 namespace Wa1gon.Models
 {
-    /// <summary>
-    /// Description of ActiveRadios
+    /// <summary> Description of ActiveRadios
     /// </summary>
     public sealed class ActiveRadios
     {
