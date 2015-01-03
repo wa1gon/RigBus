@@ -63,12 +63,15 @@ namespace Wa1gon.WpfClient
 
             conf.RigType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
+            conf.RigName = RigTypeCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
             conf.StopBits = StopBitsCb.Text.ParseInt();
             conf.DataBits = DataBitsCb.Text.ParseInt();
             conf.Parity = ParityCb.Text;
             conf.Rts = (bool)RtsCb.IsChecked;
             conf.Dtr = (bool)DtrCb.IsChecked;
+
+            bool rc = RigControl.SendCommConnection(conf, Serv);
 
         }
 

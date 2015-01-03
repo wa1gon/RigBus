@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 using Wa1gon.Models;
@@ -49,6 +50,25 @@ namespace Wa1gon.RigClientLib
             {
                 var ex = StaticUtils.GetInnerMostException(e);
                 throw ex;
+            }
+        }
+        static public bool SendCommConnection(RigConfig config, Server server)
+        {
+            HttpClient client = new HttpClient();
+
+            client.DefaultRequestHeaders.Accept.Add(
+                 new MediaTypeWithQualityHeaderValue("application/json"));
+
+            string baseUrl = string.Format("http://{0}:{1}/api/Radio", server.HostName,
+    server.Port);
+            var response = client.PostAsJsonAsync(baseUrl, config).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
     }

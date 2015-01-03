@@ -23,7 +23,6 @@ namespace Wa1gon.Models
 {
     public class ServerInfo 
     {
-#warning this should be a singleton
         public List<string> SupportedRadios { get; set; }
         public List<string> CommPorts { get; set; }
         public ServerInfo()
