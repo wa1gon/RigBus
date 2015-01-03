@@ -71,7 +71,7 @@ namespace Wa1gon.WpfClient
             conf.Rts = (bool)RtsCb.IsChecked;
             conf.Dtr = (bool)DtrCb.IsChecked;
 
-            bool rc = RigControl.SendCommConnection(conf, Serv);
+            bool rc = RigControl.SendCommConf(conf, Serv);
 
         }
 

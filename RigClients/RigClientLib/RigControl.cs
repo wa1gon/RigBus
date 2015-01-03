@@ -52,7 +52,7 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public bool SendCommConnection(RigConfig config, Server server)
+        static public bool SendCommConf(RigConfig config, Server server)
         {
             HttpClient client = new HttpClient();
 
@@ -60,7 +60,7 @@ namespace Wa1gon.RigClientLib
                  new MediaTypeWithQualityHeaderValue("application/json"));
 
             string baseUrl = string.Format("http://{0}:{1}/api/Radio", server.HostName,
-    server.Port);
+                server.Port);
             var response = client.PostAsJsonAsync(baseUrl, config).Result;
             if (response.IsSuccessStatusCode)
             {
