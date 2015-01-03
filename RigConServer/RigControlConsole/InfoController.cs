@@ -11,22 +11,11 @@ namespace RigControlConsole
     public class InfoController : ApiController 
     {
 
-
         // GET api/values 
         public ServerInfo Get()
         {
-            var info = new ServerInfo();
-            info.SupportedRadios = new List<string>();
-
-            info.SupportedRadios.Add("PowerSDR");
-            info.SupportedRadios.Add("Dummy");
-            info.SupportedRadios.Add("ICom746");
-
-            string[] ports = SerialPort.GetPortNames();
-            info.CommPorts = new List<string>(ports);
+            var info = ServerInfo.Get();
             return info;
-        }
-
-        
+        }      
     }
 }

@@ -55,11 +55,22 @@ namespace Wa1gon.WpfClient
             Conf = Configuration.Create();
             InitializeComponent();
 
+
+            // for debug
+            RigTypeCombo.Text="Dummy";
+            ComPortCombo.Text="COM5";
+            RigTypeCombo.Text="Dummy";
+            BpsTb.Text="19200";
+            StopBitsCb.Text = "1";
+            DataBitsCb.Text = "7";
+            ParityCb.Text = "NONE";
+            RtsCb.IsChecked = false;
+            DtrCb.IsChecked = false;
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            RigConfig conf = new RigConfig();
+            CommPortConfig conf = new CommPortConfig();
 
             conf.RigType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;

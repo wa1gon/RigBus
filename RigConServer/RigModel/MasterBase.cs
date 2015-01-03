@@ -28,10 +28,10 @@ namespace Wa1gon.Models
         public MasterBase()
         {
             Settings = new RigSettings();
-            Config = new RigConfig();
+            Config = new CommPortConfig();
         }
         public RigSettings Settings { get; set; }
-        public RigConfig Config { get; set; }
+        public CommPortConfig Config { get; set; }
         public SerialPort Port { get; set; }
     }
 }

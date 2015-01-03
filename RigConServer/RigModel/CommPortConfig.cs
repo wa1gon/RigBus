@@ -20,9 +20,9 @@ using System;
 using System.Collections.Generic;
 namespace Wa1gon.Models
 {
-    public class RigConfig
+    public class CommPortConfig
     {
-        public RigConfig()
+        public CommPortConfig()
         {
             AdditionSetting = new Dictionary<string, string>();
         }

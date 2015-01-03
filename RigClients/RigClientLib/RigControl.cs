@@ -52,7 +52,7 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public bool SendCommConf(RigConfig config, Server server)
+        static public bool SendCommConf(CommPortConfig config, Server server)
         {
             HttpClient client = new HttpClient();
 

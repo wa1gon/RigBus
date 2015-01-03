@@ -31,7 +31,7 @@ namespace ClientDemo
     {
         private HttpClient client;
         private string baseUrl;
-        private RigConfig config;
+        private CommPortConfig config;
         static void Main(string[] args)
         {
             var app = new Program();
@@ -40,7 +40,7 @@ namespace ClientDemo
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
-            var results = response.Content.ReadAsAsync<RigConfig>().Result as RigConfig;
+            var results = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
             Console.WriteLine("RigName: " + results.RigName);
             Console.WriteLine("RigType: " + results.RigType);
@@ -129,7 +129,7 @@ namespace ClientDemo
             baseUrl = "http://localhost:9000/api/Radio/foo";
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
-            config = response.Content.ReadAsAsync<RigConfig>().Result as RigConfig;
+            config = response.Content.ReadAsAsync<CommPortConfig>().Result as CommPortConfig;
 
             Console.WriteLine("RigName: " + config.RigName);
             Console.WriteLine("RigType: " + config.RigType);

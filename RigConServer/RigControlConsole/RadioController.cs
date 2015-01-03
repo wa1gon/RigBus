@@ -23,17 +23,17 @@ namespace RigControlConsole
         }
 
         // GET api/values/5
-        public RigConfig Get(string id)
+        public CommPortConfig Get(string id)
         {
-            RigConfig rigReading;
+            CommPortConfig rigReading;
             rigReading = GetReading(id);
             return rigReading;
         }
 
-        private RigConfig GetReading(string id)
+        private CommPortConfig GetReading(string id)
         {
             DummyMaster reading = (DummyMaster)RadioFactory.Get("dummy");
-            reading.Config = new RigConfig();
+            reading.Config = new CommPortConfig();
 
             reading.Config.RigName = "Dummy";
             reading.Config.RigType = "FlexRadio";
@@ -48,7 +48,7 @@ namespace RigControlConsole
             return ports;
         }
         // POST api/values 
-        public HttpResponseMessage Post([FromBody]RigConfig value)
+        public HttpResponseMessage Post([FromBody]CommPortConfig value)
         {
             var resp = new HttpResponseMessage();
             if (string.IsNullOrWhiteSpace(value.RigType) || string.IsNullOrWhiteSpace(value.Port))
@@ -57,7 +57,7 @@ namespace RigControlConsole
                 resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
                 return resp;
             }
-            var servInfo = new ServerInfo();
+            var servInfo = ServerInfo.Get();
 
             bool hasComm = servInfo.CommPorts.Contains(value.Port);
             if (hasComm == false)

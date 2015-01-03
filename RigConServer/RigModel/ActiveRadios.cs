@@ -26,7 +26,7 @@ namespace Wa1gon.Models
     public sealed class ActiveRadios
     {
         private static ActiveRadios instance = new ActiveRadios();
-        public Dictionary<string,RigConfig> ActiveList { get; set; }
+        public Dictionary<string,CommPortConfig> ActiveList { get; set; }
         public static ActiveRadios Instance
         {
             get
@@ -37,9 +37,9 @@ namespace Wa1gon.Models
 
         private ActiveRadios()
         {
-            ActiveList = new Dictionary<string, RigConfig>();
+            ActiveList = new Dictionary<string, CommPortConfig>();
         }
-        public void AddRadio(RigConfig rig)
+        public void AddRadio(CommPortConfig rig)
         {
             ActiveList.Add(rig.RigName, rig);
         }
@@ -47,7 +47,7 @@ namespace Wa1gon.Models
         {
             ActiveList.Remove(name);
         }
-        public RigConfig GetActiveByName(string name)
+        public CommPortConfig GetActiveByName(string name)
         {
             try
             {
@@ -56,7 +56,7 @@ namespace Wa1gon.Models
             }
             catch (Exception)
             {
-                var errorConfig = new RigConfig();
+                var errorConfig = new CommPortConfig();
                 errorConfig.Status = "Active Configuration not found!";
                 return errorConfig;
             }
