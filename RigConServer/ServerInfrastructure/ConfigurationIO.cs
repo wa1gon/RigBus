@@ -12,7 +12,7 @@ namespace Wa1gon.ServerInfrastructure
     {
         static public  void Save(string fileName)
         {
-            var state = ServerState.Get();
+            var state = ServerState.Create();
             JsonUtils.Save(fileName, state);
         }
         static public ServerState Restore(string fileName)

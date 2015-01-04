@@ -61,10 +61,11 @@ namespace RigControlConsole
             if (File.Exists(confFile))
             {
                 info = ConfigurationIO.Restore(confFile);
+                ServerState.Create(info);
             }
             else
             {
-                info = ServerState.Get();
+                info = ServerState.Create();
                 ConfigurationIO.Save(confFile);
             }
 

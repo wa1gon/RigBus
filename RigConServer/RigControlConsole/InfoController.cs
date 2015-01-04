@@ -15,7 +15,7 @@ namespace RigControlConsole
         // GET api/values 
         public ServerInfo Get()
         {
-            var info = ServerState.Get();
+            var info = ServerState.Create();
             return info.ServerInfo;
         }      
     }

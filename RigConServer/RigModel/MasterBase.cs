@@ -15,6 +15,7 @@
    limitations under the License.
 */
 #endregion
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO.Ports;
@@ -23,7 +24,7 @@ using System.Text;
 
 namespace Wa1gon.Models
 {
-    public abstract class RadioControlBase
+    public class RadioControlBase
     {
         public RadioControlBase()
         {
@@ -32,15 +33,12 @@ namespace Wa1gon.Models
         }
         public RigSettings Settings { get; set; }
         public CommPortConfig Config { get; set; }
-        protected SerialPort Port { get; set; }
-        public abstract RigSettings ReadSettings();
-        public void SetSerialPort(SerialPort p)
+        [JsonIgnore]
+        public SerialPort Port { get; set; }
+        virtual public RigSettings ReadSettings()
         {
-            Port = p;
+            return null;
         }
-        public SerialPort SetSerialPort()
-        {
-            return Port;
-        }
+
     }
 }

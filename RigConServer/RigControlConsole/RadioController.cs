@@ -13,9 +13,15 @@ namespace RigControlConsole
     {
        
         // GET api/values 
-        public IEnumerable<string> Get()
+        public List<CommPortConfig> Get()
         {
-            return new string[] { "value1", "value2" };
+            var state = ServerState.Create();
+            var conList = new List<CommPortConfig>();
+            foreach( var act in state.ActiveRadios)
+            {
+                conList.Add(act.CommPort);
+            }
+            return conList;
         }
 
         // GET api/values/5
@@ -41,7 +47,7 @@ namespace RigControlConsole
                 resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
                 return resp;
             }
-            var servState = ServerState.Get();
+            var servState = ServerState.Create();
 
             bool hasComm = servState.ServerInfo.AvailCommPorts.Contains(value.Port);
             if (hasComm == false)
@@ -58,7 +64,7 @@ namespace RigControlConsole
                 return resp;
             }
             resp.StatusCode = HttpStatusCode.NoContent;
-            var state = ServerState.Get();
+            var state = ServerState.Create();
 
             var activeRadio = state.ActiveRadios.Find(a => a.ConnectionName == value.ConnectionName);
             if (activeRadio == null)

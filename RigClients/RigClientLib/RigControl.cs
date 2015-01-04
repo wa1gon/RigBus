@@ -52,6 +52,30 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
+        static public List<CommPortConfig> GetConnectionList(Server server)
+        {
+            HttpClient client = new HttpClient();
+
+            List<CommPortConfig> info;
+            string baseUrl;
+
+            try
+            {
+
+                baseUrl = string.Format("http://{0}:{1}/api/Radio", server.HostName,
+                    server.Port);
+                HttpResponseMessage response = client.GetAsync(baseUrl).Result;
+
+                var res = response.Content.ReadAsAsync<List<CommPortConfig>>().Result;
+                info = res as List<CommPortConfig>;
+                return info;
+            }
+            catch (Exception e)
+            {
+                var ex = StaticUtils.GetInnerMostException(e);
+                throw ex;
+            }
+        }
         static public bool SendCommConf(CommPortConfig config, Server server)
         {
             HttpClient client = new HttpClient();

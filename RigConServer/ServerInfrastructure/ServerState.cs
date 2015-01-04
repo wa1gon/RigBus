@@ -20,7 +20,7 @@ namespace Wa1gon.ServerInfrastructure
             ActiveRadios = new List<ActiveRadio>();
             ServerInfo = new ServerInfo();
         }
-        public static ServerState Get()
+        public static ServerState Create()
         {
 
             lock (lockobject)
@@ -29,6 +29,15 @@ namespace Wa1gon.ServerInfrastructure
                 {
                     instance = new ServerState();
                 }
+            }
+            return instance;
+        }
+        public static ServerState Create(ServerState newState)
+        {
+
+            lock (lockobject)
+            {
+                instance = newState;
             }
             return instance;
         }

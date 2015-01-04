@@ -37,6 +37,7 @@
 using System;
 using System.Windows;
 using Wa1gon.Models;
+using System.Collections.Generic;
 using Wa1gon.RigClientLib;
 using Wa1gon.RigClientLib.Utils;
 
@@ -51,9 +52,12 @@ namespace Wa1gon.WpfClient
         public Server Serv { get; set; }
         public Configuration Conf { get; set; }
 
+        public List<CommPortConfig> ConnList { get; set; }
+
         public RigConfigurationWindow()
         {
             Conf = Configuration.Create();
+            
             InitializeComponent();
 
 
@@ -134,6 +138,7 @@ namespace Wa1gon.WpfClient
             try
             {
                 var servInfo = RigControl.GetCommPortList(Serv);
+                ConnList = RigControl.GetConnectionList(Serv);
                 ComPortCombo.ItemsSource = servInfo.AvailCommPorts;
                 RigTypeCombo.ItemsSource = servInfo.SupportedRadios;
             }
@@ -144,6 +149,11 @@ namespace Wa1gon.WpfClient
                 return;
             }
             DataContext = this;
+        }
+
+        private void ConnLV_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
         }
     }
 }

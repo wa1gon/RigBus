@@ -104,14 +104,15 @@
             <Button Content="Add" Click="AddClick" Grid.Row="1" Grid.Column="6" Margin="5"/>
             <Button Content="Delete" Click="DeleteClick" Grid.Row="2" Grid.Column="6" Margin="5"/>
 
-            <ListView Name="ServList" Grid.Row="7" Grid.ColumnSpan="5" 
-                      Background="AliceBlue" Margin="20" 
-                      ItemsSource="{Binding Conf}">
+            <ListView Name="ConnLV" Grid.Row="7" Grid.ColumnSpan="7"  Background="AliceBlue" Margin="20" 
+                      ItemsSource="{Binding ConnList}" MouseDoubleClick="ConnLV_MouseDoubleClick">
                 <ListView.View>
                     <GridView>
-                        <GridViewColumn Header="Name" Width="180" DisplayMemberBinding="{Binding DisplayName}" />
-                        <GridViewColumn Header="Host Name" Width="180" DisplayMemberBinding="{Binding HostName}" />
-                        <GridViewColumn Header="Port" Width="40"  DisplayMemberBinding="{Binding Port}" />
+                        <GridViewColumn Header="Name" Width="100" DisplayMemberBinding="{Binding ConnectionName}" />
+                        <GridViewColumn Header="Radio Type" Width="100" DisplayMemberBinding="{Binding RadioType}" />
+                        <GridViewColumn Header="Port" Width="70"  DisplayMemberBinding="{Binding Port}" />
+                        <GridViewColumn Header="Speed" Width="70"  DisplayMemberBinding="{Binding Bps}" />
+                        <GridViewColumn Header="Parity" Width="70"  DisplayMemberBinding="{Binding Parity}" />
                     </GridView>
                 </ListView.View>
             </ListView>
