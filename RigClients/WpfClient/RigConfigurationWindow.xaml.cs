@@ -153,7 +153,18 @@ namespace Wa1gon.WpfClient
 
         private void ConnLV_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
+            CommPortConfig conf = ConnLV.SelectedItem as CommPortConfig;
+            if (conf == null) {return;}
 
+            RigTypeCombo.SelectedItem = conf.RadioType;
+            ComPortCombo.Text = conf.Port;
+            BpsTb.Text = conf.Bps.ToString();
+            StopBitsCb.Text = conf.StopBits.ToString();
+            DataBitsCb.Text = conf.DataBits.ToString();
+            ParityCb.Text = conf.Parity;
+            RtsCb.IsChecked = conf.Rts;
+            DtrCb.IsChecked = conf.Dtr;
+            ConectionNameTb.Text = conf.ConnectionName;
         }
     }
 }
