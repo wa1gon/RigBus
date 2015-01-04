@@ -71,6 +71,10 @@ namespace RigControlConsole
             {
                 activeRadio = new ActiveRadio();
             }
+            else
+            {
+                state.ActiveRadios.Remove(activeRadio);
+            }
             activeRadio.ConnectionName = value.ConnectionName;
             activeRadio.CommPort = value;
             activeRadio.RadioControl = RadioFactory.Get(value.RadioType);
