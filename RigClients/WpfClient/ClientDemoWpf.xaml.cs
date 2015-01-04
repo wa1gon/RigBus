@@ -14,20 +14,9 @@
    See the License for the specific language governing permissions and
    limitations under the License.
 */
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using Wa1gon.Models;
+using Wa1gon.RigClientLib;
 
 namespace Wa1gon.WpfClient
 {
@@ -52,6 +41,15 @@ namespace Wa1gon.WpfClient
             var radioWin= new RigConfigurationWindow();
             radioWin.ShowDialog();
 
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Configuration conf = Configuration.Create();
+            var defaultServ = conf.GetDefaultServer();
+            DefaultServer.Text = defaultServ.DisplayName;
+            CommPortConfig defaultCom = RigControl.GetDefaultConnection(defaultServ);
+            DefaultRadio.Text = defaultCom.ConnectionName;
         }
     }
 }

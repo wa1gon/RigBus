@@ -61,7 +61,7 @@
             <TextBlock HorizontalAlignment="Right" Margin="0,9,5,8" Grid.Row="6"
                    Text="Data Bits" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
 
-            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="3"  Grid.Column="3"
+            <TextBlock HorizontalAlignment="Right" Margin="0,9,5,9" Grid.Row="4"  Grid.Column="3"
                    Text="Parity" VerticalAlignment="Center"/>
 
             <TextBox Name="ConectionNameTb" Grid.Row="1" Grid.Column="2" Margin="5"/>
@@ -94,7 +94,8 @@
 
             <CheckBox Content="RTS"  Name="RtsCb" Grid.Column="4" Grid.Row="1" Margin="5"/>
             <CheckBox Content="DTR" Name="DtrCb" Grid.Column="4" Grid.Row="2" Margin="5"/>
-            <ComboBox Name="ParityCb" Grid.Column="4" Grid.Row="3" Margin="5">
+            <CheckBox Content="Default" Name="DefaultCb" Grid.Column="4" Grid.Row="3" Margin="5"/>
+            <ComboBox Name="ParityCb" Grid.Column="4" Grid.Row="4" Margin="5">
                 <ComboBoxItem Content="NONE"/>
                 <ComboBoxItem Content="EVEN"/>
                 <ComboBoxItem Content="ODD"/>

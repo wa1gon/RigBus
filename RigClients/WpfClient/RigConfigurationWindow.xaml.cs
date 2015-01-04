@@ -71,6 +71,7 @@ namespace Wa1gon.WpfClient
             ParityCb.Text = "NONE";
             RtsCb.IsChecked = false;
             DtrCb.IsChecked = false;
+            DefaultCb.IsChecked = false;
         }
 
         private void AddClick(object sender, RoutedEventArgs e)
@@ -85,6 +86,7 @@ namespace Wa1gon.WpfClient
             conf.Parity = ParityCb.Text;
             conf.Rts = (bool)RtsCb.IsChecked;
             conf.Dtr = (bool)DtrCb.IsChecked;
+            conf.Default = (bool)DefaultCb.IsChecked;
 
             if (isValid(conf) == false)
             {
@@ -167,6 +169,7 @@ namespace Wa1gon.WpfClient
             ParityCb.Text = conf.Parity;
             RtsCb.IsChecked = conf.Rts;
             DtrCb.IsChecked = conf.Dtr;
+            DefaultCb.IsChecked = conf.Default;
             ConectionNameTb.Text = conf.ConnectionName;
         }
     }

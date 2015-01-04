@@ -76,6 +76,20 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
+        static public CommPortConfig GetDefaultConnection(Server serv)
+        {
+            List<CommPortConfig> conn = GetConnectionList(serv);
+            CommPortConfig conf = conn.Find(c => c.Default == true);
+            if (conf == null && conn != null && conn.Count > 0)
+            {
+                conf = conn[0];
+            }
+            if (conf == null)
+            {
+                conf = new CommPortConfig();
+            }
+            return conf;
+        }
         static public bool SendCommConf(CommPortConfig config, Server server)
         {
             HttpClient client = new HttpClient();
