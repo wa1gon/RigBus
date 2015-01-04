@@ -157,6 +157,9 @@ namespace Wa1gon.WpfClient
             if (conf == null) {return;}
 
             RigTypeCombo.SelectedItem = conf.RadioType;
+
+            // with out this line the comm port doesn't show up.  WPF bug?
+            ComPortCombo.Text = "";
             ComPortCombo.Text = conf.Port;
             BpsTb.Text = conf.Bps.ToString();
             StopBitsCb.Text = conf.StopBits.ToString();
