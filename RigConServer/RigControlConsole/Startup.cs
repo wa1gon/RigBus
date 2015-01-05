@@ -23,8 +23,8 @@ namespace RigControlConsole
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{id}/{cmd}",
+                defaults: new { id = RouteParameter.Optional, cmd = RouteParameter.Optional }
             );
 
 
