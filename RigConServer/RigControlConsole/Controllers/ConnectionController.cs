@@ -6,10 +6,10 @@ using System.Web.Http;
 using Wa1gon.Models;
 using Wa1gon.ServerInfrastructure;
 
-namespace RigControlConsole
+namespace Wa1gon.RigControl.Controllers
 {
 
-    public class RadioController : ApiController 
+    public class ConnectionController : ApiController 
     {
        
         // GET api/values 

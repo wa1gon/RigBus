@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace RigControlConsole
+namespace Wa1gon.RigControl
 {
     public class Startup
     {
@@ -23,8 +23,8 @@ namespace RigControlConsole
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}/{cmd}",
-                defaults: new { id = RouteParameter.Optional, cmd = RouteParameter.Optional }
+                routeTemplate: "api/{controller}/{connection}/{cmd}",
+                defaults: new { connection = RouteParameter.Optional, cmd = RouteParameter.Optional }
             );
 
 

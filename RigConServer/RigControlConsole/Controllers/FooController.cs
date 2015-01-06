@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-namespace RigControlConsole
+namespace Wa1gon.RigControl.Controllers
 {
    public  class FooController : ApiController
     {
@@ -15,13 +15,19 @@ namespace RigControlConsole
             return info;
         }  
   
-        public string get(string id)
+        public string [] get(string id)
         {
-            return "foo " + id;
+            return new string [] {"foo", id};
         }
-        public string get(string id,string cmd)
+        public List<string> get(string id,string cmd)
         {
-            return "foo " + id + " " +  cmd;
+            var ar = new List<string> ();
+            ar.Add("f00");
+            ar.Add(id);
+            ar.Add(cmd);
+            ar.Add("horse");
+
+            return ar;
         }
     }
 }

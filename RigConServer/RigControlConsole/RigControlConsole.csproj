@@ -7,7 +7,7 @@
     <ProjectGuid>{D5A9A1DE-481A-4522-8157-2AB659A89F4C}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>RigControlConsole</RootNamespace>
+    <RootNamespace>Wa1gon.RigControl</RootNamespace>
     <AssemblyName>RigControlConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -73,11 +73,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FooController.cs" />
+    <Compile Include="Controllers\FooController.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="InfoController.cs" />
-    <Compile Include="RadioController.cs" />
+    <Compile Include="Controllers\InfoController.cs" />
+    <Compile Include="Controllers\ConnectionController.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

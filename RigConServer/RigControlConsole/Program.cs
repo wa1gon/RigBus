@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using Wa1gon.Models;
 using Wa1gon.ServerInfrastructure;
 
-namespace RigControlConsole
+namespace Wa1gon.RigControl
 {
     /// <summary>  This is the main for the self hosted Rigcontroller. 
     /// The production version this should be a service. 
