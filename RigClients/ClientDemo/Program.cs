@@ -36,7 +36,7 @@ namespace ClientDemo
         {
             var app = new Program();
             app.getSerial();
-            string baseUrl = "http://localhost:9000/api/Radio/foo";
+            string baseUrl = "http://localhost:7301/api/Connection";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 

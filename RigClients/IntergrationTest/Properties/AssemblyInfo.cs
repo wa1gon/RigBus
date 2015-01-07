@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("ServerInfrastructure")]
+[assembly: AssemblyTitle("IntergrationTest")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("ServerInfrastructure")]
+[assembly: AssemblyProduct("IntergrationTest")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("fa06f64d-53be-47fd-90fa-b4e22912cf76")]
+[assembly: Guid("9eb88c1a-30f2-447f-9d5c-6b78ec5878a9")]
 
 // Version information for an assembly consists of the following four values:
 //
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers 
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("2015.1.7.10")]
-[assembly: AssemblyFileVersion("2015.1.7.10")]
+[assembly: AssemblyVersion("2015.1.7.3")]
+[assembly: AssemblyFileVersion("2015.1.7.3")]
