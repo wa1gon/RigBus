@@ -66,7 +66,8 @@ namespace Wa1gon.RigControl.Controllers
             resp.StatusCode = HttpStatusCode.NoContent;
             var state = ServerState.Create();
 
-            var activeRadio = state.ActiveRadios.Find(a => a.ConnectionName == value.ConnectionName);
+            var activeRadio = state.ActiveRadios.
+                Find(a => a.ConnectionName == value.ConnectionName);
             if (activeRadio == null)
             {
                 activeRadio = new ActiveRadio();
@@ -75,6 +76,7 @@ namespace Wa1gon.RigControl.Controllers
             {
                 state.ActiveRadios.Remove(activeRadio);
             }
+
             activeRadio.ConnectionName = value.ConnectionName;
             activeRadio.CommPort = value;
             activeRadio.RadioControl = RadioFactory.Get(value.RadioType);

@@ -24,7 +24,7 @@ namespace RadioCAT
 
             while (true)
             {
-                settings = prg.getFlexStatus();
+                settings = prg.GetMasterStatus();
                 Console.WriteLine("VFO A: {0}", settings.Vfo_AFreq);
                 Console.WriteLine("VFO B: {0}", settings.Vfo_BFreq);
                 Console.WriteLine("Mode: {0}", settings.Rx1Mode);
@@ -35,7 +35,7 @@ namespace RadioCAT
 
         }
 
-        private RigSettings getFlexStatus()
+        private RigSettings GetMasterStatus()
         {
             RigSettings settings;
             settings = master.ReadSettings();

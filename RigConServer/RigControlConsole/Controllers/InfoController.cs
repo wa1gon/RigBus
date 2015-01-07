@@ -7,6 +7,7 @@ using System.Web.Http;
 using Wa1gon.Models;
 using System.IO.Ports;
 using Wa1gon.ServerInfrastructure;
+using Microsoft.Owin;
 namespace Wa1gon.RigControl.Controllers
 {
     public class InfoController : ApiController 
@@ -15,7 +16,9 @@ namespace Wa1gon.RigControl.Controllers
         // GET api/values 
         public ServerInfo Get()
         {
+            var ctx = new OwinContext();
             var info = ServerState.Create();
+            var q = ctx.Request.Query;
             return info.ServerInfo;
         }      
     }

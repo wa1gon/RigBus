@@ -25,7 +25,7 @@ namespace Wa1gon.Models
     public sealed class ActiveRadios
     {
         private static ActiveRadios instance = new ActiveRadios();
-        public Dictionary<string,CommPortConfig> ActiveList { get; set; }
+        public Dictionary<string,CommPortConfig> ActiveCommPortList { get; set; }
         public static ActiveRadios Instance
         {
             get
@@ -36,21 +36,21 @@ namespace Wa1gon.Models
 
         private ActiveRadios()
         {
-            ActiveList = new Dictionary<string, CommPortConfig>();
+            ActiveCommPortList = new Dictionary<string, CommPortConfig>();
         }
         public void AddRadio(CommPortConfig rig)
         {
-            ActiveList.Add(rig.ConnectionName, rig);
+            ActiveCommPortList.Add(rig.ConnectionName, rig);
         }
         public void RemoveRadio(string name)
         {
-            ActiveList.Remove(name);
+            ActiveCommPortList.Remove(name);
         }
         public CommPortConfig GetActiveByName(string name)
         {
             try
             {
-                var config = ActiveList[name];
+                var config = ActiveCommPortList[name];
                 return config;
             }
             catch (Exception)

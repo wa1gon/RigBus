@@ -24,7 +24,9 @@ using System.Threading.Tasks;
 
 namespace Wa1gon.Models
 {
-    
+    /// <summary> Radio Settings such as mode, frequency, etc
+
+    /// </summary>
     public class RigSettings
     {
         public RigSettings()

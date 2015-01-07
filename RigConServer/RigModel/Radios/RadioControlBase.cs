@@ -24,6 +24,8 @@ using System.Text;
 
 namespace Wa1gon.Models
 {
+    /// <summary> Common base class for all radios 
+    /// </summary>
     public class RadioControlBase
     {
         public RadioControlBase()
