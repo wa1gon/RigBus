@@ -81,7 +81,7 @@ namespace Wa1gon.WpfClient
             conf.RadioType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
             conf.Bps = BpsTb.Text.ParseInt();
-            conf.StopBits = StopBitsCb.Text.ParseInt();
+            conf.StopBits = StopBitsCb.Text;
             conf.DataBits = DataBitsCb.Text.ParseInt();
             conf.Parity = ParityCb.Text;
             conf.Rts = (bool)RtsCb.IsChecked;

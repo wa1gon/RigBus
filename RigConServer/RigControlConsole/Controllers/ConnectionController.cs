@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.IO.Ports;
 using System.Net;
 using System.Net.Http;
@@ -47,6 +48,12 @@ namespace Wa1gon.RigControl.Controllers
                 resp.ReasonPhrase = "Comm port or Rig type is emtpy or null";
                 return resp;
             }
+            if (value.Bps == null)
+            {
+                resp.StatusCode = HttpStatusCode.RequestedRangeNotSatisfiable;
+                resp.ReasonPhrase = "Bps(baud rate) Can not be null.";
+                return resp;
+            }
             var servState = ServerState.Create();
 
             bool hasComm = servState.ServerInfo.AvailCommPorts.Contains(value.Port);
@@ -80,12 +87,61 @@ namespace Wa1gon.RigControl.Controllers
             activeRadio.ConnectionName = value.ConnectionName;
             activeRadio.CommPort = value;
             activeRadio.RadioControl = RadioFactory.Get(value.RadioType);
+            try
+            {
+                var port = new SerialPort();
+
+                port.PortName = value.Port;
+                port.BaudRate = (int)value.Bps;
+                port.Parity = GetParity(value.Parity);
+                port.DataBits = (int)value.DataBits;
+                port.StopBits = GetStopBits(value.StopBits);
+                
+            } catch (Exception e)
+            {
+
+            }
             state.ActiveRadios.Add(activeRadio);
             ConfigurationIO.Save(state.ConfigFilePath);
          
             resp.ReasonPhrase = "Comm port open!";
 
             return resp;
+        }
+
+        private StopBits GetStopBits(string stopbits)
+        {
+            switch(stopbits)
+            {
+                case "none":
+                    return StopBits.None;
+                case "1":
+                    return StopBits.One;
+                case "2":
+                    return StopBits.Two;
+                case "1.5":
+                    return StopBits.Two;
+            }
+            return StopBits.None;
+
+        }
+
+        private Parity GetParity(string p)
+        {
+            switch (p.ToLower())
+            {
+                case "even":
+                    return Parity.Even;
+                case "odd":
+                    return Parity.Odd;
+                case "space":
+                    return Parity.Space;
+                case "mark":
+                    return Parity.Mark;
+                default:
+                    return Parity.None;
+            }
+            //throw new NotImplementedException();
         }
 
         // PUT api/values/5 

@@ -3,6 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Net.Http;
 using Wa1gon.Models;
 using System.Collections.Generic;
+using System.Net;
 
 namespace IntergrationTest
 {
@@ -17,7 +18,7 @@ namespace IntergrationTest
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
             var results = response.Content.ReadAsAsync<List<CommPortConfig>>().Result;
-
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }

@@ -31,7 +31,7 @@ namespace Wa1gon.Models
         public int? Bps { get; set; }
         public string Port { get; set; }
         public string Parity { get; set; }
-        public int? StopBits { get; set; }
+        public string StopBits { get; set; }
         public int? DataBits { get; set; }
         public bool Rts { get; set; }
         public bool Dtr { get; set; }
