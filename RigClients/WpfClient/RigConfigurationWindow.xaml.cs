@@ -52,7 +52,7 @@ namespace Wa1gon.WpfClient
         public Server Serv { get; set; }
         public Configuration Conf { get; set; }
 
-        public List<CommPortConfig> ConnList { get; set; }
+        public List<RadioComConnConfig> ConnList { get; set; }
 
         public RigConfigurationWindow()
         {
@@ -76,7 +76,7 @@ namespace Wa1gon.WpfClient
 
         private void AddClick(object sender, RoutedEventArgs e)
         {
-            CommPortConfig conf = new CommPortConfig();
+            RadioComConnConfig conf = new RadioComConnConfig();
             conf.ConnectionName = ConectionNameTb.Text;
             conf.RadioType = RigTypeCombo.Text;
             conf.Port = ComPortCombo.Text;
@@ -100,7 +100,7 @@ namespace Wa1gon.WpfClient
 
         }
 
-        private bool isValid(CommPortConfig conf)
+        private bool isValid(RadioComConnConfig conf)
         {
             if (conf.RadioType.Length == 0)
             {
@@ -155,7 +155,7 @@ namespace Wa1gon.WpfClient
 
         private void ConnLV_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            CommPortConfig conf = ConnLV.SelectedItem as CommPortConfig;
+            RadioComConnConfig conf = ConnLV.SelectedItem as RadioComConnConfig;
             if (conf == null) {return;}
 
             RigTypeCombo.SelectedItem = conf.RadioType;

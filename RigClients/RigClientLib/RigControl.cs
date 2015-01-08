@@ -52,11 +52,11 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public List<CommPortConfig> GetConnectionList(Server server)
+        static public List<RadioComConnConfig> GetConnectionList(Server server)
         {
             HttpClient client = new HttpClient();
 
-            List<CommPortConfig> info;
+            List<RadioComConnConfig> info;
             string baseUrl;
 
             try
@@ -66,8 +66,8 @@ namespace Wa1gon.RigClientLib
                     server.Port);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
-                var res = response.Content.ReadAsAsync<List<CommPortConfig>>().Result;
-                info = res as List<CommPortConfig>;
+                var res = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
+                info = res as List<RadioComConnConfig>;
                 return info;
             }
             catch (Exception e)
@@ -76,21 +76,21 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public CommPortConfig GetDefaultConnection(Server serv)
+        static public RadioComConnConfig GetDefaultConnection(Server serv)
         {
-            List<CommPortConfig> conn = GetConnectionList(serv);
-            CommPortConfig conf = conn.Find(c => c.Default == true);
+            List<RadioComConnConfig> conn = GetConnectionList(serv);
+            RadioComConnConfig conf = conn.Find(c => c.Default == true);
             if (conf == null && conn != null && conn.Count > 0)
             {
                 conf = conn[0];
             }
             if (conf == null)
             {
-                conf = new CommPortConfig();
+                conf = new RadioComConnConfig();
             }
             return conf;
         }
-        static public bool SendCommConf(CommPortConfig config, Server server)
+        static public bool SendCommConf(RadioComConnConfig config, Server server)
         {
             HttpClient client = new HttpClient();
 

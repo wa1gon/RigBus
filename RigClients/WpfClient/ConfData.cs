@@ -31,11 +31,11 @@ namespace Wa1gon.WpfClient
     public class ConfigData
     {
         public ObservableCollection<Server> Servers { get; set; }
-        public ObservableCollection<CommPortConfig> CommConfs { get; set; }
+        public ObservableCollection<RadioComConnConfig> CommConfs { get; set; }
         public ConfigData()
         {
             Servers = new ObservableCollection<Server>();
-            CommConfs = new ObservableCollection<CommPortConfig>();
+            CommConfs = new ObservableCollection<RadioComConnConfig>();
         }
     }
 }

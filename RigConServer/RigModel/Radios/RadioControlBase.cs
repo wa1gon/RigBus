@@ -31,10 +31,10 @@ namespace Wa1gon.Models
         public RadioControlBase()
         {
             Settings = new RigSettings();
-            Config = new CommPortConfig();
+            Config = new RadioComConnConfig();
         }
         public RigSettings Settings { get; set; }
-        public CommPortConfig Config { get; set; }
+        public RadioComConnConfig Config { get; set; }
         [JsonIgnore]
         public SerialPort Port { get; set; }
         virtual public RigSettings ReadSettings()

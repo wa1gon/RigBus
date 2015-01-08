@@ -26,7 +26,7 @@ namespace Wa1gon.Models.Validations
 {
     public class ModelValidation
     {
-        static public List<string> ValidateRigConf(CommPortConfig conf)
+        static public List<string> ValidateRigConf(RadioComConnConfig conf)
         {
             List<string> errors = new List<string>();
             return errors;

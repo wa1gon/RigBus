@@ -85,9 +85,9 @@
             </ComboBox>
             <ComboBox Name="StopBitsCb" Grid.Column="2" Grid.Row="5" Margin="5">
                 <ComboBoxItem Content="None"/>
-                <ComboBoxItem Content="One"/>
-                <ComboBoxItem Content="OnePointFive"/>
-                <ComboBoxItem Content="Two"/>
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="1.5"/>
+                <ComboBoxItem Content="2"/>
             </ComboBox>
             <ComboBox Name="DataBitsCb" Grid.Column="2" Grid.Row="6" Margin="5">
                 <ComboBoxItem Content="7"/>

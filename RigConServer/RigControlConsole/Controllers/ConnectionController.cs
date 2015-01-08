@@ -14,10 +14,10 @@ namespace Wa1gon.RigControl.Controllers
     {
        
         // GET api/values 
-        public List<CommPortConfig> Get()
+        public List<RadioComConnConfig> Get()
         {
             var state = ServerState.Create();
-            var conList = new List<CommPortConfig>();
+            var conList = new List<RadioComConnConfig>();
             foreach( var act in state.ActiveRadios)
             {
                 conList.Add(act.CommPort);
@@ -26,20 +26,20 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-        public CommPortConfig Get(string id)
+        public RadioComConnConfig Get(string id)
         {
-            CommPortConfig rigReading;
+            RadioComConnConfig rigReading;
             rigReading = GetReading(id);
             return rigReading;
         }
 
-        private CommPortConfig GetReading(string id)
+        private RadioComConnConfig GetReading(string id)
         {
             return null;
         }
 
         // POST api/values 
-        public HttpResponseMessage Post([FromBody]CommPortConfig value)
+        public HttpResponseMessage Post([FromBody]RadioComConnConfig value)
         {
             var resp = new HttpResponseMessage();
             if (string.IsNullOrWhiteSpace(value.RadioType) || string.IsNullOrWhiteSpace(value.Port))
