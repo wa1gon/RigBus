@@ -99,7 +99,7 @@ namespace Wa1gon.RigControl.Controllers
                 
             } catch (Exception e)
             {
-
+                resp.ReasonPhrase = e.Message;
             }
             state.ActiveRadios.Add(activeRadio);
             ConfigurationIO.Save(state.ConfigFilePath);
