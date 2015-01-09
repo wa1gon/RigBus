@@ -26,12 +26,9 @@ namespace Wa1gon.Models
     {
         private static ActiveRadios instance = new ActiveRadios();
         public Dictionary<string,RadioComConnConfig> ActiveCommPortList { get; set; }
-        public static ActiveRadios Instance
+        public static ActiveRadios Create()
         {
-            get
-            {
                 return instance;
-            }
         }
 
         private ActiveRadios()

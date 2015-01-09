@@ -78,6 +78,7 @@
     <Compile Include="ActiveRadios.cs" />
     <Compile Include="BindableObject.cs" />
     <Compile Include="ComPorts.cs" />
+    <Compile Include="MajorSettings.cs" />
     <Compile Include="Radios\DummyMaster.cs" />
     <Compile Include="Radios\PowerSDRMaster.cs" />
     <Compile Include="Radios\RadioControlBase.cs" />

@@ -26,20 +26,36 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-        public RadioComConnConfig Get(string id)
+        public RadioComConnConfig Get(string connection)
         {
             RadioComConnConfig rigReading;
-            rigReading = GetReading(id);
+            rigReading = GetReading(connection);
             return rigReading;
+        }
+        public MajorSettings Get(string connection, string cmd)
+        {
+            Console.WriteLine("id: {0} cmd: {1}", connection, cmd);
+            MajorSettings settings;
+            settings = new MajorSettings();
+            settings.Mode = "USB";
+            settings.Freq = "14.076";
+
+            var radio = ActiveRadios.Create();
+
+            //rigReading = GetReading(id);
+            return settings;
         }
 
         private RadioComConnConfig GetReading(string id)
         {
             return null;
         }
+        //api/{controller}/{connection}/{cmd}
+
 
         // POST api/values 
-        public HttpResponseMessage Post([FromBody]RadioComConnConfig commConf)
+        public HttpResponseMessage Post([FromUri]string id,[FromUri] string cmd,
+            [FromBody]MajorSettings settings)
         {
             var resp = new HttpResponseMessage();
 
