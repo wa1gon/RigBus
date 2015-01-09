@@ -86,13 +86,13 @@ namespace IntergrationTest
 
         }
         [TestMethod]
-        public void GetListOfConnections2()
+        public void ReadMajorTest()
         {
-            string baseUrl = "http://localhost:7301/api/Connection";
+            string baseUrl = "http://localhost:7301/api/Radio/Flex/RM";
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
-            var results = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
+            var results = response.Content.ReadAsAsync<MajorSettings>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
 
 
