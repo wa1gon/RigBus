@@ -5,7 +5,7 @@ using System.Diagnostics;
 using System.Linq.Expressions;
 using System.Reflection;
 
-namespace Wa1gon.Model
+namespace Wa1gon.Models
 {
 
     /// <summary> Implements the INotifyPropertyChanged interface and 

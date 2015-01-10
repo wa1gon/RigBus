@@ -78,6 +78,8 @@
   <ItemGroup>
     <Compile Include="ActiveRadios.cs" />
     <Compile Include="BindableObject.cs" />
+    <Compile Include="Validations\BaseValidator.cs" />
+    <Compile Include="Common\SettingValue.cs" />
     <Compile Include="ComPorts.cs" />
     <Compile Include="Common\MajorSettings.cs" />
     <Compile Include="Radios\DummyMaster.cs" />

@@ -21,11 +21,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
 {
     public class RadioCmd
     {
-        public enum Commands { Open, Close,}
+    public RadioCmd()
+        {
+            Settings = new List<SettingValue>();
+        }
+        public List<SettingValue> Settings { get; set; }
     }
 }

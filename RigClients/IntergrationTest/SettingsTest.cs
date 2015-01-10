@@ -5,6 +5,7 @@ using Wa1gon.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Windows.Forms;
+using Wa1gon.Models.Common;
 
 namespace IntergrationTest
 {
@@ -20,7 +21,6 @@ namespace IntergrationTest
     public class SettingsTest
     {
 
-        private RadioComConnConfig connConf;
 
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
@@ -94,8 +94,24 @@ namespace IntergrationTest
 
             var results = response.Content.ReadAsAsync<MajorSettings>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
 
+        [TestMethod]
+        public void PostSettingTest()
+        {
+            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
+            var client = new HttpClient();
 
+            var cmdReq = new RadioCmd();
+            var setting = new SettingValue();
+            setting.Setting = "Mode";
+            setting.Value = "USB";
+            cmdReq.Settings.Add(setting);
+
+            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+
+            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
     }
 }

@@ -32,6 +32,12 @@ namespace Wa1gon.RigControl.Controllers
             rigReading = GetReading(connection);
             return rigReading;
         }
+        public RadioCmd Post(string connection,[FromBody] RadioCmd cmd)
+        {
+
+            return cmd;
+
+        }
         public MajorSettings Get(string connection, string cmd)
         {
             Console.WriteLine("id: {0} cmd: {1}", connection, cmd);

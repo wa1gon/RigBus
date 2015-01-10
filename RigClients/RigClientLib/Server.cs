@@ -22,7 +22,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Wa1gon.Model;
+using Wa1gon.Models;
+
 
 namespace Wa1gon.RigClientLib
 {
