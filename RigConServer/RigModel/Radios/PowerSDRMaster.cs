@@ -67,16 +67,20 @@ namespace Wa1gon.Models
             Port.Open();
 
         }
-        override public RigSettings ReadSettings()
+        override public RadioCmd ReadSettings()
         {
             Port.Write("ZZDU;");
             results = ReadstatusFromPort();
-            RigSettings rc;
+            RadioCmd rc;
             lock (lockObject)
             {
-                rc=ParseStatus(results);
+                rc = null;
             }
             return rc;
+        }
+        public override void Setettings(RadioCmd setting)
+        {
+            throw new System.NotImplementedException();
         }
 
         private string ReadstatusFromPort()

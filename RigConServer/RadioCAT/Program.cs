@@ -20,14 +20,14 @@ namespace RadioCAT
             prg.master.Config.Port = "COM4";
             prg.master.Config.Bps = 19200;
             prg.master.OpenPort();
-            RigSettings settings;
+            //RigSettings settings;
 
             while (true)
             {
-                settings = prg.GetMasterStatus();
-                Console.WriteLine("VFO A: {0}", settings.Vfo_AFreq);
-                Console.WriteLine("VFO B: {0}", settings.Vfo_BFreq);
-                Console.WriteLine("Mode: {0}", settings.Rx1Mode);
+                //settings = prg.GetMasterStatus();
+                //Console.WriteLine("VFO A: {0}", settings.Vfo_AFreq);
+                //Console.WriteLine("VFO B: {0}", settings.Vfo_BFreq);
+                //Console.WriteLine("Mode: {0}", settings.Rx1Mode);
                 Thread.Sleep(1000);
             }
             //prg.SendKeyboard();
@@ -35,12 +35,12 @@ namespace RadioCAT
 
         }
 
-        private RigSettings GetMasterStatus()
-        {
-            RigSettings settings;
-            settings = master.ReadSettings();
-            return settings;
-        }
+        //private RigSettings GetMasterStatus()
+        //{
+        //    RigSettings settings;
+        //    settings = master.ReadSettings();
+        //    return settings;
+        //}
 
 
     }

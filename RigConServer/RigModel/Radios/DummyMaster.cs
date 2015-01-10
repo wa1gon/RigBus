@@ -28,9 +28,17 @@ namespace Wa1gon.Models
     {
         internal DummyMaster()
         { }
-        public override RigSettings ReadSettings()
+
+        private RigSettings settings = new RigSettings();
+        public override RadioCmd ReadSettings()
         {
-            return Settings;
+            var rc = new RadioCmd();
+            return rc;
+        }
+
+        public override void Setettings(RadioCmd cmd)
+        {
+            throw new NotImplementedException();
         }
     }
 }
