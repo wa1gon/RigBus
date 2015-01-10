@@ -62,7 +62,7 @@ namespace Wa1gon.RigClientLib
             try
             {
 
-                baseUrl = string.Format("http://{0}:{1}/api/Radio", server.HostName,
+                baseUrl = string.Format("http://{0}:{1}/api/Connection", server.HostName,
                     server.Port);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -97,7 +97,7 @@ namespace Wa1gon.RigClientLib
             client.DefaultRequestHeaders.Accept.Add(
                  new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string baseUrl = string.Format("http://{0}:{1}/api/Radio", server.HostName,
+            string baseUrl = string.Format("http://{0}:{1}/api/Connection", server.HostName,
                 server.Port);
             var response = client.PostAsJsonAsync(baseUrl, config).Result;
             if (response.IsSuccessStatusCode)

@@ -99,7 +99,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSettingTest()
         {
-            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
+            string baseUrl = "http://localhost:7301/api/Radio/Dummy/";
             var client = new HttpClient();
 
             var cmdReq = new RadioCmd();

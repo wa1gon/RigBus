@@ -78,7 +78,7 @@ namespace Wa1gon.Models
             }
             return rc;
         }
-        public override void Setettings(RadioCmd setting)
+        public override void SetSettings(RadioCmd setting)
         {
             throw new System.NotImplementedException();
         }

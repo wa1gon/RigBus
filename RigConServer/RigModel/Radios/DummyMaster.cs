@@ -36,9 +36,23 @@ namespace Wa1gon.Models
             return rc;
         }
 
-        public override void Setettings(RadioCmd cmd)
+        public override void SetSettings(RadioCmd cmd)
         {
-            throw new NotImplementedException();
+            foreach (var item in cmd.Settings)
+            {
+                switch (item.Setting.ToLower())
+                {
+                    case "mode":
+                        SetMode(item);
+                        break;
+                }
+            }
+        }
+
+        public void SetMode(Common.SettingValue item)
+        {
+            Settings.Mode = item.Value;
+            item.Status = "OK";
         }
     }
 }

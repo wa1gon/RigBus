@@ -26,7 +26,7 @@ namespace Wa1gon.Models
 {
     /// <summary> Common base class for all radios 
     /// </summary>
-    abstract public class RadioControlBase
+    public class RadioControlBase
     {
         public RadioControlBase()
         {
@@ -37,8 +37,14 @@ namespace Wa1gon.Models
         public RadioComConnConfig Config { get; set; }
         [JsonIgnore]
         public SerialPort Port { get; set; }
-        abstract public RadioCmd ReadSettings();
+        virtual public RadioCmd ReadSettings()
+        {
+            return null;
+        }
 
-        abstract public void Setettings(RadioCmd cmd);
+        virtual public void SetSettings(RadioCmd cmd)
+        {
+
+        }
     }
 }
