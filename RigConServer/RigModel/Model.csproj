@@ -79,16 +79,16 @@
     <Compile Include="ActiveRadios.cs" />
     <Compile Include="BindableObject.cs" />
     <Compile Include="ComPorts.cs" />
-    <Compile Include="MajorSettings.cs" />
+    <Compile Include="Common\MajorSettings.cs" />
     <Compile Include="Radios\DummyMaster.cs" />
     <Compile Include="Radios\PowerSDRMaster.cs" />
     <Compile Include="Radios\RadioControlBase.cs" />
-    <Compile Include="RadioCmd.cs" />
-    <Compile Include="RadioComConnConfig.cs" />
+    <Compile Include="Common\RadioCmd.cs" />
+    <Compile Include="Common\RadioComConnConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RigSettings.cs" />
-    <Compile Include="ServerInfo.cs" />
+    <Compile Include="Common\RigSettings.cs" />
+    <Compile Include="Common\ServerInfo.cs" />
     <Compile Include="Validations\ModelValidation.cs" />
   </ItemGroup>
   <ItemGroup>

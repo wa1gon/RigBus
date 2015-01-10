@@ -40,12 +40,24 @@ namespace Wa1gon.RigControl.Controllers
             settings.Mode = "USB";
             settings.Freq = "14.076";
 
-            var radio = ActiveRadios.Create();
+            switch (cmd)
+            {
+                case "RM":
+                    //var major = ReadMajor(connection);
+                    return settings;
+
+                default:
+                    break;
+            }
 
             //rigReading = GetReading(id);
             return settings;
         }
-
+        private MajorSettings ReadMajor(string connId)
+        {
+            var state = ServerState.Create();
+            return null;
+        }
         private RadioComConnConfig GetReading(string id)
         {
             return null;
