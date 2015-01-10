@@ -16,6 +16,7 @@
 */
 #endregion
 
+using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Text;
@@ -27,6 +28,7 @@ namespace Wa1gon.Models
         private string results;
         private object lockObject;
         private char [] delimiter = {':'};
+        private bool isPortOpen = false;
         private Dictionary<string, string> modeLookup = new Dictionary<string, string>();
         internal PowerSDRMaster()
         {
@@ -53,19 +55,21 @@ namespace Wa1gon.Models
 
         public void OpenPort()
         {
-            Port = new SerialPort();
-            Port.PortName = Config.Port;
-            if (Config.Bps != null)
+            if (isPortOpen == false)
             {
-            Port.BaudRate = (int)Config.Bps;
+                Port = new SerialPort();
+                Port.PortName = Config.Port;
+                if (Config.Bps != null)
+                {
+                    Port.BaudRate = (int)Config.Bps;
+                }
+                else
+                {
+                    Port.BaudRate = 4800;
+                }
+                Port.ReadTimeout = 200;
+                Port.Open();
             }
-            else
-            {
-                Port.BaudRate = 4800;
-            }
-            Port.ReadTimeout = 200;
-            Port.Open();
-
         }
         override public RadioCmd ReadSettings()
         {
@@ -78,11 +82,17 @@ namespace Wa1gon.Models
             }
             return rc;
         }
-        public override void SetSettings(RadioCmd setting)
-        {
-            throw new System.NotImplementedException();
-        }
 
+        public virtual void SetMode(Common.SettingValue item)
+        {
+            try
+            {
+                OpenPort();
+            } catch(Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+            }
+        }
         private string ReadstatusFromPort()
         {
             char inp;

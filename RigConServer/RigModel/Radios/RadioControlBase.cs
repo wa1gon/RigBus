@@ -44,7 +44,20 @@ namespace Wa1gon.Models
 
         virtual public void SetSettings(RadioCmd cmd)
         {
+            foreach (var item in cmd.Settings)
+            {
+                switch (item.Setting.ToLower())
+                {
+                    case "mode":
+                        SetMode(item);
+                        break;
+                }
+            }
+        }
 
+        public virtual void SetMode(Common.SettingValue item)
+        {
+            item.Status = "Not Supported";
         }
     }
 }
