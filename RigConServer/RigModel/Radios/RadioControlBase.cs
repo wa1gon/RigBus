@@ -51,11 +51,18 @@ namespace Wa1gon.Models
                     case "mode":
                         SetMode(item);
                         break;
+                    case "freq":
+                        SetFreq(item);
+                        break;
                 }
             }
         }
 
         public virtual void SetMode(Common.SettingValue item)
+        {
+            item.Status = "Not Supported";
+        }
+        public virtual void SetFreq(Common.SettingValue item)
         {
             item.Status = "Not Supported";
         }

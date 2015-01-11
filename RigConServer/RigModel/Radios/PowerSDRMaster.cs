@@ -72,6 +72,7 @@ namespace Wa1gon.Models
             if (isPortOpen == false)
             {
                 Port = new SerialPort();
+                Port.ReadTimeout = 300;
                 Port.PortName = Config.Port;
                 if (Config.Bps != null)
                 {
@@ -97,24 +98,32 @@ namespace Wa1gon.Models
             }
             return rc;
         }
-
-        public override void SetMode(Common.SettingValue item)
+        public override void SetFreq(Common.SettingValue item)
         {
-            string pmode;
+            string freq;
             try
             {
-                Port.ReadTimeout = 300;
                 OpenPort();
-                
-            } catch(Exception e)
+            }
+            catch (Exception e)
             {
                 item.Status = "Server Error: " + e.Message;
                 return;
             }
             try
             {
-                pmode = pmodeLookup[item.Value];
-                string rCmd = string.Format("ZZMD{0}{1};", pmode[0], pmode[1]);
+                string vfoCmd;
+                if (item.Vfo.ToLower() == "a")
+                {
+                    vfoCmd = "ZZFA";
+                }
+                else
+                {
+                    vfoCmd = "ZZFB";
+                }
+
+                freq = FormatFreq(item.Value);
+                string rCmd = string.Format("{0}{1};", vfoCmd, freq);
                 Port.Write(rCmd);
 
                 // expecting timeout
@@ -127,25 +136,104 @@ namespace Wa1gon.Models
             }
             catch (Exception e)
             {
+                item.Status = e.Message;
 
             }
         }
+
+        private string FormatFreq(string p)
+        {
+           try
+           {
+               double freq = double.Parse(p) * 1000000.0;
+               StringBuilder sFreq = new StringBuilder(freq.ToString());
+               while(sFreq.Length < 11)
+               {
+                   sFreq.Insert(0, "0");
+               }
+               return sFreq.ToString();
+           }
+            catch(Exception)
+           {
+               return "ERROR";
+           }
+        }
+  
+        public override void SetMode(Common.SettingValue item)
+        {
+            string pmode;
+            try
+            {
+
+                OpenPort();
+                
+            } catch(Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string vfoCmd;
+                if (item.Vfo.ToLower() == "a")
+                {
+                    vfoCmd = "ZZMD";
+                }
+                else
+                {
+                    vfoCmd = "ZZME";
+                }
+
+                pmode = pmodeLookup[item.Value];
+                string rCmd = string.Format("{0}{1}{2};", vfoCmd,pmode[0], pmode[1]);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        /// <summary> Read up to and including the semicolon.
+        /// 
+        /// </summary>
+        /// <returns>Next response or empty if nothing was waiting</returns>
         private string ReadToSemiFromCom()
         {
             char inp;
             StringBuilder ret = new StringBuilder();
-            while(true)
+            try
             {
-                inp = (char)Port.ReadChar();
-                if (inp != ';')
+                while (true)
                 {
-                    ret.Append(inp);
+                    inp = (char)Port.ReadChar();
+                    if (inp != ';')
+                    {
+                        ret.Append(inp);
+                    }
+                    else
+                    {
+                        return ret.ToString();
+                    }
+
                 }
-                else
+            } 
+            catch (TimeoutException)
+            {
+                if (ret.Length == 0)
                 {
-                    return ret.ToString();
+                    return string.Empty;
                 }
 
+                return ret.ToString();
             }
         }
 
@@ -195,16 +283,16 @@ namespace Wa1gon.Models
 
 
         }
-        private void serialDataReceived(object sender, SerialDataReceivedEventArgs e)
-        {
-            lock (lockObject)
-            {
-                results = Port.ReadExisting();
-                if (results.Length > 0)
-                {
+        //private void serialDataReceived(object sender, SerialDataReceivedEventArgs e)
+        //{
+        //    lock (lockObject)
+        //    {
+        //        results = Port.ReadExisting();
+        //        if (results.Length > 0)
+        //        {
 
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
     }
 }

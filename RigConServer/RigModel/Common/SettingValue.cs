@@ -15,6 +15,7 @@ namespace Wa1gon.Models.Common
         public string Setting { get; set; }
         public string Value { get; set; }
         public string Status { get; set; }
+        public string Vfo { get; set; }
         public BaseValidator Validator { get; set; }
     }
 }

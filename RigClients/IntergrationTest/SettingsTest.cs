@@ -124,12 +124,45 @@ namespace IntergrationTest
             var setting = new SettingValue();
             setting.Setting = "Mode";
             setting.Value = "USB";
+            setting.Vfo = "a";
             cmdReq.Settings.Add(setting);
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
             var results = response.Content.ReadAsAsync<RadioCmd>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(results.Settings[0].Value, "USB");
+        }
+
+        [TestMethod]
+        public void PostSetFreqFlexTest()
+        {
+            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
+            var client = new HttpClient();
+
+            var cmdReq = new RadioCmd();
+            var setting = new SettingValue();
+            setting.Setting = "freq";
+            setting.Value = "14.095";
+            setting.Vfo = "a";
+            cmdReq.Settings.Add(setting);
+
+            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+
+            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(results.Settings[0].Value, "14.095");
+
+            setting.Setting = "freq";
+            setting.Value = "14.095";
+            setting.Vfo = "b";
+            cmdReq.Settings.Add(setting);
+
+            response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+
+            results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(results.Settings[0].Value, "14.095");
         }
     }
 }
