@@ -8,7 +8,7 @@ namespace Wa1gon.Models.Validations
 {
     public class BaseValidator
     {
-        virtual public bool IsValid(SettingValue setting)
+        virtual public bool IsValid(RadioProperty setting)
         {
             return true;
         }

@@ -95,7 +95,7 @@ namespace Wa1gon.WpfClient
             else
             {
 
-                bool rc = RigControl.SendCommConf(conf, Serv);
+                bool rc = RadioControl.SendCommConf(conf, Serv);
             }
 
         }
@@ -139,8 +139,8 @@ namespace Wa1gon.WpfClient
             RigServersCombo.SelectedItem = Serv;
             try
             {
-                var servInfo = RigControl.GetCommPortList(Serv);
-                ConnList = RigControl.GetConnectionList(Serv);
+                var servInfo = RadioControl.GetCommPortList(Serv);
+                ConnList = RadioControl.GetConnectionList(Serv);
                 ComPortCombo.ItemsSource = servInfo.AvailCommPorts;
                 RigTypeCombo.ItemsSource = servInfo.SupportedRadios;
             }

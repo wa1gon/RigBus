@@ -16,11 +16,7 @@
 */
 #endregion
 
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
@@ -29,8 +25,8 @@ namespace Wa1gon.Models
     {
     public RadioCmd()
         {
-            Settings = new List<SettingValue>();
+            Settings = new List<RadioProperty>();
         }
-        public List<SettingValue> Settings { get; set; }
+        public List<RadioProperty> Settings { get; set; }
     }
 }

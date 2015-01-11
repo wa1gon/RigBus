@@ -67,6 +67,10 @@
       <Project>{28000343-26eb-4ce6-b3c9-4367acc0156f}</Project>
       <Name>CommonUtils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\RigClientLib\RigClientLib.csproj">
+      <Project>{e5c90064-870e-49cd-a642-eebf7681af16}</Project>
+      <Name>RigClientLib</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

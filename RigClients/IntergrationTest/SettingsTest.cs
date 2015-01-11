@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Windows.Forms;
 using Wa1gon.Models.Common;
+using Wa1gon.RigClientLib;
 
 namespace IntergrationTest
 {
@@ -13,14 +14,12 @@ namespace IntergrationTest
     /// <summary>  These are not unit test but integration test for the test
     /// to work correct there must be a connection with the name of "Flex" connected to 
     /// a PowerSDR.  The PowerSDR can be running in demo mode, as well as the RigControlServer
-    /// 
     /// </summary>
-
 
     [TestClass()]
     public class SettingsTest
     {
-
+        private Server server;
 
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
@@ -36,8 +35,9 @@ namespace IntergrationTest
             {
                 throw new Exception("Flex isn't defined");
             }
-
         }
+
+        #region unused test init
         //[AssemblyInitialize()]
         //public static void AssemblyInit(TestContext context)
         //{
@@ -73,6 +73,9 @@ namespace IntergrationTest
         //{
         //    MessageBox.Show("AssemblyCleanup");
         //}
+        #endregion
+
+
         [TestMethod]
         public void GetListOfConnections()
         {
@@ -82,8 +85,6 @@ namespace IntergrationTest
 
             var results = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-
-
         }
         [TestMethod]
         public void ReadMajorTest()
@@ -103,9 +104,9 @@ namespace IntergrationTest
             var client = new HttpClient();
 
             var cmdReq = new RadioCmd();
-            var setting = new SettingValue();
-            setting.Setting = "Mode";
-            setting.Value = "USB";
+            var setting = new RadioProperty();
+            setting.PropertyName = RadioConstants.Mode;
+            setting.PropertyValue = RadioConstants.USB;
             cmdReq.Settings.Add(setting);
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
@@ -121,17 +122,17 @@ namespace IntergrationTest
             var client = new HttpClient();
 
             var cmdReq = new RadioCmd();
-            var setting = new SettingValue();
-            setting.Setting = "Mode";
-            setting.Value = "USB";
-            setting.Vfo = "a";
+            var setting = new RadioProperty();
+            setting.PropertyName = RadioConstants.Mode;
+            setting.PropertyValue = RadioConstants.USB;
+            setting.Vfo = RadioConstants.VfoA;
             cmdReq.Settings.Add(setting);
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
             var results = response.Content.ReadAsAsync<RadioCmd>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(results.Settings[0].Value, "USB");
+            Assert.AreEqual(results.Settings[0].PropertyValue, RadioConstants.USB);
         }
 
         [TestMethod]
@@ -141,28 +142,28 @@ namespace IntergrationTest
             var client = new HttpClient();
 
             var cmdReq = new RadioCmd();
-            var setting = new SettingValue();
-            setting.Setting = "freq";
-            setting.Value = "14.095";
-            setting.Vfo = "a";
-            cmdReq.Settings.Add(setting);
+            var rigProp = new RadioProperty();
+            rigProp.PropertyName = RadioConstants.Freq;
+            rigProp.PropertyValue = "14.120";
+            rigProp.Vfo = "a";
+            cmdReq.Settings.Add(rigProp);
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
             var results = response.Content.ReadAsAsync<RadioCmd>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(results.Settings[0].Value, "14.095");
+            Assert.AreEqual("14.120", results.Settings[0].PropertyValue);
 
-            setting.Setting = "freq";
-            setting.Value = "14.095";
-            setting.Vfo = "b";
-            cmdReq.Settings.Add(setting);
+            rigProp.PropertyName = RadioConstants.Freq;
+            rigProp.PropertyValue = "7.223";
+            rigProp.Vfo = "b";
+            cmdReq.Settings.Add(rigProp);
 
             response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
             results = response.Content.ReadAsAsync<RadioCmd>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(results.Settings[0].Value, "14.095");
+            Assert.AreEqual("7.223", results.Settings[0].PropertyValue);
         }
     }
 }

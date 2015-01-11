@@ -18,16 +18,13 @@
 
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using Wa1gon.Models;
 
 namespace Wa1gon.RigClientLib
 {
-    public class RigControl
+    public class RadioControl
     {
         static public ServerInfo GetCommPortList(Server server)
         {
@@ -38,9 +35,7 @@ namespace Wa1gon.RigClientLib
 
             try
             {
-
-                baseUrl = string.Format("http://{0}:{1}/api/Info", server.HostName,
-                    server.Port);
+                baseUrl = BuildUrl(server, "Info");
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<ServerInfo>().Result;
@@ -57,13 +52,11 @@ namespace Wa1gon.RigClientLib
             HttpClient client = new HttpClient();
 
             List<RadioComConnConfig> info;
-            string baseUrl;
+
 
             try
             {
-
-                baseUrl = string.Format("http://{0}:{1}/api/Connection", server.HostName,
-                    server.Port);
+                string baseUrl = BuildUrl(server, "Connection");
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
@@ -97,8 +90,7 @@ namespace Wa1gon.RigClientLib
             client.DefaultRequestHeaders.Accept.Add(
                  new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string baseUrl = string.Format("http://{0}:{1}/api/Connection", server.HostName,
-                server.Port);
+            string baseUrl = BuildUrl(server,"Connection");
             var response = client.PostAsJsonAsync(baseUrl, config).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -108,6 +100,17 @@ namespace Wa1gon.RigClientLib
             {
                 return false;
             }
+        }
+
+        private static string BuildUrl(Server server,string service)
+        {
+            string baseUrl = string.Format("http://{0}:{1}/api/{2}", server.HostName,
+                server.Port,service);
+            return baseUrl;
+        }
+        static public void SetRadioProperty(RadioCmd cmd,Server serv)
+        {
+
         }
     }
 }

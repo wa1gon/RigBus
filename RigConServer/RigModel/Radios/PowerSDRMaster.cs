@@ -98,7 +98,7 @@ namespace Wa1gon.Models
             }
             return rc;
         }
-        public override void SetFreq(Common.SettingValue item)
+        public override void SetFreq(Common.RadioProperty item)
         {
             string freq;
             try
@@ -122,7 +122,7 @@ namespace Wa1gon.Models
                     vfoCmd = "ZZFB";
                 }
 
-                freq = FormatFreq(item.Value);
+                freq = FormatFreq(item.PropertyValue);
                 string rCmd = string.Format("{0}{1};", vfoCmd, freq);
                 Port.Write(rCmd);
 
@@ -159,7 +159,7 @@ namespace Wa1gon.Models
            }
         }
   
-        public override void SetMode(Common.SettingValue item)
+        public override void SetMode(Common.RadioProperty item)
         {
             string pmode;
             try
@@ -184,7 +184,7 @@ namespace Wa1gon.Models
                     vfoCmd = "ZZME";
                 }
 
-                pmode = pmodeLookup[item.Value];
+                pmode = pmodeLookup[item.PropertyValue];
                 string rCmd = string.Format("{0}{1}{2};", vfoCmd,pmode[0], pmode[1]);
                 Port.Write(rCmd);
 

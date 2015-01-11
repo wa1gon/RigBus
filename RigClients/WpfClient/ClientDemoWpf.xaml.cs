@@ -48,7 +48,7 @@ namespace Wa1gon.WpfClient
             Configuration conf = Configuration.Create();
             var defaultServ = conf.GetDefaultServer();
             DefaultServer.Text = defaultServ.DisplayName;
-            RadioComConnConfig defaultCom = RigControl.GetDefaultConnection(defaultServ);
+            RadioComConnConfig defaultCom = RadioControl.GetDefaultConnection(defaultServ);
             DefaultRadio.Text = defaultCom.ConnectionName;
         }
     }

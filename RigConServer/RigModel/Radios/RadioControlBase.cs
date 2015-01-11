@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
 {
@@ -46,25 +47,27 @@ namespace Wa1gon.Models
         {
             foreach (var item in cmd.Settings)
             {
-                switch (item.Setting.ToLower())
+                switch (item.PropertyName.ToLower())
                 {
-                    case "mode":
+                    case RadioConstants.Mode:
                         SetMode(item);
                         break;
-                    case "freq":
+                    case RadioConstants.Freq:
                         SetFreq(item);
                         break;
                 }
             }
         }
 
-        public virtual void SetMode(Common.SettingValue item)
+        public virtual void SetMode(Common.RadioProperty item)
         {
-            item.Status = "Not Supported";
+            item.Status = NotSupported;
         }
-        public virtual void SetFreq(Common.SettingValue item)
+        public virtual void SetFreq(Common.RadioProperty item)
         {
-            item.Status = "Not Supported";
+            item.Status = NotSupported;
         }
+
+        public const string NotSupported = "Not Supported";
     }
 }

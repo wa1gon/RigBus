@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
 {
@@ -36,9 +37,9 @@ namespace Wa1gon.Models
             return rc;
         }
 
-        override public void SetMode(Common.SettingValue item)
+        override public void SetMode(RadioProperty item)
         {
-            Settings.Mode = item.Value;
+            Settings.Mode = item.PropertyValue;
             item.Status = "OK";
         }
     }
