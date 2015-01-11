@@ -3,8 +3,16 @@ namespace Wa1gon.Models.Common
 {
     public class RadioConstants
     {
+        // Controllers
+        public const string RadioController = "Radio";
+        public const string InfoController = "Info";
+        public const string ConnectioinController = "Connection";
+
+        // Commands
         public const string Mode = "mode";
         public const string Freq = "freq";
+
+        // VFO 
         public const string VfoA = "a";
         public const string VfoB = "b";
 

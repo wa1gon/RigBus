@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.IO.Ports;
 using System.Text;
+using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
 {
@@ -40,31 +41,31 @@ namespace Wa1gon.Models
 
         private void CreateModeLookupDictionary()
         {
-            modeLookup["00"] = "LSB";
-            modeLookup["01"] = "USB";
-            modeLookup["02"] = "DSB";
-            modeLookup["03"] = "CWL";
-            modeLookup["04"] = "CWU";
-            modeLookup["05"] = "FM";
-            modeLookup["06"] = "AM";
-            modeLookup["07"] = "DIGU";
-            modeLookup["08"] = "SPEC";
-            modeLookup["09"] = "DIGL";
-            modeLookup["10"] = "SAM";
-            modeLookup["06"] = "DRM";
+            modeLookup["00"] = RadioConstants.LSB;
+            modeLookup["01"] = RadioConstants.USB;
+            modeLookup["02"] = RadioConstants.DSB;
+            modeLookup["03"] = RadioConstants.CWL;
+            modeLookup["04"] = RadioConstants.CWU;
+            modeLookup["05"] = RadioConstants.FM;
+            modeLookup["06"] = RadioConstants.AM;
+            modeLookup["07"] = RadioConstants.DIGU;
+            modeLookup["08"] = RadioConstants.SPEC;
+            modeLookup["09"] = RadioConstants.DIGL;
+            modeLookup["10"] = RadioConstants.SAM;
+            modeLookup["06"] = RadioConstants.DRM;
 
-            pmodeLookup["LSB"] = "00";
-            pmodeLookup["USB"] = "01";
-            pmodeLookup["DSB"] = "02";
-            pmodeLookup["CWL"] = "03";
-            pmodeLookup["CWU"] = "04";
-            pmodeLookup["FM"] = "05";
-            pmodeLookup["AM"] = "06";
-            pmodeLookup["DIGU"] = "07";
-            pmodeLookup["SPEC"] = "08";
-            pmodeLookup["DIGL"] = "09";
-            pmodeLookup["SAM"] = "10";
-            pmodeLookup["DRM"] = "06";
+            pmodeLookup[RadioConstants.LSB] = "00";
+            pmodeLookup[RadioConstants.USB] = "01";
+            pmodeLookup[RadioConstants.DSB] = "02";
+            pmodeLookup[RadioConstants.CWL] = "03";
+            pmodeLookup[RadioConstants.CWU] = "04";
+            pmodeLookup[RadioConstants.FM] = "05";
+            pmodeLookup[RadioConstants.AM] = "06";
+            pmodeLookup[RadioConstants.DIGU] = "07";
+            pmodeLookup[RadioConstants.SPEC] = "08";
+            pmodeLookup[RadioConstants.DIGL] = "09";
+            pmodeLookup[RadioConstants.SAM] = "10";
+            pmodeLookup[RadioConstants.DRM] = "06";
         }
 
         public void OpenPort()
@@ -87,11 +88,11 @@ namespace Wa1gon.Models
                 isPortOpen = true;
             }
         }
-        override public RadioCmd ReadSettings()
+        override public RadioPropComandList ReadSettings()
         {
             Port.Write("ZZDU;");
             results = ReadToSemiFromCom();
-            RadioCmd rc;
+            RadioPropComandList rc;
             lock (lockObject)
             {
                 rc = null;
@@ -203,7 +204,6 @@ namespace Wa1gon.Models
             }
         }
         /// <summary> Read up to and including the semicolon.
-        /// 
         /// </summary>
         /// <returns>Next response or empty if nothing was waiting</returns>
         private string ReadToSemiFromCom()
@@ -283,16 +283,5 @@ namespace Wa1gon.Models
 
 
         }
-        //private void serialDataReceived(object sender, SerialDataReceivedEventArgs e)
-        //{
-        //    lock (lockObject)
-        //    {
-        //        results = Port.ReadExisting();
-        //        if (results.Length > 0)
-        //        {
-
-        //        }
-        //    }
-        //}
     }
 }

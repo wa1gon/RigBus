@@ -21,9 +21,9 @@ using Wa1gon.Models.Common;
 
 namespace Wa1gon.Models
 {
-    public class RadioCmd
+    public class RadioPropComandList
     {
-    public RadioCmd()
+    public RadioPropComandList()
         {
             Settings = new List<RadioProperty>();
         }

@@ -103,7 +103,7 @@ namespace IntergrationTest
             string baseUrl = "http://localhost:7301/api/Radio/Dummy/";
             var client = new HttpClient();
 
-            var cmdReq = new RadioCmd();
+            var cmdReq = new RadioPropComandList();
             var setting = new RadioProperty();
             setting.PropertyName = RadioConstants.Mode;
             setting.PropertyValue = RadioConstants.USB;
@@ -111,7 +111,7 @@ namespace IntergrationTest
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
-            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
@@ -121,7 +121,7 @@ namespace IntergrationTest
             string baseUrl = "http://localhost:7301/api/Radio/Flex/";
             var client = new HttpClient();
 
-            var cmdReq = new RadioCmd();
+            var cmdReq = new RadioPropComandList();
             var setting = new RadioProperty();
             setting.PropertyName = RadioConstants.Mode;
             setting.PropertyValue = RadioConstants.USB;
@@ -130,7 +130,7 @@ namespace IntergrationTest
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
-            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual(results.Settings[0].PropertyValue, RadioConstants.USB);
         }
@@ -141,7 +141,7 @@ namespace IntergrationTest
             string baseUrl = "http://localhost:7301/api/Radio/Flex/";
             var client = new HttpClient();
 
-            var cmdReq = new RadioCmd();
+            var cmdReq = new RadioPropComandList();
             var rigProp = new RadioProperty();
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "14.120";
@@ -150,7 +150,7 @@ namespace IntergrationTest
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
-            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual("14.120", results.Settings[0].PropertyValue);
 
@@ -161,7 +161,7 @@ namespace IntergrationTest
 
             response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
 
-            results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
             Assert.AreEqual("7.223", results.Settings[0].PropertyValue);
         }

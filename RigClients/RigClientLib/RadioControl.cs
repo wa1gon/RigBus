@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Wa1gon.Models;
+using Wa1gon.Models.Common;
 
 namespace Wa1gon.RigClientLib
 {
@@ -108,9 +109,17 @@ namespace Wa1gon.RigClientLib
                 server.Port,service);
             return baseUrl;
         }
-        static public void SetRadioProperty(RadioCmd cmd,Server serv)
+        static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Server serv)
         {
+            string baseUrl = BuildUrl(serv,"Radio");
+            var client = new HttpClient();
 
+
+
+            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmd).Result;
+
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
+            return results;
         }
     }
 }

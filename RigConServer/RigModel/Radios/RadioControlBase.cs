@@ -38,12 +38,27 @@ namespace Wa1gon.Models
         public RadioComConnConfig Config { get; set; }
         [JsonIgnore]
         public SerialPort Port { get; set; }
-        virtual public RadioCmd ReadSettings()
+        virtual public RadioPropComandList ReadSettings()
         {
             return null;
         }
 
-        virtual public void SetSettings(RadioCmd cmd)
+        virtual public void GetSettings(RadioPropComandList cmd)
+        {
+            foreach (var item in cmd.Settings)
+            {
+                switch (item.PropertyName.ToLower())
+                {
+                    case RadioConstants.Mode:
+                        GetMode(item);
+                        break;
+                    case RadioConstants.Freq:
+                        GetFreq(item);
+                        break;
+                }
+            }
+        }
+        virtual public void SetSettings(RadioPropComandList cmd)
         {
             foreach (var item in cmd.Settings)
             {
@@ -58,7 +73,14 @@ namespace Wa1gon.Models
                 }
             }
         }
-
+        public virtual void GetMode(RadioProperty item)
+        {
+            item.Status = NotSupported;
+        }
+        public virtual void GetFreq(RadioProperty item)
+        {
+            item.Status = NotSupported;
+        }
         public virtual void SetMode(Common.RadioProperty item)
         {
             item.Status = NotSupported;

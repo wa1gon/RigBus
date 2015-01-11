@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 using Wa1gon.Models;
+using Wa1gon.Models.Common;
 using Wa1gon.ServerInfrastructure;
 
 namespace Wa1gon.RigControl.Controllers
@@ -32,7 +33,7 @@ namespace Wa1gon.RigControl.Controllers
             rigReading = GetReading(connection);
             return rigReading;
         }
-        public RadioCmd Post(string connection,[FromBody] RadioCmd cmd)
+        public RadioPropComandList Post(string connection,[FromBody] RadioPropComandList cmd)
         {
 
             var state = ServerState.Create();
@@ -42,26 +43,49 @@ namespace Wa1gon.RigControl.Controllers
             return cmd;
 
         }
-        public MajorSettings Get(string connection, string cmd)
+        /// <summary> Read Radio properties and put to the client
+        /// 
+        /// </summary>
+        /// <param name="connection"></param>
+        /// <param name="cmd"></param>
+        /// <returns></returns>
+        public RadioPropComandList Put(string connection, [FromBody] RadioPropComandList cmd)
+        {
+
+            var state = ServerState.Create();
+            var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == connection.ToLower());
+
+            ar.RadioControl.GetSettings(cmd);
+            return cmd;
+
+        }
+        public RadioPropComandList Get(string connection, string cmd)
         {
             Console.WriteLine("id: {0} cmd: {1}", connection, cmd);
-            MajorSettings settings;
-            settings = new MajorSettings();
-            settings.Mode = "USB";
-            settings.Freq = "14.076";
+            RadioPropComandList radioProps;
+            radioProps = new RadioPropComandList();
+            var prop = new RadioProperty();
+            radioProps.Settings.Add(prop);
+            prop.PropertyName = RadioConstants.Mode;
+            prop.PropertyValue = RadioConstants.USB;
+
+            prop = new RadioProperty();
+            prop.PropertyName = RadioConstants.Mode;
+            prop.PropertyValue = "14.076";
+            radioProps.Settings.Add(prop);
 
             switch (cmd)
             {
                 case "RM":
                     //var major = ReadMajor(connection);
-                    return settings;
+                    return radioProps;
 
                 default:
                     break;
             }
 
             //rigReading = GetReading(id);
-            return settings;
+            return radioProps;
         }
         private MajorSettings ReadMajor(string connId)
         {

@@ -31,9 +31,9 @@ namespace Wa1gon.Models
         { }
 
         private RigSettings settings = new RigSettings();
-        public override RadioCmd ReadSettings()
+        public override RadioPropComandList ReadSettings()
         {
-            var rc = new RadioCmd();
+            var rc = new RadioPropComandList();
             return rc;
         }
 
