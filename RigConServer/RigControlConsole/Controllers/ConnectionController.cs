@@ -87,6 +87,7 @@ namespace Wa1gon.RigControl.Controllers
             activeRadio.ConnectionName = value.ConnectionName;
             activeRadio.CommPort = value;
             activeRadio.RadioControl = RadioFactory.Get(value.RadioType);
+
             try
             {
                 var port = new SerialPort();

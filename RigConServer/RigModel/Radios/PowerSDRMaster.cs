@@ -30,6 +30,7 @@ namespace Wa1gon.Models
         private char [] delimiter = {':'};
         private bool isPortOpen = false;
         private Dictionary<string, string> modeLookup = new Dictionary<string, string>();
+        private Dictionary<string, string> pmodeLookup = new Dictionary<string, string>();
         internal PowerSDRMaster()
         {
             Port = new SerialPort();
@@ -51,6 +52,19 @@ namespace Wa1gon.Models
             modeLookup["09"] = "DIGL";
             modeLookup["10"] = "SAM";
             modeLookup["06"] = "DRM";
+
+            pmodeLookup["LSB"] = "00";
+            pmodeLookup["USB"] = "01";
+            pmodeLookup["DSB"] = "02";
+            pmodeLookup["CWL"] = "03";
+            pmodeLookup["CWU"] = "04";
+            pmodeLookup["FM"] = "05";
+            pmodeLookup["AM"] = "06";
+            pmodeLookup["DIGU"] = "07";
+            pmodeLookup["SPEC"] = "08";
+            pmodeLookup["DIGL"] = "09";
+            pmodeLookup["SAM"] = "10";
+            pmodeLookup["DRM"] = "06";
         }
 
         public void OpenPort()
@@ -69,12 +83,13 @@ namespace Wa1gon.Models
                 }
                 Port.ReadTimeout = 200;
                 Port.Open();
+                isPortOpen = true;
             }
         }
         override public RadioCmd ReadSettings()
         {
             Port.Write("ZZDU;");
-            results = ReadstatusFromPort();
+            results = ReadToSemiFromCom();
             RadioCmd rc;
             lock (lockObject)
             {
@@ -83,17 +98,39 @@ namespace Wa1gon.Models
             return rc;
         }
 
-        public virtual void SetMode(Common.SettingValue item)
+        public override void SetMode(Common.SettingValue item)
         {
+            string pmode;
             try
             {
+                Port.ReadTimeout = 300;
                 OpenPort();
+                
             } catch(Exception e)
             {
                 item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                pmode = pmodeLookup[item.Value];
+                string rCmd = string.Format("ZZMD{0}{1};", pmode[0], pmode[1]);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+            }
+            catch (Exception e)
+            {
+
             }
         }
-        private string ReadstatusFromPort()
+        private string ReadToSemiFromCom()
         {
             char inp;
             StringBuilder ret = new StringBuilder();

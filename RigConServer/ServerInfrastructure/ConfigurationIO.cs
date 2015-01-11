@@ -22,6 +22,7 @@ namespace Wa1gon.ServerInfrastructure
             foreach(var radio in state.ActiveRadios)
             {
                 radio.RadioControl = RadioFactory.Get(radio.CommPort.RadioType);
+
             }
             return state;
         }

@@ -41,5 +41,12 @@ namespace Wa1gon.ServerInfrastructure
             }
             return instance;
         }
+        public void ReLinkConnections()
+        {
+            foreach(var conn in ActiveRadios)
+            {
+                conn.RadioControl.Config = conn.CommPort;
+            }
+        }
     }
 }

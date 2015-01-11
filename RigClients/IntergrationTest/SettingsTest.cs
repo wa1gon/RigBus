@@ -97,9 +97,27 @@ namespace IntergrationTest
         }
 
         [TestMethod]
-        public void PostSettingTest()
+        public void PostSetModeDummyTest()
         {
             string baseUrl = "http://localhost:7301/api/Radio/Dummy/";
+            var client = new HttpClient();
+
+            var cmdReq = new RadioCmd();
+            var setting = new SettingValue();
+            setting.Setting = "Mode";
+            setting.Value = "USB";
+            cmdReq.Settings.Add(setting);
+
+            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+
+            var results = response.Content.ReadAsAsync<RadioCmd>().Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+        }
+
+        [TestMethod]
+        public void PostSetModeFlexTest()
+        {
+            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
             var client = new HttpClient();
 
             var cmdReq = new RadioCmd();

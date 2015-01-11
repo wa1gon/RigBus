@@ -37,6 +37,7 @@ namespace Wa1gon.RigControl.Controllers
 
             var state = ServerState.Create();
             var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == connection.ToLower());
+            
             ar.RadioControl.SetSettings(cmd);
             return cmd;
 

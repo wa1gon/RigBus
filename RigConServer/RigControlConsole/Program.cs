@@ -62,6 +62,7 @@ namespace Wa1gon.RigControl
             {
                 info = ConfigurationIO.Restore(confFile);
                 ServerState.Create(info);
+
             }
             else
             {
@@ -74,7 +75,11 @@ namespace Wa1gon.RigControl
             EnumSupportedRadios(info);
             InitAvailCommPort(info);
             info.ConfigFilePath = confFile;
+            info.ReLinkConnections();
+
         }
+
+
 
         private static void EnumSupportedRadios(ServerState info)
         {
