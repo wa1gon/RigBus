@@ -47,11 +47,25 @@ namespace IntergrationTest
             rigProp.Vfo = RadioConstants.VfoA;
             cmdReq.Settings.Add(rigProp);
 
-            HttpResponseMessage response = client.PutAsJsonAsync(baseUrl, cmdReq).Result;
+            var retCmd = RadioControl.GetRadioProperty(cmdReq, server);
 
-            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("14.12", results.Settings[0].PropertyValue);
+            Assert.AreEqual(1, retCmd.Success);
+        }
+        [TestMethod]
+        public void GetFlexModeTest()
+        {
+            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            var client = new HttpClient();
+
+            var cmdReq = new RadioPropComandList();
+            var rigProp = new RadioProperty();
+            rigProp.PropertyName = RadioConstants.Mode;
+            rigProp.PropertyValue = "";
+            rigProp.Vfo = RadioConstants.VfoA;
+            cmdReq.Settings.Add(rigProp);
+
+            var retCmd = RadioControl.GetRadioProperty(cmdReq, server);
+            Assert.AreEqual(1, retCmd.Success);
         }
     }
 }

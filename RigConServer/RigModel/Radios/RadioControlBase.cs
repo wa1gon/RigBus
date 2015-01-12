@@ -56,7 +56,16 @@ namespace Wa1gon.Models
                         GetFreq(item);
                         break;
                 }
+                if (item.Status == RadioConstants.Ok)
+                {
+                    cmd.Success++;
+                }
+                else
+                {
+                    cmd.Failed++;
+                }
             }
+            
         }
         virtual public void SetSettings(RadioPropComandList cmd)
         {
@@ -70,6 +79,14 @@ namespace Wa1gon.Models
                     case RadioConstants.Freq:
                         SetFreq(item);
                         break;
+                }
+                if (item.Status == RadioConstants.Ok)
+                {
+                    cmd.Success++;
+                }
+                else
+                {
+                    cmd.Failed++;
                 }
             }
         }

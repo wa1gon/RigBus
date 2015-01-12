@@ -8,6 +8,8 @@ namespace Wa1gon.Models.Common
         public const string InfoController = "Info";
         public const string ConnectioinController = "Connection";
 
+        // status
+        public const string Ok = "OK";
         // Commands
         public const string Mode = "mode";
         public const string Freq = "freq";

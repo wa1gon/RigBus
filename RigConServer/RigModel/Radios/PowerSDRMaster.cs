@@ -127,13 +127,13 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0};", vfoCmd);
                 Port.Write(rCmd);
 
-                // expecting timeout
                 string resp = ReadToSemiFromCom();
                 if (resp == "?;")
                 {
                     item.Status = "Radio Error ?;";
                     return;
                 }
+                item.Status = RadioConstants.Ok;
                 double nfreq = double.Parse(resp.Substring(4)) / 1000000;
                 item.PropertyValue = nfreq.ToString();
 
@@ -179,11 +179,11 @@ namespace Wa1gon.Models
                     item.Status = "Radio Error ?;";
                     return;
                 }
+                item.Status = RadioConstants.Ok;
             }
             catch (Exception e)
             {
                 item.Status = e.Message;
-
             }
         }
 
@@ -204,7 +204,52 @@ namespace Wa1gon.Models
                return "ERROR";
            }
         }
-  
+        public override void GetMode(Common.RadioProperty item)
+        {
+            string pmode;
+            try
+            {
+
+                OpenPort();
+
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string vfoCmd;
+                if (item.Vfo.ToLower() == "a")
+                {
+                    vfoCmd = "ZZMD";
+                }
+                else
+                {
+                    vfoCmd = "ZZME";
+                }
+
+                string rCmd = string.Format("{0};", vfoCmd);
+                Port.Write(rCmd);
+
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+                item.Status = RadioConstants.Ok;
+                pmode = resp.Substring(4);
+                item.PropertyValue = modeLookup[pmode];
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
         public override void SetMode(Common.RadioProperty item)
         {
             string pmode;
@@ -241,6 +286,7 @@ namespace Wa1gon.Models
                     item.Status = "Radio Error ?;";
                     return;
                 }
+                item.Status = RadioConstants.Ok;
             }
             catch (Exception e)
             {

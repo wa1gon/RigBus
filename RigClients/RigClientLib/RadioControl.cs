@@ -36,7 +36,7 @@ namespace Wa1gon.RigClientLib
 
             try
             {
-                baseUrl = BuildUrl(server, "Info");
+                baseUrl = server.BuildUri(RadioConstants.InfoController);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<ServerInfo>().Result;
@@ -57,7 +57,7 @@ namespace Wa1gon.RigClientLib
 
             try
             {
-                string baseUrl = BuildUrl(server, "Connection");
+                string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
@@ -91,7 +91,7 @@ namespace Wa1gon.RigClientLib
             client.DefaultRequestHeaders.Accept.Add(
                  new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string baseUrl = BuildUrl(server,"Connection");
+            string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
             var response = client.PostAsJsonAsync(baseUrl, config).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -103,15 +103,15 @@ namespace Wa1gon.RigClientLib
             }
         }
 
-        private static string BuildUrl(Connection server,string service)
-        {
-            string baseUrl = string.Format("http://{0}:{1}/api/{2}", server.HostName,
-                server.Port,service);
-            return baseUrl;
-        }
+        //private static string BuildUrl(Connection server,string service)
+        //{
+        //    string baseUrl = string.Format("http://{0}:{1}/api/{2}", server.HostName,
+        //        server.Port,service);
+        //    return baseUrl;
+        //}
         static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
-            string baseUrl = BuildUrl(serv,RadioConstants.RadioController);
+            string baseUrl = serv.BuildUri(RadioConstants.RadioController);
             var client = new HttpClient();
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmd).Result;
@@ -120,7 +120,7 @@ namespace Wa1gon.RigClientLib
         }
         static public RadioPropComandList GetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
-            string baseUrl = BuildUrl(serv, RadioConstants.RadioController);
+            string baseUrl = serv.BuildUri(RadioConstants.RadioController);
             var client = new HttpClient();
 
             HttpResponseMessage response = client.PutAsJsonAsync(baseUrl, cmd).Result;

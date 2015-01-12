@@ -116,16 +116,14 @@ namespace IntergrationTest
             setting.PropertyValue = RadioConstants.USB;
             cmdReq.Settings.Add(setting);
 
-            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+            var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
-            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual(1, respCmd.Success);
         }
 
         [TestMethod]
         public void PostSetModeFlexTest()
         {
-#warning fix this
             string baseUrl = server.BuildUri(RadioConstants.RadioController);
 
             var client = new HttpClient();
@@ -136,12 +134,10 @@ namespace IntergrationTest
             setting.PropertyValue = RadioConstants.USB;
             setting.Vfo = RadioConstants.VfoA;
             cmdReq.Settings.Add(setting);
+            var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
-            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
-
-            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual(results.Settings[0].PropertyValue, RadioConstants.USB);
+            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Settings.Count);
         }
 
         [TestMethod]
@@ -157,22 +153,20 @@ namespace IntergrationTest
             rigProp.Vfo = "a";
             cmdReq.Settings.Add(rigProp);
 
-            HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+            var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
-            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("14.120", results.Settings[0].PropertyValue);
+            //HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
+
+            //var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
+            Assert.AreEqual(1, respCmd.Success);
 
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "7.223";
             rigProp.Vfo = "b";
             cmdReq.Settings.Add(rigProp);
+            var cmdResp = RadioControl.SetRadioProperty(cmdReq,server);
 
-            response = client.PostAsJsonAsync(baseUrl, cmdReq).Result;
-
-            results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
-            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
-            Assert.AreEqual("7.223", results.Settings[0].PropertyValue);
+            //Assert.AreEqual(1, results.Success);
         }
     }
 }
