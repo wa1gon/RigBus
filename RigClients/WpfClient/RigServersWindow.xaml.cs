@@ -39,10 +39,10 @@ namespace Wa1gon.WpfClient
     /// </summary>
     public partial class RigServersWindow : Window
     {
-        public Server Serv { get; set; }
+        public Connection Serv { get; set; }
         public Configuration Conf { get; set; }
 
-        public Server SelectedServer { get; set; }
+        public Connection SelectedServer { get; set; }
 
         public RigServersWindow()
         {
@@ -56,7 +56,7 @@ namespace Wa1gon.WpfClient
         {
             if (Conf.Servers.Count == 0)
             {
-                SelectedServer = new Server();
+                SelectedServer = new Connection();
                 return;
             }
             SelectedServer = Conf.Servers.Where(s => s.DefaultServer == true).SingleOrDefault();
@@ -83,7 +83,7 @@ namespace Wa1gon.WpfClient
                 Conf.ClearDefaultFromServerList();
             }
 
-            Server serv = Conf.Servers.Where(s => s.DisplayName.ToLower() == displayName).SingleOrDefault();
+            Connection serv = Conf.Servers.Where(s => s.DisplayName.ToLower() == displayName).SingleOrDefault();
 
             if (serv == null)
             {
@@ -106,7 +106,7 @@ namespace Wa1gon.WpfClient
         }
 
 
-        private void ReplaceServerInServerList(string host, string port, string displayName, Server serv)
+        private void ReplaceServerInServerList(string host, string port, string displayName, Connection serv)
         {
             Conf.Servers.Remove(serv);
             serv.DisplayName = displayName;
@@ -126,8 +126,8 @@ namespace Wa1gon.WpfClient
 
         private void AddNewServerToServerList(string host, string port, string displayName)
         {
-            Server serv;
-            serv = new Server();
+            Connection serv;
+            serv = new Connection();
             serv.DisplayName = displayName;
             serv.Port = port;
             serv.HostName = host;
@@ -165,14 +165,14 @@ namespace Wa1gon.WpfClient
 
         private void DeleteClick(object sender, RoutedEventArgs e)
         {
-            Server serv = (Server)ServList.SelectedItem;
+            Connection serv = (Connection)ServList.SelectedItem;
             Conf.Servers.Remove(serv);
             Conf.Save();
         }
 
         private void ServList_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            SelectedServer = ServList.SelectedItem as Server;
+            SelectedServer = ServList.SelectedItem as Connection;
             SetDetailView();
         }
 
@@ -186,7 +186,7 @@ namespace Wa1gon.WpfClient
 
         private void NewClick(object sender, RoutedEventArgs e)
         {
-            SelectedServer = new Server();
+            SelectedServer = new Connection();
             SetDetailView();
         }
     }

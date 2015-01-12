@@ -5,18 +5,19 @@ using Wa1gon.Models.Common;
 using Wa1gon.RigClientLib;
 using Wa1gon.Models;
 using System.Collections.Generic;
+using System.Net;
 
 namespace IntergrationTest
 {
     [TestClass]
     public class GettingTest
     {
-        static private Server server;
+        static private Connection server;
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
         {
 
-            server = new Server();
+            server = new Connection();
             server.HostName = "localhost";
             server.Port = "7301";
             server.DisplayName = "Flex";
@@ -34,8 +35,23 @@ namespace IntergrationTest
             }
         }
         [TestMethod]
-        public void GetFlexModeTest()
+        public void GetFlexFreqTest()
         {
+            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            var client = new HttpClient();
+
+            var cmdReq = new RadioPropComandList();
+            var rigProp = new RadioProperty();
+            rigProp.PropertyName = RadioConstants.Freq;
+            rigProp.PropertyValue = "";
+            rigProp.Vfo = RadioConstants.VfoA;
+            cmdReq.Settings.Add(rigProp);
+
+            HttpResponseMessage response = client.PutAsJsonAsync(baseUrl, cmdReq).Result;
+
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
+            Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
+            Assert.AreEqual("14.12", results.Settings[0].PropertyValue);
         }
     }
 }

@@ -21,7 +21,7 @@ using Wa1gon.Models;
 
 namespace Wa1gon.RigClientLib
 {
-    public class Server : BindableObject, INotifyPropertyChanged
+    public class Connection : BindableObject, INotifyPropertyChanged
     {
         public int Handle { get; set; }
         public string DisplayName { 
@@ -44,7 +44,8 @@ namespace Wa1gon.RigClientLib
             string rc = null;
             if (IsValid() == false) return rc;
 
-            rc = string.Format("http://{0}:{1}/api/{2}", HostName, Port,controller);
+            rc = string.Format("http://{0}:{1}/api/{2}/{3}", 
+                HostName, Port,controller,DisplayName);
             return rc;
         }
 

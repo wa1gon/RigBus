@@ -49,7 +49,7 @@ namespace Wa1gon.WpfClient
     public partial class RigConfigurationWindow : Window
     {
         private string ErrorMessage;
-        public Server Serv { get; set; }
+        public Connection Serv { get; set; }
         public Configuration Conf { get; set; }
 
         public List<RadioComConnConfig> ConnList { get; set; }

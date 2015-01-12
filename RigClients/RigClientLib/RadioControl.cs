@@ -27,7 +27,7 @@ namespace Wa1gon.RigClientLib
 {
     public class RadioControl
     {
-        static public ServerInfo GetCommPortList(Server server)
+        static public ServerInfo GetCommPortList(Connection server)
         {
             HttpClient client = new HttpClient();
             
@@ -48,7 +48,7 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public List<RadioComConnConfig> GetConnectionList(Server server)
+        static public List<RadioComConnConfig> GetConnectionList(Connection server)
         {
             HttpClient client = new HttpClient();
 
@@ -70,7 +70,7 @@ namespace Wa1gon.RigClientLib
                 throw ex;
             }
         }
-        static public RadioComConnConfig GetDefaultConnection(Server serv)
+        static public RadioComConnConfig GetDefaultConnection(Connection serv)
         {
             List<RadioComConnConfig> conn = GetConnectionList(serv);
             RadioComConnConfig conf = conn.Find(c => c.Default == true);
@@ -84,7 +84,7 @@ namespace Wa1gon.RigClientLib
             }
             return conf;
         }
-        static public bool SendCommConf(RadioComConnConfig config, Server server)
+        static public bool SendCommConf(RadioComConnConfig config, Connection server)
         {
             HttpClient client = new HttpClient();
 
@@ -103,13 +103,13 @@ namespace Wa1gon.RigClientLib
             }
         }
 
-        private static string BuildUrl(Server server,string service)
+        private static string BuildUrl(Connection server,string service)
         {
             string baseUrl = string.Format("http://{0}:{1}/api/{2}", server.HostName,
                 server.Port,service);
             return baseUrl;
         }
-        static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Server serv)
+        static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
             string baseUrl = BuildUrl(serv,RadioConstants.RadioController);
             var client = new HttpClient();
@@ -118,7 +118,7 @@ namespace Wa1gon.RigClientLib
             var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             return results;
         }
-        static public RadioPropComandList GetRadioProperty(RadioPropComandList cmd, Server serv)
+        static public RadioPropComandList GetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
             string baseUrl = BuildUrl(serv, RadioConstants.RadioController);
             var client = new HttpClient();

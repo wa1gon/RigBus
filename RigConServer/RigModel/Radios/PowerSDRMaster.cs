@@ -99,7 +99,52 @@ namespace Wa1gon.Models
             }
             return rc;
         }
-        public override void SetFreq(Common.RadioProperty item)
+        public override void GetFreq(RadioProperty item)
+        {
+            string freq;
+            try
+            {
+                OpenPort();
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string vfoCmd;
+                if (item.Vfo.ToLower() == "a")
+                {
+                    vfoCmd = "ZZFA";
+                }
+                else
+                {
+                    vfoCmd = "ZZFB";
+                }
+
+                freq = FormatFreq(item.PropertyValue);
+                string rCmd = string.Format("{0};", vfoCmd);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+                double nfreq = double.Parse(resp.Substring(4)) / 1000000;
+                item.PropertyValue = nfreq.ToString();
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        public override void SetFreq(RadioProperty item)
         {
             string freq;
             try

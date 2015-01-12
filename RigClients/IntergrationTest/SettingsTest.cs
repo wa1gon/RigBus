@@ -19,13 +19,13 @@ namespace IntergrationTest
     [TestClass()]
     public class SettingsTest
     {
-        static private Server server;
+        static private Connection server;
 
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
         {
 
-            server = new Server();
+            server = new Connection();
             server.HostName = "localhost";
             server.Port = "7301";
             server.DisplayName = "Flex";
@@ -126,8 +126,8 @@ namespace IntergrationTest
         public void PostSetModeFlexTest()
         {
 #warning fix this
-            string baseUrl = server.BuildUri(RadioConstants.RadioController) + "/Flex";
-           // baseUrl = "http://localhost:7301/api/Radio/Flex/";
+            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
@@ -147,7 +147,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetFreqFlexTest()
         {
-            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
+            string baseUrl = server.BuildUri(RadioConstants.RadioController);
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();

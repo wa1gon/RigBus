@@ -52,7 +52,7 @@ namespace Wa1gon.WpfClient
                 Restore();
             }
         }
-        public ObservableCollection<Server> Servers { 
+        public ObservableCollection<Connection> Servers { 
             get
             {
                 return configData.Servers;
@@ -84,12 +84,12 @@ namespace Wa1gon.WpfClient
         /// else the first server in the list, or empty server class if the list is empty.
         /// </summary>
         /// <returns>Server</returns>
-        public Server GetDefaultServer()
+        public Connection GetDefaultServer()
         {
-            Server ret = null;
+            Connection ret = null;
             if (Servers.Count == 0)
             {
-                new Server();
+                new Connection();
                 return ret;
             }
             ret = Servers.Where(s => s.DefaultServer == true).SingleOrDefault();
