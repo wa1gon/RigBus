@@ -39,12 +39,12 @@ namespace Wa1gon.RigClientLib
         public string Port { get; set; }
         public bool DefaultServer { get; set; }
 
-        public string GetServerUri()
+        public string BuildUri(string controller)
         {
             string rc = null;
             if (IsValid() == false) return rc;
 
-            rc = string.Format("http://{0}:{1}/api/", HostName, Port);
+            rc = string.Format("http://{0}:{1}/api/{2}", HostName, Port,controller);
             return rc;
         }
 
@@ -52,7 +52,7 @@ namespace Wa1gon.RigClientLib
         {
             if (string.IsNullOrWhiteSpace(DisplayName)) return false;
             if (string.IsNullOrWhiteSpace(Port)) return false;
-            if (string.IsNullOrWhiteSpace(DisplayName)) return false;
+            if (string.IsNullOrWhiteSpace(HostName)) return false;
 
             return true;
         }

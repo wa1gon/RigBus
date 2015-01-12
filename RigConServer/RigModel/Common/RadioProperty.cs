@@ -12,17 +12,19 @@ namespace Wa1gon.Models.Common
     /// </summary>
     public class RadioProperty
     {
-        /// <summary> Property of the radio to be set
+        /// <summary> Input Property of the radio to be acted upon.
         /// </summary>
         public string PropertyName { get; set; }
-        /// <summary>  Value of radio properties
+        /// <summary>Input/Output  Value of radio properties
         /// </summary>
         public string PropertyValue { get; set; }
         /// <summary> Status of request.  Success is "OK".  Otherwise an error message.
         /// </summary>
         public string Status { get; set; }
+        /// <summary> Input:  Set by the client to control the vfo which the action is performed on.
+        /// </summary>
         public string Vfo { get; set; }
-        /// <summary> Radio Id for radios that share a common serial port such as 
+        /// <summary> Input: Radio Id for radios that share a common serial port such as 
         /// Icoms.
         /// </summary>
         public string RadioId { get; set; }

@@ -111,13 +111,19 @@ namespace Wa1gon.RigClientLib
         }
         static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Server serv)
         {
-            string baseUrl = BuildUrl(serv,"Radio");
+            string baseUrl = BuildUrl(serv,RadioConstants.RadioController);
             var client = new HttpClient();
 
-
-
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmd).Result;
+            var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
+            return results;
+        }
+        static public RadioPropComandList GetRadioProperty(RadioPropComandList cmd, Server serv)
+        {
+            string baseUrl = BuildUrl(serv, RadioConstants.RadioController);
+            var client = new HttpClient();
 
+            HttpResponseMessage response = client.PutAsJsonAsync(baseUrl, cmd).Result;
             var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             return results;
         }

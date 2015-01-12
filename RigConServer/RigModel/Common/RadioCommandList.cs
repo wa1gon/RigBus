@@ -23,7 +23,7 @@ namespace Wa1gon.Models
 {
     public class RadioPropComandList
     {
-    public RadioPropComandList()
+        public RadioPropComandList()
         {
             Settings = new List<RadioProperty>();
         }

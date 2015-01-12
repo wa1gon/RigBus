@@ -86,7 +86,7 @@
     <Compile Include="Radios\DummyMaster.cs" />
     <Compile Include="Radios\PowerSDRMaster.cs" />
     <Compile Include="Radios\RadioControlBase.cs" />
-    <Compile Include="Common\RadioCmd.cs" />
+    <Compile Include="Common\RadioCommandList.cs" />
     <Compile Include="Common\RadioComConnConfig.cs" />
     <Compile Include="RadioFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -57,6 +57,7 @@
   <ItemGroup>
     <Compile Include="SettingsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="GettingTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RigConServer\RigModel\Model.csproj">

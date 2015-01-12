@@ -19,12 +19,18 @@ namespace IntergrationTest
     [TestClass()]
     public class SettingsTest
     {
-        private Server server;
+        static private Server server;
 
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
         {
-            string baseUrl = "http://localhost:7301/api/Connection";
+
+            server = new Server();
+            server.HostName = "localhost";
+            server.Port = "7301";
+            server.DisplayName = "Flex";
+
+            string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -97,10 +103,11 @@ namespace IntergrationTest
             Assert.AreEqual(HttpStatusCode.OK, response.StatusCode);
         }
 
-        [TestMethod]
+       // [TestMethod]
         public void PostSetModeDummyTest()
         {
-            string baseUrl = "http://localhost:7301/api/Radio/Dummy/";
+            string baseUrl = server.BuildUri("Radio");
+               // "http://localhost:7301/api/Radio/Dummy/";
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
@@ -118,7 +125,9 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetModeFlexTest()
         {
-            string baseUrl = "http://localhost:7301/api/Radio/Flex/";
+#warning fix this
+            string baseUrl = server.BuildUri(RadioConstants.RadioController) + "/Flex";
+           // baseUrl = "http://localhost:7301/api/Radio/Flex/";
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
