@@ -42,10 +42,13 @@ namespace Wa1gon.Models
         {
             return null;
         }
-
+        /// <summary> Gets a list of properties as requested by the 
+        /// RadioPropCommandList.
+        /// </summary>
+        /// <param name="cmd">Command list with the current values.</param>
         virtual public void GetSettings(RadioPropComandList cmd)
         {
-            foreach (var item in cmd.Settings)
+            foreach (var item in cmd.Properties)
             {
                 switch (item.PropertyName.ToLower())
                 {
@@ -67,9 +70,13 @@ namespace Wa1gon.Models
             }
             
         }
+        /// <summary> Takes a list of Radio Properties and sets them.
+        /// 
+        /// </summary>
+        /// <param name="cmd">List of command</param>
         virtual public void SetSettings(RadioPropComandList cmd)
         {
-            foreach (var item in cmd.Settings)
+            foreach (var item in cmd.Properties)
             {
                 switch (item.PropertyName.ToLower())
                 {

@@ -114,7 +114,7 @@ namespace IntergrationTest
             var setting = new RadioProperty();
             setting.PropertyName = RadioConstants.Mode;
             setting.PropertyValue = RadioConstants.USB;
-            cmdReq.Settings.Add(setting);
+            cmdReq.Properties.Add(setting);
 
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
@@ -133,11 +133,11 @@ namespace IntergrationTest
             setting.PropertyName = RadioConstants.Mode;
             setting.PropertyValue = RadioConstants.USB;
             setting.Vfo = RadioConstants.VfoA;
-            cmdReq.Settings.Add(setting);
+            cmdReq.Properties.Add(setting);
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
             Assert.AreEqual(1, respCmd.Success);
-            Assert.AreEqual(1, respCmd.Settings.Count);
+            Assert.AreEqual(1, respCmd.Properties.Count);
         }
 
         [TestMethod]
@@ -151,7 +151,7 @@ namespace IntergrationTest
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "14.120";
             rigProp.Vfo = "a";
-            cmdReq.Settings.Add(rigProp);
+            cmdReq.Properties.Add(rigProp);
 
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
@@ -163,7 +163,7 @@ namespace IntergrationTest
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "7.223";
             rigProp.Vfo = "b";
-            cmdReq.Settings.Add(rigProp);
+            cmdReq.Properties.Add(rigProp);
             var cmdResp = RadioControl.SetRadioProperty(cmdReq,server);
 
             //Assert.AreEqual(1, results.Success);

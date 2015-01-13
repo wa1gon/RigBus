@@ -65,14 +65,14 @@ namespace Wa1gon.RigControl.Controllers
             RadioPropComandList radioProps;
             radioProps = new RadioPropComandList();
             var prop = new RadioProperty();
-            radioProps.Settings.Add(prop);
+            radioProps.Properties.Add(prop);
             prop.PropertyName = RadioConstants.Mode;
             prop.PropertyValue = RadioConstants.USB;
 
             prop = new RadioProperty();
             prop.PropertyName = RadioConstants.Mode;
             prop.PropertyValue = "14.076";
-            radioProps.Settings.Add(prop);
+            radioProps.Properties.Add(prop);
 
             switch (cmd)
             {

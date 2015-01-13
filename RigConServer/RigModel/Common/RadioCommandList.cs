@@ -25,9 +25,9 @@ namespace Wa1gon.Models
     {
         public RadioPropComandList()
         {
-            Settings = new List<RadioProperty>();
+            Properties = new List<RadioProperty>();
         }
-        public List<RadioProperty> Settings { get; set; }
+        public List<RadioProperty> Properties { get; set; }
         public string Status { get; set; }
         public int Success { get; set; }
         public int Failed { get; set; }
