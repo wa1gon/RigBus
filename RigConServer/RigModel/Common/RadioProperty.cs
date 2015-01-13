@@ -21,9 +21,10 @@ namespace Wa1gon.Models.Common
         /// <summary> Status of request.  Success is "OK".  Otherwise an error message.
         /// </summary>
         public string Status { get; set; }
-        /// <summary> Input:  Set by the client to control the vfo which the action is performed on.
+        /// <summary> Input:  Set by the client to control which enumerated item the command acts on.
+        /// Such as vfo, VAC, receiver, antenna, etc,  Can be empty, but should not be null;
         /// </summary>
-        public string Vfo { get; set; }
+        public string EnumItemNum { get; set; }
         /// <summary> Input: Radio Id for radios that share a common serial port such as 
         /// Icoms.
         /// </summary>

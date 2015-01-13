@@ -44,7 +44,7 @@ namespace IntergrationTest
             var rigProp = new RadioProperty();
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "";
-            rigProp.Vfo = RadioConstants.VfoA;
+            rigProp.EnumItemNum = RadioConstants.VfoA;
             cmdReq.Properties.Add(rigProp);
 
             var retCmd = RadioControl.GetRadioProperty(cmdReq, server);
@@ -61,7 +61,7 @@ namespace IntergrationTest
             var rigProp = new RadioProperty();
             rigProp.PropertyName = RadioConstants.Mode;
             rigProp.PropertyValue = "";
-            rigProp.Vfo = RadioConstants.VfoA;
+            rigProp.EnumItemNum = RadioConstants.VfoA;
             cmdReq.Properties.Add(rigProp);
 
             var retCmd = RadioControl.GetRadioProperty(cmdReq, server);

@@ -132,7 +132,7 @@ namespace IntergrationTest
             var setting = new RadioProperty();
             setting.PropertyName = RadioConstants.Mode;
             setting.PropertyValue = RadioConstants.USB;
-            setting.Vfo = RadioConstants.VfoA;
+            setting.EnumItemNum = RadioConstants.VfoA;
             cmdReq.Properties.Add(setting);
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
@@ -150,7 +150,7 @@ namespace IntergrationTest
             var rigProp = new RadioProperty();
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "14.120";
-            rigProp.Vfo = "a";
+            rigProp.EnumItemNum = "a";
             cmdReq.Properties.Add(rigProp);
 
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
@@ -162,7 +162,7 @@ namespace IntergrationTest
 
             rigProp.PropertyName = RadioConstants.Freq;
             rigProp.PropertyValue = "7.223";
-            rigProp.Vfo = "b";
+            rigProp.EnumItemNum = "b";
             cmdReq.Properties.Add(rigProp);
             var cmdResp = RadioControl.SetRadioProperty(cmdReq,server);
 

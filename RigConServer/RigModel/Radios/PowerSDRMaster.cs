@@ -114,7 +114,7 @@ namespace Wa1gon.Models
             try
             {
                 string vfoCmd;
-                if (item.Vfo.ToLower() == "a")
+                if (item.EnumItemNum.ToLower() == "a")
                 {
                     vfoCmd = "ZZFA";
                 }
@@ -159,7 +159,7 @@ namespace Wa1gon.Models
             try
             {
                 string vfoCmd;
-                if (item.Vfo.ToLower() == "a")
+                if (item.EnumItemNum.ToLower() == "a")
                 {
                     vfoCmd = "ZZFA";
                 }
@@ -221,7 +221,7 @@ namespace Wa1gon.Models
             try
             {
                 string vfoCmd;
-                if (item.Vfo.ToLower() == "a")
+                if (item.EnumItemNum.ToLower() == "a")
                 {
                     vfoCmd = "ZZMD";
                 }
@@ -266,7 +266,7 @@ namespace Wa1gon.Models
             try
             {
                 string vfoCmd;
-                if (item.Vfo.ToLower() == "a")
+                if (item.EnumItemNum.ToLower() == "a")
                 {
                     vfoCmd = "ZZMD";
                 }
