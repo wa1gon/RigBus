@@ -26,7 +26,7 @@ namespace Wa1gon.RigControl
                 routeTemplate: "api/{version}/{controller}/{conn}/{cmd}",
                 defaults: new 
                     { 
-                       connection = RouteParameter.Optional, 
+                       conn = RouteParameter.Optional, 
                        cmd = RouteParameter.Optional 
                     }
             );
