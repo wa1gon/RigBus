@@ -10,10 +10,10 @@ using Wa1gon.ServerInfrastructure;
 namespace Wa1gon.RigControl.Controllers
 {
 
+    [RoutePrefix("v1/Connection")]
     public class ConnectionController : ApiController 
     {
-       
-        // GET api/values 
+
         public List<RadioComConnConfig> Get()
         {
             var state = ServerState.Create();
@@ -32,7 +32,6 @@ namespace Wa1gon.RigControl.Controllers
             rigReading = GetReading(id);
             return rigReading;
         }
-
         private RadioComConnConfig GetReading(string id)
         {
             return null;

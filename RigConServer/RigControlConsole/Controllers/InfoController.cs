@@ -10,6 +10,7 @@ using Wa1gon.ServerInfrastructure;
 using Microsoft.Owin;
 namespace Wa1gon.RigControl.Controllers
 {
+    [RoutePrefix("v1/info")]
     public class InfoController : ApiController 
     {
 

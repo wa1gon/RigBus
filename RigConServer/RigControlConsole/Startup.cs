@@ -23,8 +23,12 @@ namespace Wa1gon.RigControl
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
-                routeTemplate: "api/{controller}/{connection}/{cmd}",
-                defaults: new { connection = RouteParameter.Optional, cmd = RouteParameter.Optional }
+                routeTemplate: "api/{version}/{controller}/{conn}/{cmd}",
+                defaults: new 
+                    { 
+                       connection = RouteParameter.Optional, 
+                       cmd = RouteParameter.Optional 
+                    }
             );
 
 

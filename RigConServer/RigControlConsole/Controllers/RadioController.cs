@@ -12,9 +12,11 @@ using Wa1gon.ServerInfrastructure;
 
 namespace Wa1gon.RigControl.Controllers
 {
+    [RoutePrefix("v1/radio")]
     public class RadioController : ApiController 
     {
         // GET api/values 
+
         public List<RadioComConnConfig> Get()
         {
             var state = ServerState.Create();
@@ -27,17 +29,19 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-        public RadioComConnConfig Get(string connection)
+
+        public RadioComConnConfig Get(string conn)
         {
             RadioComConnConfig rigReading;
-            rigReading = GetReading(connection);
+            rigReading = GetReading(conn);
             return rigReading;
         }
-        public RadioPropComandList Post(string connection,[FromBody] RadioPropComandList cmd)
+ 
+        public RadioPropComandList Post(string conn,[FromBody] RadioPropComandList cmd)
         {
 
             var state = ServerState.Create();
-            var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == connection.ToLower());
+            var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == conn.ToLower());
             
             ar.RadioControl.SetSettings(cmd);
             return cmd;
@@ -46,22 +50,24 @@ namespace Wa1gon.RigControl.Controllers
         /// <summary> Read Radio properties and put to the client
         /// 
         /// </summary>
-        /// <param name="connection"></param>
+        /// <param name="conn"></param>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        public RadioPropComandList Put(string connection, [FromBody] RadioPropComandList cmd)
+
+        public RadioPropComandList Put(string conn, [FromBody] RadioPropComandList cmd)
         {
 
             var state = ServerState.Create();
-            var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == connection.ToLower());
+            var ar = state.ActiveRadios.Find(a => a.ConnectionName.ToLower() == conn.ToLower());
 
             ar.RadioControl.GetSettings(cmd);
             return cmd;
 
         }
-        public RadioPropComandList Get(string connection, string cmd)
+
+        public RadioPropComandList Get(string conn, string cmd)
         {
-            Console.WriteLine("id: {0} cmd: {1}", connection, cmd);
+            Console.WriteLine("id: {0} cmd: {1}", conn, cmd);
             RadioPropComandList radioProps;
             radioProps = new RadioPropComandList();
             var prop = new RadioProperty();
@@ -87,11 +93,7 @@ namespace Wa1gon.RigControl.Controllers
             //rigReading = GetReading(id);
             return radioProps;
         }
-        private MajorSettings ReadMajor(string connId)
-        {
-            var state = ServerState.Create();
-            return null;
-        }
+
         private RadioComConnConfig GetReading(string id)
         {
             return null;
