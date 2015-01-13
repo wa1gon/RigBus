@@ -85,7 +85,7 @@ namespace IntergrationTest
         [TestMethod]
         public void GetListOfConnections()
         {
-            string baseUrl = "http://localhost:7301/api/Connection";
+            string baseUrl = "http://localhost:7301/api/v1/Connection";
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -95,7 +95,7 @@ namespace IntergrationTest
         [TestMethod]
         public void ReadMajorTest()
         {
-            string baseUrl = "http://localhost:7301/api/Radio/Flex/RM";
+            string baseUrl = "http://localhost:7301/api/v1/Radio/Flex/RM";
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -107,7 +107,7 @@ namespace IntergrationTest
         public void PostSetModeDummyTest()
         {
             string baseUrl = server.BuildUri("Radio");
-               // "http://localhost:7301/api/Radio/Dummy/";
+               // "http://localhost:7301/api/v1/Radio/Dummy/";
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();

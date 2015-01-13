@@ -11,7 +11,7 @@ namespace Wa1gon.RigControl.Controllers
 {
 
     [RoutePrefix("v1/Connection")]
-    public class V1ConnectionController : ApiController 
+    public class ConnectionController : ApiController 
     {
 
         public List<RadioComConnConfig> Get()

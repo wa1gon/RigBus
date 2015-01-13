@@ -103,12 +103,7 @@ namespace Wa1gon.RigClientLib
             }
         }
 
-        //private static string BuildUrl(Connection server,string service)
-        //{
-        //    string baseUrl = string.Format("http://{0}:{1}/api/{2}", server.HostName,
-        //        server.Port,service);
-        //    return baseUrl;
-        //}
+
         static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
             string baseUrl = serv.BuildUri(RadioConstants.RadioController);

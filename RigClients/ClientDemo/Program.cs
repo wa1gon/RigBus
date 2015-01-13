@@ -36,7 +36,7 @@ namespace ClientDemo
         {
             var app = new Program();
             app.getSerial();
-            string baseUrl = "http://localhost:7301/api/Connection";
+            string baseUrl = "http://localhost:7301/api/v1/Connection";
             HttpClient client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -62,7 +62,7 @@ namespace ClientDemo
             config.ConnectionName = "myDummy";
             config.RadioType = "Dummy";
             config.Port = "COM6";
-            var response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            var response = client.PostAsJsonAsync("http://localhost:9000/api/v1/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Dummy connection open"); 
@@ -77,7 +77,7 @@ namespace ClientDemo
             config.ConnectionName = "myDummy";
             config.RadioType = "Dummy";
             config.Port = "COM40";
-            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            response = client.PostAsJsonAsync("http://localhost:9000/api/v1/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Dummy connection open");
@@ -92,7 +92,7 @@ namespace ClientDemo
             config.ConnectionName = "myDummy";
             config.RadioType = "Dummy";
             config.Port = "COM6";
-            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            response = client.PostAsJsonAsync("http://localhost:9000/api/v1/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Dummy connection open");
@@ -106,7 +106,7 @@ namespace ClientDemo
             config.ConnectionName = "myDummy";
             config.RadioType = "foobar";
             config.Port = "COM6";
-            response = client.PostAsJsonAsync("http://localhost:9000/api/Radio", config).Result;
+            response = client.PostAsJsonAsync("http://localhost:9000/api/v1/Radio", config).Result;
             if (response.IsSuccessStatusCode)
             {
                 Console.WriteLine("Dummy connection open");
@@ -126,7 +126,7 @@ namespace ClientDemo
         private void getSerial()
         {
 
-            baseUrl = "http://localhost:9000/api/Radio/foo";
+            baseUrl = "http://localhost:9000/api/v1/Radio/foo";
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
             config = response.Content.ReadAsAsync<RadioComConnConfig>().Result as RadioComConnConfig;

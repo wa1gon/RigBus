@@ -44,7 +44,7 @@ namespace Wa1gon.RigClientLib
             string rc = null;
             if (IsValid() == false) return rc;
 
-            rc = string.Format("http://{0}:{1}/api/{2}/{3}", 
+            rc = string.Format("http://{0}:{1}/api/v1/{2}/{3}", 
                 HostName, Port,controller,DisplayName);
             return rc;
         }
