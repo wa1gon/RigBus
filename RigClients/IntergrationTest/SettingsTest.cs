@@ -30,7 +30,7 @@ namespace IntergrationTest
             server.Port = "7301";
             server.DisplayName = "Flex";
 
-            string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.ConnectioinController);
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -106,7 +106,7 @@ namespace IntergrationTest
        // [TestMethod]
         public void PostSetModeDummyTest()
         {
-            string baseUrl = server.BuildUri("Radio");
+            string baseUrl = server.BuildUriControllerOnly("Radio");
                // "http://localhost:7301/api/v1/Radio/Dummy/";
             var client = new HttpClient();
 
@@ -124,7 +124,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetModeFlexTest()
         {
-            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
 
             var client = new HttpClient();
 
@@ -143,7 +143,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetFreqFlexTest()
         {
-            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();

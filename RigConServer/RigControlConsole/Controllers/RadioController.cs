@@ -16,7 +16,7 @@ namespace Wa1gon.RigControl.Controllers
     public class RadioController : ApiController 
     {
         // GET api/values 
-
+        [Route("Radio")]
         public List<RadioComConnConfig> Get()
         {
             var state = ServerState.Create();
@@ -29,14 +29,14 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-        [Route("Radio")]
+        [Route("Radio/{conn}")]
         public RadioComConnConfig Get(string conn)
         {
             RadioComConnConfig rigReading;
             rigReading = GetReading(conn);
             return rigReading;
         }
-        [Route("Radio")]
+        [Route("Radio{conn}")]
         public RadioPropComandList Post(string conn,[FromBody] RadioPropComandList cmd)
         {
 
@@ -53,7 +53,7 @@ namespace Wa1gon.RigControl.Controllers
         /// <param name="conn"></param>
         /// <param name="cmd"></param>
         /// <returns></returns>
-        [Route("Radio")]
+        [Route("Radio/{conn}")]
         public RadioPropComandList Put(string conn, [FromBody] RadioPropComandList cmd)
         {
 
@@ -64,7 +64,7 @@ namespace Wa1gon.RigControl.Controllers
             return cmd;
 
         }
-        [Route("Radio")]
+        [Route("Radio/{conn}/{cmd}")]
         public RadioPropComandList Get(string conn, string cmd)
         {
             Console.WriteLine("id: {0} cmd: {1}", conn, cmd);

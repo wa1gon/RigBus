@@ -36,7 +36,7 @@ namespace Wa1gon.RigClientLib
 
             try
             {
-                baseUrl = server.BuildUri(RadioConstants.InfoController);
+                baseUrl = server.BuildUriControllerOnly(RadioConstants.InfoController);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<ServerInfo>().Result;
@@ -57,7 +57,7 @@ namespace Wa1gon.RigClientLib
 
             try
             {
-                string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
+                string baseUrl = server.BuildUriControllerOnly(RadioConstants.ConnectioinController);
                 HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
                 var res = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
@@ -91,7 +91,7 @@ namespace Wa1gon.RigClientLib
             client.DefaultRequestHeaders.Accept.Add(
                  new MediaTypeWithQualityHeaderValue("application/json"));
 
-            string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.ConnectioinController);
             var response = client.PostAsJsonAsync(baseUrl, config).Result;
             if (response.IsSuccessStatusCode)
             {
@@ -106,7 +106,7 @@ namespace Wa1gon.RigClientLib
 
         static public RadioPropComandList SetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
-            string baseUrl = serv.BuildUri(RadioConstants.RadioController);
+            string baseUrl = serv.BuildUriControllerOnly(RadioConstants.RadioController);
             var client = new HttpClient();
 
             HttpResponseMessage response = client.PostAsJsonAsync(baseUrl, cmd).Result;
@@ -115,7 +115,7 @@ namespace Wa1gon.RigClientLib
         }
         static public RadioPropComandList GetRadioProperty(RadioPropComandList cmd, Connection serv)
         {
-            string baseUrl = serv.BuildUri(RadioConstants.RadioController);
+            string baseUrl = serv.BuildUriControllerOnly(RadioConstants.RadioController);
             var client = new HttpClient();
 
             HttpResponseMessage response = client.PutAsJsonAsync(baseUrl, cmd).Result;

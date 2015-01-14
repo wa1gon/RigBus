@@ -26,7 +26,7 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-        [Route("Connection")]
+        [Route("Connection/{id}")]
         public RadioComConnConfig Get(string id)
         {
             RadioComConnConfig rigReading;
@@ -147,13 +147,13 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // PUT api/values/5 
-        [Route("Connection")]
+        [Route("Connection/{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5 
-        [Route("Connection")]
+        [Route("Connection/{id}")]
         public void Delete(int id)
         {
         } 

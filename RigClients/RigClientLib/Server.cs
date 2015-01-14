@@ -39,13 +39,22 @@ namespace Wa1gon.RigClientLib
         public string Port { get; set; }
         public bool DefaultServer { get; set; }
 
-        public string BuildUri(string controller)
+        public string BuildUriControllerOnly(string controller)
         {
             string rc = null;
             if (IsValid() == false) return rc;
 
-            rc = string.Format("http://{0}:{1}/api/v1/{2}/{3}", 
-                HostName, Port,controller,DisplayName);
+            rc = string.Format("http://{0}:{1}/api/v1/{2}", 
+                HostName, Port,controller);
+            return rc;
+        }
+        public string BuildUriControllerDisplay(string controller)
+        {
+            string rc = null;
+            if (IsValid() == false) return rc;
+
+            rc = string.Format("http://{0}:{1}/api/v1/{2}/{3}",
+                HostName, Port, controller, DisplayName);
             return rc;
         }
 

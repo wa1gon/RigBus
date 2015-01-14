@@ -22,7 +22,7 @@ namespace IntergrationTest
             server.Port = "7301";
             server.DisplayName = "Flex";
 
-            string baseUrl = server.BuildUri(RadioConstants.ConnectioinController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.ConnectioinController);
             var client = new HttpClient();
             HttpResponseMessage response = client.GetAsync(baseUrl).Result;
 
@@ -37,7 +37,7 @@ namespace IntergrationTest
         [TestMethod]
         public void GetFlexFreqTest()
         {
-            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
@@ -54,7 +54,7 @@ namespace IntergrationTest
         [TestMethod]
         public void GetFlexModeTest()
         {
-            string baseUrl = server.BuildUri(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
