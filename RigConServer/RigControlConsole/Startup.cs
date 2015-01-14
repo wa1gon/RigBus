@@ -20,18 +20,6 @@ namespace Wa1gon.RigControl
 
             // Attribute routing.
             config.MapHttpAttributeRoutes();
-
-            config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{version}/{controller}/{conn}/{cmd}",
-                defaults: new 
-                    { 
-                       conn = RouteParameter.Optional, 
-                       cmd = RouteParameter.Optional 
-                    }
-            );
-
-
             appBuilder.UseWebApi(config);
         } 
     }

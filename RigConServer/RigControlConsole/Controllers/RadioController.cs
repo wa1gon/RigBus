@@ -12,7 +12,7 @@ using Wa1gon.ServerInfrastructure;
 
 namespace Wa1gon.RigControl.Controllers
 {
-    [RoutePrefix("v1/radio")]
+    [RoutePrefix("api/v1")]
     public class RadioController : ApiController 
     {
         // GET api/values 
@@ -29,14 +29,14 @@ namespace Wa1gon.RigControl.Controllers
         }
 
         // GET api/values/5
-
+        [Route("Radio")]
         public RadioComConnConfig Get(string conn)
         {
             RadioComConnConfig rigReading;
             rigReading = GetReading(conn);
             return rigReading;
         }
- 
+        [Route("Radio")]
         public RadioPropComandList Post(string conn,[FromBody] RadioPropComandList cmd)
         {
 
@@ -53,7 +53,7 @@ namespace Wa1gon.RigControl.Controllers
         /// <param name="conn"></param>
         /// <param name="cmd"></param>
         /// <returns></returns>
-
+        [Route("Radio")]
         public RadioPropComandList Put(string conn, [FromBody] RadioPropComandList cmd)
         {
 
@@ -64,7 +64,7 @@ namespace Wa1gon.RigControl.Controllers
             return cmd;
 
         }
-
+        [Route("Radio")]
         public RadioPropComandList Get(string conn, string cmd)
         {
             Console.WriteLine("id: {0} cmd: {1}", conn, cmd);
@@ -99,13 +99,14 @@ namespace Wa1gon.RigControl.Controllers
             return null;
         }
 
-
+        [Route("Radio")]
         // PUT api/values/5 
         public void Put(int id, [FromBody]string value)
         {
         }
 
         // DELETE api/values/5 
+        [Route("Radio")]
         public void Delete(int id)
         {
         } 

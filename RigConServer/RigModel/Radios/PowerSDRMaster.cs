@@ -26,6 +26,7 @@ namespace Wa1gon.Models
 {
     public class PowerSDRMaster : RadioControlBase
     {
+        private string AtuOn = "1";
         private string results;
         private object lockObject;
         private char [] delimiter = {':'};
@@ -243,6 +244,82 @@ namespace Wa1gon.Models
                 pmode = resp.Substring(4);
                 item.PropertyValue = modeLookup[pmode];
 
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+
+        public override void SetAtuButton(RadioProperty item)
+        {
+
+            try
+            {
+
+                OpenPort();
+
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string cmd;
+
+                cmd = "ZZOW";
+
+                string rCmd = string.Format("{0}{1};", cmd, item.PropertyValue);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+                item.Status = RadioConstants.Ok;
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        public override void GetAtuButton(RadioProperty item)
+        {
+            try
+            {
+
+                OpenPort();
+
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string cmd;
+
+                cmd = "ZZOW";
+
+                string rCmd = string.Format("{0};", cmd);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+                item.Status = RadioConstants.Ok;
             }
             catch (Exception e)
             {

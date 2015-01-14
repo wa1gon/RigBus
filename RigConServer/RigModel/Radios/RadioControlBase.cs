@@ -58,6 +58,9 @@ namespace Wa1gon.Models
                     case RadioConstants.Freq:
                         GetFreq(item);
                         break;
+                    case RadioConstants.ATUButton:
+                        GetAtuButton(item);
+                        break;
                 }
                 if (item.Status == RadioConstants.Ok)
                 {
@@ -70,11 +73,16 @@ namespace Wa1gon.Models
             }
             
         }
+
+        virtual public void GetAtuButton(RadioProperty item)
+        {
+            item.Status = NotSupported;
+        }
         /// <summary> Takes a list of Radio Properties and sets them.
         /// 
         /// </summary>
         /// <param name="cmd">List of command</param>
-        virtual public void SetSettings(RadioPropComandList cmd)
+        public virtual void SetSettings(RadioPropComandList cmd)
         {
             foreach (var item in cmd.Properties)
             {
@@ -86,6 +94,9 @@ namespace Wa1gon.Models
                     case RadioConstants.Freq:
                         SetFreq(item);
                         break;
+                    case RadioConstants.ATUButton:
+                        SetAtuButton(item);
+                        break;
                 }
                 if (item.Status == RadioConstants.Ok)
                 {
@@ -96,6 +107,11 @@ namespace Wa1gon.Models
                     cmd.Failed++;
                 }
             }
+        }
+
+        virtual public void SetAtuButton(RadioProperty item)
+        {
+            item.Status = NotSupported;
         }
         public virtual void GetMode(RadioProperty item)
         {

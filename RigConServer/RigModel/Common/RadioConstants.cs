@@ -13,6 +13,7 @@ namespace Wa1gon.Models.Common
         // Commands
         public const string Mode = "mode";
         public const string Freq = "freq";
+        public const string ATUButton = "atub";
 
         // VFO 
         public const string VfoA = "a";

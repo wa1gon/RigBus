@@ -10,11 +10,12 @@ using Wa1gon.ServerInfrastructure;
 using Microsoft.Owin;
 namespace Wa1gon.RigControl.Controllers
 {
-    [RoutePrefix("v1/info")]
+    [RoutePrefix("api/v1")]
     public class InfoController : ApiController 
     {
 
         // GET api/values 
+        [Route("Info")]
         public ServerInfo Get()
         {
             var ctx = new OwinContext();
