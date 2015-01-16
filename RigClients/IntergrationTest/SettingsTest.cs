@@ -126,8 +126,6 @@ namespace IntergrationTest
         {
             string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
 
-            var client = new HttpClient();
-
             var cmdReq = new RadioPropComandList();
             var setting = new RadioProperty();
             setting.PropertyName = RadioConstants.Mode;
