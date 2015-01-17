@@ -1,6 +1,6 @@
-RigcontrolAAS
+RigGate
 =============
 
-Ham Web Sockets Project
+StarGate Amateur Web Services Project
 
-Rig Control As A Service is an Amateur Radio application service that controls the settings on Amateur Radios
+RigGate As A Service is an Amateur Radio application service that controls the settings on Amateur Radios
