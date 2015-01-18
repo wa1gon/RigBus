@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RigControlConsole", "RigControlConsole\RigControlConsole.csproj", "{D5A9A1DE-481A-4522-8157-2AB659A89F4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RigGateServer", "RigControlConsole\RigGateServer.csproj", "{D5A9A1DE-481A-4522-8157-2AB659A89F4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Model", "RigModel\Model.csproj", "{41DAF248-7D5D-40A4-AC35-85B91717F1E7}"
 EndProject

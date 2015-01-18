@@ -9,6 +9,7 @@ using System.Security.Principal;
 using System.Text;
 using System.Threading.Tasks;
 using Wa1gon.Models;
+using Wa1gon.Models.Common;
 using Wa1gon.ServerInfrastructure;
 
 namespace Wa1gon.RigControl
@@ -38,7 +39,7 @@ namespace Wa1gon.RigControl
             Console.WriteLine("Listening on port: {0}", port);
             StartOptions options = new StartOptions();
             options.Urls.Add(string.Format("http://localhost:{0}", port));
-
+            Console.WriteLine("Opening up access to local clients only.");
             // Need to be admin to listen on remote address
             if (IsAdministrator() == true)
             {
@@ -83,9 +84,16 @@ namespace Wa1gon.RigControl
 
         private static void EnumSupportedRadios(ServerState info)
         {
-            info.ServerInfo.SupportedRadios.Add("PowerSDR");
-            info.ServerInfo.SupportedRadios.Add("Dummy");
-            info.ServerInfo.SupportedRadios.Add("ICom746");
+            AddRadioIfNew(RadioConstants.PowerSDR, info.ServerInfo);
+            AddRadioIfNew(RadioConstants.DummyRadio, info.ServerInfo);
+            AddRadioIfNew(RadioConstants.Icom746, info.ServerInfo); 
+        }
+        private static void AddRadioIfNew(string radioType, ServerInfo sInfo)
+        {
+            if (sInfo.SupportedRadios.Contains(RadioConstants.PowerSDR) == false)
+            {
+                sInfo.SupportedRadios.Add(radioType);
+            }
         }
 
         private static void InitAvailCommPort(ServerState info)

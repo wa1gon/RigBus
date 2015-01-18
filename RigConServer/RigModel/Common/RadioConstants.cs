@@ -32,5 +32,10 @@ namespace Wa1gon.Models.Common
         public const string DIGL = "DIGL" ;
         public const string SAM = "SAM" ;
         public const string DRM = "DRM" ;
+
+        // supported radios
+        public const string PowerSDR = "PowerSDR";
+        public const string DummyRadio = "Dummy";
+        public const string Icom746 = "ICom746";
     }
 }
