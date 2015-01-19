@@ -37,6 +37,16 @@ Global
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		ConfigurationFilter = 
+		AssemblyInfoFilePath = 
+		UpdateAssemblyVersion = True
+		UpdateAssemblyFileVersion = True
+		UpdateAssemblyInfoVersion = True
+		AssemblyVersionSettings = YearStamp.MonthStamp.DayStamp.Increment
+		AssemblyFileVersionSettings = YearStamp.MonthStamp.DayStamp.Increment
+		AssemblyInfoVersionSettings = YearStamp.MonthStamp.DayStamp.Increment
+	EndGlobalSection
 	GlobalSection(CodealikeProperties) = postSolution
 		SolutionGuid = f1d9decb-242f-45b5-bd8f-3dd6b4c181ec
 	EndGlobalSection

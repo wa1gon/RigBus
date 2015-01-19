@@ -137,7 +137,32 @@ namespace IntergrationTest
             Assert.AreEqual(1, respCmd.Success);
             Assert.AreEqual(1, respCmd.Properties.Count);
         }
+        [TestMethod]
+        public void PostSetGetAtuFlexTest()
+        {
+            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
 
+            var cmdReq = new RadioPropComandList();
+            var setting = new RadioProperty();
+            setting.PropertyName = RadioConstants.ATUButton;
+            setting.PropertyValue = "1";
+
+            cmdReq.Properties.Add(setting);
+            var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
+
+            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Properties.Count);
+
+            setting.PropertyName = RadioConstants.ATUButton;
+
+
+            cmdReq.Properties.Add(setting);
+            respCmd = RadioControl.GetRadioProperty(cmdReq, server);
+
+            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Properties.Count);
+
+        }
         [TestMethod]
         public void PostSetFreqFlexTest()
         {

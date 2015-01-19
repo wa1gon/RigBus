@@ -57,7 +57,7 @@ namespace Wa1gon.RigControl
 
         private void InitServerState()
         {
-            string confFile = "C:/HamSockets/RigServer.json";
+            string confFile = "C:/Stargate/RigGateServer.json";
             ServerState info;
             if (File.Exists(confFile))
             {
