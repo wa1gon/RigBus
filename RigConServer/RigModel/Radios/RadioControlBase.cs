@@ -61,6 +61,9 @@ namespace Wa1gon.Models
                     case RadioConstants.ATUButton:
                         GetAtuButton(item);
                         break;
+                    case RadioConstants.VerboseError:
+                        GetAtuButton(item);
+                        break;
                 }
                 if (item.Status == RadioConstants.Ok)
                 {
@@ -76,7 +79,7 @@ namespace Wa1gon.Models
 
         virtual public void GetAtuButton(RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
         /// <summary> Takes a list of Radio Properties and sets them.
         /// 
@@ -97,7 +100,14 @@ namespace Wa1gon.Models
                     case RadioConstants.ATUButton:
                         SetAtuButton(item);
                         break;
+                    case RadioConstants.VerboseError:
+                        SetVerboseError(item);
+                        break;
+                    default:
+                        NoneImplemented(item);
+                        break;
                 }
+
                 if (item.Status == RadioConstants.Ok)
                 {
                     cmd.Success++;
@@ -109,27 +119,41 @@ namespace Wa1gon.Models
             }
         }
 
+
+        private void NoneImplemented(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
+        }
+        
+
+        public virtual void SetVerboseError(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
+        }
+
         virtual public void SetAtuButton(RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
         public virtual void GetMode(RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
         public virtual void GetFreq(RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
         public virtual void SetMode(Common.RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
         public virtual void SetFreq(Common.RadioProperty item)
         {
-            item.Status = NotSupported;
+            item.Status = RadioConstants.NotSupported;
         }
-
-        public const string NotSupported = "Not Supported";
+        public virtual void SetVerbose(Common.RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
+        }        
     }
 }

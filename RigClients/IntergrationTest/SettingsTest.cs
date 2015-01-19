@@ -144,11 +144,20 @@ namespace IntergrationTest
 
             var cmdReq = new RadioPropComandList();
             var setting = new RadioProperty();
-            setting.PropertyName = RadioConstants.ATUButton;
+
+            setting.PropertyName = RadioConstants.VerboseError;
             setting.PropertyValue = "1";
 
             cmdReq.Properties.Add(setting);
             var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
+            Assert.AreEqual(1, respCmd.Success);
+
+            // set ATU button
+            setting.PropertyName = RadioConstants.ATUButton;
+            setting.PropertyValue = "1";
+
+            cmdReq.Properties.Add(setting);
+            respCmd = RadioControl.SetRadioProperty(cmdReq, server);
 
             Assert.AreEqual(1, respCmd.Success);
             Assert.AreEqual(1, respCmd.Properties.Count);

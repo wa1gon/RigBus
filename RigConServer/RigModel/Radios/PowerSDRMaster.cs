@@ -279,7 +279,7 @@ namespace Wa1gon.Models
                 string resp = ReadToSemiFromCom();
                 if (resp == "?;")
                 {
-                    item.Status = "Radio Error ?;";
+                    item.Status = "Radio Error ?";
                     return;
                 }
                 item.Status = RadioConstants.Ok;
@@ -310,6 +310,41 @@ namespace Wa1gon.Models
                 cmd = "ZZOW";
 
                 string rCmd = string.Format("{0};", cmd);
+                Port.Write(rCmd);
+
+                // expecting timeout
+                string resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?;";
+                    return;
+                }
+                item.Status = RadioConstants.Ok;
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        public override void SetVerboseError(Common.RadioProperty item)
+        {
+            try
+            {
+
+                OpenPort();
+
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+
+
+                string rCmd = string.Format("ZZEM{0};",item.PropertyValue);
                 Port.Write(rCmd);
 
                 // expecting timeout

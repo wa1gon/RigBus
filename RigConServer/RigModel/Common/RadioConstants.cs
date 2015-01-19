@@ -10,10 +10,11 @@ namespace Wa1gon.Models.Common
 
         // status
         public const string Ok = "OK";
-        // Commands
+        // Commands  must be in lower case
         public const string Mode = "mode";
         public const string Freq = "freq";
         public const string ATUButton = "atub";
+        public const string VerboseError = "verror";
 
         // VFO 
         public const string VfoA = "a";
@@ -37,5 +38,9 @@ namespace Wa1gon.Models.Common
         public const string PowerSDR = "PowerSDR";
         public const string DummyRadio = "Dummy";
         public const string Icom746 = "ICom746";
+
+
+        // return codes
+        public const string NotSupported = "Not Supported";
     }
 }
