@@ -128,13 +128,9 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0};", vfoCmd);
                 Port.Write(rCmd);
 
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
+                string resp = ReadRadioComm(item);
+                if (string.IsNullOrWhiteSpace(resp)) return;
+
                 double nfreq = double.Parse(resp.Substring(4)) / 1000000;
                 item.PropertyValue = nfreq.ToString();
 
@@ -174,13 +170,7 @@ namespace Wa1gon.Models
                 Port.Write(rCmd);
 
                 // expecting timeout
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
+                ReadRadioComm(item);
             }
             catch (Exception e)
             {
@@ -234,13 +224,9 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0};", vfoCmd);
                 Port.Write(rCmd);
 
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
+                string resp = ReadRadioComm(item);
+                if (string.IsNullOrWhiteSpace(resp)) return;
+
                 pmode = resp.Substring(4);
                 item.PropertyValue = modeLookup[pmode];
 
@@ -277,27 +263,35 @@ namespace Wa1gon.Models
 
                 // expecting timeout  		
 
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?";
-                    return;
-                }
-                //"ZZEM:ZZOW1:Feature Not Available"
+                ReadRadioComm(item);
 
-                if (resp.Substring(0,4) == "ZZEM")
-                {
-                    string [] errorArray = resp.Split(new char [] {':'});
-                    item.Status = errorArray[2];
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
             }
             catch (Exception e)
             {
                 item.Status = e.Message;
 
             }
+        }
+
+        private string ReadRadioComm(RadioProperty item)
+        {
+            string resp = ReadToSemiFromCom();
+            if (resp == "?;")
+            {
+                item.Status = "Radio Error ?";
+                return string.Empty;
+            }
+            //"ZZEM:ZZOW1:Feature Not Available"
+
+            if (resp.Substring(0, 4) == "ZZEM")
+            {
+                string[] errorArray = resp.Split(new char[] { ':' });
+                item.Status = errorArray[2];
+                return string.Empty;
+
+            }
+            item.Status = RadioConstants.Ok;
+            return resp;
         }
         public override void GetAtuButton(RadioProperty item)
         {
@@ -322,13 +316,7 @@ namespace Wa1gon.Models
                 Port.Write(rCmd);
 
                 // expecting timeout
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
+                ReadRadioComm(item);
             }
             catch (Exception e)
             {
@@ -357,13 +345,7 @@ namespace Wa1gon.Models
                 Port.Write(rCmd);
 
                 // expecting timeout
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
-                item.Status = RadioConstants.Ok;
+                ReadRadioComm(item);
             }
             catch (Exception e)
             {
@@ -400,13 +382,7 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0}{1}{2};", vfoCmd,pmode[0], pmode[1]);
                 Port.Write(rCmd);
 
-                // expecting timeout
-                string resp = ReadToSemiFromCom();
-                if (resp == "?;")
-                {
-                    item.Status = "Radio Error ?;";
-                    return;
-                }
+                ReadRadioComm(item);
                 item.Status = RadioConstants.Ok;
             }
             catch (Exception e)

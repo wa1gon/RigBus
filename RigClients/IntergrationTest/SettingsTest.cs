@@ -124,7 +124,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetModeFlexTest()
         {
-            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerDisplay(RadioConstants.RadioController);
 
             var cmdReq = new RadioPropComandList();
             var setting = new RadioProperty();
@@ -184,7 +184,7 @@ namespace IntergrationTest
         [TestMethod]
         public void PostSetFreqFlexTest()
         {
-            string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
+            string baseUrl = server.BuildUriControllerDisplay(RadioConstants.RadioController);
             var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
