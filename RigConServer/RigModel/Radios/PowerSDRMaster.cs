@@ -275,11 +275,20 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0}{1};", cmd, item.PropertyValue);
                 Port.Write(rCmd);
 
-                // expecting timeout
+                // expecting timeout  		
+
                 string resp = ReadToSemiFromCom();
                 if (resp == "?;")
                 {
                     item.Status = "Radio Error ?";
+                    return;
+                }
+                //"ZZEM:ZZOW1:Feature Not Available"
+
+                if (resp.Substring(0,4) == "ZZEM")
+                {
+                    string [] errorArray = resp.Split(new char [] {':'});
+                    item.Status = errorArray[2];
                     return;
                 }
                 item.Status = RadioConstants.Ok;
