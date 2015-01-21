@@ -255,6 +255,7 @@ namespace Wa1gon.Models
             try
             {
                 string cmd;
+                item.Status = RadioConstants.Ok;
 
                 cmd = "ZZOW";
 
@@ -263,7 +264,7 @@ namespace Wa1gon.Models
 
                 // expecting timeout  		
 
-                ReadRadioComm(item);
+                string resp = ReadRadioComm(item);
 
             }
             catch (Exception e)
@@ -275,22 +276,29 @@ namespace Wa1gon.Models
 
         private string ReadRadioComm(RadioProperty item)
         {
-            string resp = ReadToSemiFromCom();
-            if (resp == "?;")
+            string resp = string.Empty;
+            try
             {
-                item.Status = "Radio Error ?";
-                return string.Empty;
-            }
-            //"ZZEM:ZZOW1:Feature Not Available"
+                item.Status = RadioConstants.Ok;
+                resp = ReadToSemiFromCom();
+                if (resp == "?;")
+                {
+                    item.Status = "Radio Error ?";
+                    return string.Empty;
+                }
+                //"ZZEM:ZZOW1:Feature Not Available"
 
-            if (resp.Substring(0, 4) == "ZZEM")
-            {
-                string[] errorArray = resp.Split(new char[] { ':' });
-                item.Status = errorArray[2];
-                return string.Empty;
+                if (resp.Substring(0, 4) == "ZZEM")
+                {
+                    string[] errorArray = resp.Split(new char[] { ':' });
+                    item.Status = errorArray[2];
+                    return string.Empty;
+
+                }
 
             }
-            item.Status = RadioConstants.Ok;
+            catch (Exception)
+            { }
             return resp;
         }
         public override void GetAtuButton(RadioProperty item)
@@ -382,7 +390,11 @@ namespace Wa1gon.Models
                 string rCmd = string.Format("{0}{1}{2};", vfoCmd,pmode[0], pmode[1]);
                 Port.Write(rCmd);
 
-                ReadRadioComm(item);
+                string resp = ReadRadioComm(item);
+                if (string.IsNullOrWhiteSpace(resp))
+                {
+                    Console.WriteLine(resp);
+                }
                 item.Status = RadioConstants.Ok;
             }
             catch (Exception e)

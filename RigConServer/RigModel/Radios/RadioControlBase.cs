@@ -50,6 +50,7 @@ namespace Wa1gon.Models
         {
             foreach (var item in cmd.Properties)
             {
+                LogItem(item, "get");
                 switch (item.PropertyName.ToLower())
                 {
                     case RadioConstants.Mode:
@@ -77,6 +78,12 @@ namespace Wa1gon.Models
             
         }
 
+        private void LogItem(RadioProperty item,string action)
+        {
+            Console.WriteLine("{0} Property: {1} Value: {2}", action, item.PropertyName,
+                item.PropertyValue);
+        }
+
         virtual public void GetAtuButton(RadioProperty item)
         {
             item.Status = RadioConstants.NotSupported;
@@ -89,6 +96,7 @@ namespace Wa1gon.Models
         {
             foreach (var item in cmd.Properties)
             {
+                LogItem(item, "set");
                 switch (item.PropertyName.ToLower())
                 {
                     case RadioConstants.Mode:

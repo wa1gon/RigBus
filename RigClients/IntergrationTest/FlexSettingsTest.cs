@@ -13,11 +13,12 @@ namespace IntergrationTest
 
     /// <summary>  These are not unit test but integration test for the test
     /// to work correct there must be a connection with the name of "Flex" connected to 
-    /// a PowerSDR.  The PowerSDR can be running in demo mode, as well as the RigControlServer
+    /// a PowerSDR Demo.  The PowerSDR can be running in demo mode, as well as the 
+    /// RigControlServer.  I expect some of the test to fail on a real radio
     /// </summary>
 
     [TestClass()]
-    public class SettingsTest
+    public class FlexSettingsTest
     {
         static private Connection server;
 
@@ -163,7 +164,7 @@ namespace IntergrationTest
 
             // get ATU button
 
-            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Failed);
             Assert.AreEqual(1, respCmd.Properties.Count);
 
             cmdReq.Properties.Clear();
@@ -171,7 +172,7 @@ namespace IntergrationTest
             cmdReq.Properties.Add(setting);
             respCmd = RadioControl.GetRadioProperty(cmdReq, server);
 
-            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Failed);
             Assert.AreEqual(1, respCmd.Properties.Count);
 
             setting.PropertyName = RadioConstants.VerboseError;

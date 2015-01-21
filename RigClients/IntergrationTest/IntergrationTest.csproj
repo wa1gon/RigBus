@@ -55,7 +55,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="SettingsTest.cs" />
+    <Compile Include="FlexSettingsTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="GettingTest.cs" />
   </ItemGroup>
