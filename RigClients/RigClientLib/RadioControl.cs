@@ -122,5 +122,23 @@ namespace Wa1gon.RigClientLib
             var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             return results;
         }
+        static public bool IsConnectionValid(Connection conn,string connName)
+        {
+            try
+            {
+                string baseUrl = conn.BuildUriControllerOnly(RadioConstants.ConnectioinController);
+                var client = new HttpClient();
+                HttpResponseMessage response = client.GetAsync(baseUrl).Result;
+
+                var results = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
+
+                bool hasConn = results.Exists(n => n.ConnectionName == connName);
+                return hasConn;
+            }
+            catch(Exception)
+            {
+                return false;
+            }
+        }
     }
 }

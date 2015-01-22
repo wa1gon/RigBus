@@ -55,9 +55,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="FlexSettingsTest.cs" />
+    <Compile Include="FlexTest\FlexSettingsTest.cs" />
+    <Compile Include="FlexTest\FlexAudioTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="GettingTest.cs" />
+    <Compile Include="FlexTest\CommonFlexFuncTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\RigConServer\RigModel\Model.csproj">

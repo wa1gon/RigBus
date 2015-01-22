@@ -10,25 +10,18 @@ using System.Net;
 namespace IntergrationTest
 {
     [TestClass]
-    public class GettingTest
+    public class CommonFlexFuncTest
     {
         static private Connection server;
         [ClassInitialize()]
         static public void TestSetup(TestContext context)
         {
-
             server = new Connection();
             server.HostName = "localhost";
             server.Port = "7301";
             server.DisplayName = "Flex";
 
-            string baseUrl = server.BuildUriControllerOnly(RadioConstants.ConnectioinController);
-            var client = new HttpClient();
-            HttpResponseMessage response = client.GetAsync(baseUrl).Result;
-
-            var results = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
-
-            bool hasFlex = results.Exists(n => n.ConnectionName == "Flex");
+            bool hasFlex = RadioControl.IsConnectionValid(server, "Flex");
             if (hasFlex == false)
             {
                 throw new Exception("Flex isn't defined");
@@ -38,7 +31,6 @@ namespace IntergrationTest
         public void GetFlexFreqTest()
         {
             string baseUrl = server.BuildUriControllerOnly(RadioConstants.RadioController);
-            var client = new HttpClient();
 
             var cmdReq = new RadioPropComandList();
             var rigProp = new RadioProperty();

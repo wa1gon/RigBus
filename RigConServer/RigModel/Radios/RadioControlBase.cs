@@ -65,6 +65,9 @@ namespace Wa1gon.Models
                     case RadioConstants.VerboseError:
                         GetAtuButton(item);
                         break;
+                    default:
+                        NoneImplemented(item);
+                        break;
                 }
                 if (item.Status == RadioConstants.Ok)
                 {

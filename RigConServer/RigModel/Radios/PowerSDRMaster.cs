@@ -88,6 +88,18 @@ namespace Wa1gon.Models
                 Port.Open();
                 isPortOpen = true;
             }
+            string radioData;
+            radioData = ReadToSemiFromCom();
+            if (string.IsNullOrWhiteSpace(radioData))
+            {
+                return;
+            }
+            HandleAsyncRadioMessage(radioData);
+        }
+
+        private void HandleAsyncRadioMessage(string radioData)
+        {
+            Console.WriteLine("Received radio status: {0}", radioData);
         }
         override public RadioPropComandList ReadSettings()
         {
