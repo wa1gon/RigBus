@@ -21,7 +21,7 @@ namespace IntergrationTest
             server.Port = "7301";
             server.DisplayName = "Flex";
 
-            bool hasFlex = RadioControl.IsConnectionValid(server, "Flex");
+            bool hasFlex = RadioControl.IsConnectionValid(server);
             if (hasFlex == false)
             {
                 throw new Exception("Flex isn't defined");

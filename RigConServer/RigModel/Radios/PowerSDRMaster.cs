@@ -237,7 +237,12 @@ namespace Wa1gon.Models
                 Port.Write(rCmd);
 
                 string resp = ReadRadioComm(item);
-                if (string.IsNullOrWhiteSpace(resp)) return;
+                if (string.IsNullOrWhiteSpace(resp))
+                {
+                    item.PropertyValue = null;
+                    item.Status = "No data on comm port.";
+                    return;
+                }
 
                 pmode = resp.Substring(4);
                 item.PropertyValue = modeLookup[pmode];
@@ -249,7 +254,87 @@ namespace Wa1gon.Models
 
             }
         }
+        public override void SetAG(RadioProperty item)
+        {
 
+            try
+            {
+                OpenPort();
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string cmd;
+                item.Status = RadioConstants.Ok;
+
+                cmd = "ZZAG";
+
+                double agValue = Convert.ToDouble( agValue = int.Parse(item.PropertyValue));
+
+                agValue = (agValue / 100) * 255;
+
+                int agInt = Convert.ToInt32(agValue + .5);
+                string rCmd = string.Format("{0}0{1};", cmd, agInt.ToString("D3"));
+                Port.Write(rCmd);
+
+                // expecting timeout  		
+
+                string resp = ReadRadioComm(item);
+                item.Status = RadioConstants.Ok;
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        public override void GetAG(RadioProperty item)
+        {
+
+            try
+            {
+                OpenPort();
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string cmd;
+                item.Status = RadioConstants.Ok;
+
+                cmd = "ZZAG";
+
+                string rCmd = string.Format("{0};", cmd);
+                Port.Write(rCmd);		
+
+                string resp = ReadRadioComm(item);
+                if (string.IsNullOrWhiteSpace(resp))
+                {
+                    item.PropertyValue = null;
+                    item.Status = "No data on comm port.";
+                    return;
+                }
+
+                string agString = resp.Substring(4);
+
+                int agInt = Convert.ToInt32(agString);
+                item.PropertyValue = agInt.ToString();
+                item.Status = RadioConstants.Ok;
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+            }
+        }
         public override void SetAtuButton(RadioProperty item)
         {
 

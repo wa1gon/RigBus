@@ -122,7 +122,12 @@ namespace Wa1gon.RigClientLib
             var results = response.Content.ReadAsAsync<RadioPropComandList>().Result;
             return results;
         }
-        static public bool IsConnectionValid(Connection conn,string connName)
+        /// <summary> Check a connection handle to make sure it is valid on the server
+        /// </summary>
+        /// <param name="conn">Connection Object </param>
+        /// <param name="connName"></param>
+        /// <returns></returns>
+        static public bool IsConnectionValid(Connection conn)
         {
             try
             {
@@ -132,7 +137,7 @@ namespace Wa1gon.RigClientLib
 
                 var results = response.Content.ReadAsAsync<List<RadioComConnConfig>>().Result;
 
-                bool hasConn = results.Exists(n => n.ConnectionName == connName);
+                bool hasConn = results.Exists(n => n.ConnectionName == conn.DisplayName);
                 return hasConn;
             }
             catch(Exception)

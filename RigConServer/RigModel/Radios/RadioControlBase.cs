@@ -65,8 +65,11 @@ namespace Wa1gon.Models
                     case RadioConstants.VerboseError:
                         GetAtuButton(item);
                         break;
+                    case RadioConstants.AG:
+                        GetAG(item);
+                        break;
                     default:
-                        NoneImplemented(item);
+                        NotImplemented(item);
                         break;
                 }
                 if (item.Status == RadioConstants.Ok)
@@ -79,6 +82,11 @@ namespace Wa1gon.Models
                 }
             }
             
+        }
+
+        public virtual void GetAG(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
         }
 
         private void LogItem(RadioProperty item,string action)
@@ -114,8 +122,11 @@ namespace Wa1gon.Models
                     case RadioConstants.VerboseError:
                         SetVerboseError(item);
                         break;
+                    case RadioConstants.AG:
+                        SetAG(item);
+                        break;
                     default:
-                        NoneImplemented(item);
+                        NotImplemented(item);
                         break;
                 }
 
@@ -130,8 +141,13 @@ namespace Wa1gon.Models
             }
         }
 
+        virtual public void SetAG(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
+        }
 
-        private void NoneImplemented(RadioProperty item)
+
+        private void NotImplemented(RadioProperty item)
         {
             item.Status = RadioConstants.NotSupported;
         }
