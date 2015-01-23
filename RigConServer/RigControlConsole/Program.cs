@@ -57,7 +57,11 @@ namespace Wa1gon.RigControl
 
         private void InitServerState()
         {
-            string confFile = "C:/Stargate/RigGateServer.json";
+            string dirName = "C:/Stargate/";
+
+            Directory.CreateDirectory(dirName);
+
+            string confFile = dirName + "RigGateServer.json";
             ServerState info;
             if (File.Exists(confFile))
             {
