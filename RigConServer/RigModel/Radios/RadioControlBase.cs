@@ -68,6 +68,9 @@ namespace Wa1gon.Models
                     case RadioConstants.AG:
                         GetAG(item);
                         break;
+                    case RadioConstants.AGF:
+                        GetAGF(item);
+                        break;
                     default:
                         NotImplemented(item);
                         break;
@@ -125,6 +128,9 @@ namespace Wa1gon.Models
                     case RadioConstants.AG:
                         SetAG(item);
                         break;
+                    case RadioConstants.AGF:
+                        SetAGF(item);
+                        break;
                     default:
                         NotImplemented(item);
                         break;
@@ -139,6 +145,16 @@ namespace Wa1gon.Models
                     cmd.Failed++;
                 }
             }
+        }
+
+        public virtual void SetAGF(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
+        }
+
+        public virtual void GetAGF(RadioProperty item)
+        {
+            item.Status = RadioConstants.NotSupported;
         }
 
         virtual public void SetAG(RadioProperty item)

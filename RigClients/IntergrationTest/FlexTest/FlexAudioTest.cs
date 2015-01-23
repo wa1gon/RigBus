@@ -53,6 +53,32 @@ namespace IntergrationTest.FlexTest
             Assert.AreEqual("25", respCmd.Properties[0].PropertyValue);
         }
         [TestMethod]
+        public void AudioGainFreqTest()
+        {
+            var cmdReq = new RadioPropComandList();
+            var rigProp = new RadioProperty();
+            rigProp.PropertyName = RadioConstants.AGF;
+            rigProp.PropertyValue = "25";
+            cmdReq.Properties.Add(rigProp);
+
+            var respCmd = RadioControl.SetRadioProperty(cmdReq, server);
+
+            Assert.AreEqual(1, respCmd.Success);
+
+
+            Assert.AreEqual(0, respCmd.Failed);
+            Assert.AreEqual(1, respCmd.Properties.Count);
+
+            cmdReq.Properties.Clear();
+            rigProp.PropertyName = RadioConstants.AGF;
+            cmdReq.Properties.Add(rigProp);
+            respCmd = RadioControl.GetRadioProperty(cmdReq, server);
+
+            Assert.AreEqual(1, respCmd.Success);
+            Assert.AreEqual(1, respCmd.Properties.Count);
+            Assert.AreEqual("+025", respCmd.Properties[0].PropertyValue);
+        }
+        [TestMethod]
         public void AudioGainGetTest()
         {
             var cmdReq = new RadioPropComandList();

@@ -10,9 +10,11 @@ namespace Wa1gon.Models.Common
 
         // status
         public const string Ok = "OK";
+        public const string Invalid = "Invalid Value";
 
         // Commands  must be in lower case
         public const string AG = "ag";
+        public const string AGF = "agf";
         public const string Mode = "mode";
         public const string Freq = "freq";
         public const string ATUButton = "atub";

@@ -254,6 +254,117 @@ namespace Wa1gon.Models
 
             }
         }
+        public override void SetAGF(RadioProperty item)
+        {
+
+            try
+            {
+                OpenPort();
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                string cmd;
+                item.Status = RadioConstants.Ok;
+
+                if (item.EnumItemNum == RadioConstants.VfoB)
+                {
+                    cmd = "ZZAS";
+                }
+                else
+                {
+                    cmd = "ZZAR";
+                }
+
+                string value = item.PropertyValue.Trim();
+
+                int intValue = int.Parse(item.PropertyValue);
+                if (intValue < -20 || intValue > 120)
+                {
+                    item.Status = RadioConstants.Invalid;
+                    return;
+                }
+                value = intValue.ToString("D3");
+
+                if (value[0] != '+' || value[0] != '-')
+                {
+                    value = "+" + value;
+                }
+
+#warning need to be put in a validator class.
+                if (value.Length != 4)
+                {
+                    item.Status = RadioConstants.Invalid;
+                    return;
+                }
+
+
+
+                string rCmd = string.Format("{0}{1};", cmd, value);
+                Port.Write(rCmd);
+
+                // expecting timeout  		
+
+                string resp = ReadRadioComm(item);
+                item.Status = RadioConstants.Ok;
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+
+            }
+        }
+        public override void GetAGF(RadioProperty item)
+        {
+            string cmd;
+            try
+            {
+                OpenPort();
+            }
+            catch (Exception e)
+            {
+                item.Status = "Server Error: " + e.Message;
+                return;
+            }
+            try
+            {
+                item.Status = RadioConstants.Ok;
+
+                if (item.EnumItemNum != RadioConstants.VfoB)
+                {
+                    cmd = "ZZAR";
+                }
+                else
+                {
+                    cmd = "ZZAS";
+                }
+
+                string rCmd = string.Format("{0};", cmd);
+                Port.Write(rCmd);		
+
+                string resp = ReadRadioComm(item);
+                if (string.IsNullOrWhiteSpace(resp))
+                {
+                    item.PropertyValue = null;
+                    item.Status = "No data on comm port.";
+                    return;
+                }
+
+                item.PropertyValue = resp.Substring(4);
+                item.Status = RadioConstants.Ok;
+
+            }
+            catch (Exception e)
+            {
+                item.Status = e.Message;
+            }
+        }
+
         public override void SetAG(RadioProperty item)
         {
 
@@ -273,7 +384,7 @@ namespace Wa1gon.Models
 
                 cmd = "ZZAG";
 
-                double agValue = Convert.ToDouble( agValue = int.Parse(item.PropertyValue));
+                double agValue = Convert.ToDouble(agValue = int.Parse(item.PropertyValue));
 
                 agValue = (agValue / 100) * 255;
 
@@ -313,7 +424,7 @@ namespace Wa1gon.Models
                 cmd = "ZZAG";
 
                 string rCmd = string.Format("{0};", cmd);
-                Port.Write(rCmd);		
+                Port.Write(rCmd);
 
                 string resp = ReadRadioComm(item);
                 if (string.IsNullOrWhiteSpace(resp))
