@@ -16,7 +16,7 @@ namespace Wa1gon.RigControl.Controllers
     public class RadioController : ApiController 
     {
         // GET api/values 
-        [Route("api/vi")]
+        [Route("api/v1")]
         public List<RadioComConnConfig> Get()
         {
             var state = ServerState.Create();
